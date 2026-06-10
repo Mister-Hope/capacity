@@ -52,7 +52,7 @@ const switchTarget = computed(() => {
 const graphPath = computed(() => {
   if (currentPoints.value.length === 0) {
     // Return empty or zero line
-    return 'M 480 65 L 640 65';
+    return 'M 440 65 L 700 65';
   }
   return currentPoints.value.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ');
 });
@@ -79,7 +79,7 @@ function startCharging() {
     current.value = 0.5 * Math.exp(-4 * progress);
     
     // Record I-t graph point
-    const x = 480 + (stepCounter / 40) * 160;
+    const x = 440 + (stepCounter / 40) * 260;
     const y = 65 - (current.value / 0.5) * 35;
     currentPoints.value.push({ x, y });
     
@@ -90,7 +90,7 @@ function startCharging() {
       // Fill the rest of the chart with zero
       while (stepCounter < 40) {
         stepCounter++;
-        currentPoints.value.push({ x: 480 + (stepCounter / 40) * 160, y: 65 });
+        currentPoints.value.push({ x: 440 + (stepCounter / 40) * 260, y: 65 });
       }
     }
   }, 40);
@@ -119,7 +119,7 @@ function startDischarging() {
     current.value = -0.5 * Math.exp(-4 * progress);
     
     // Record I-t graph point
-    const x = 480 + (stepCounter / 40) * 160;
+    const x = 440 + (stepCounter / 40) * 260;
     const y = 65 - (current.value / 0.5) * 35;
     currentPoints.value.push({ x, y });
     
@@ -130,7 +130,7 @@ function startDischarging() {
       // Fill the rest with zero
       while (stepCounter < 40) {
         stepCounter++;
-        currentPoints.value.push({ x: 480 + (stepCounter / 40) * 160, y: 65 });
+        currentPoints.value.push({ x: 440 + (stepCounter / 40) * 260, y: 65 });
       }
     }
   }, 40);
@@ -147,7 +147,7 @@ onUnmounted(() => {
       
       <!-- SVG Drawing -->
       <div id="capacitor-circuit-svg-container" class="w-full relative bg-slate-950/40 rounded-lg p-2 border border-slate-900 overflow-hidden">
-        <svg viewBox="0 0 660 140" class="circuit-svg">
+        <svg viewBox="0 0 720 140" class="circuit-svg">
           
           <!-- LEFT VERTICAL WIRE SECTION WITH EMBEDDED VERTICAL BATTERY (AS PER REF PICTURE) -->
           <line x1="45" y1="15" x2="45" y2="58" stroke="#475569" stroke-width="2" />
@@ -265,21 +265,21 @@ onUnmounted(() => {
           <!-- OSCILLOSCOPE I-t GRAPH PANEL (REPLACES DIAGNOSTIC PANEL) -->
           <g id="i-t-chart-panel">
             <!-- Grid container -->
-            <rect x="480" y="20" width="160" height="90" rx="4" fill="#020617" stroke="#334155" stroke-width="1.2" />
+            <rect x="440" y="20" width="260" height="90" rx="4" fill="#020617" stroke="#334155" stroke-width="1.2" />
             
             <!-- Grid lines -->
             <!-- I=0 midline -->
-            <line x1="480" y1="65" x2="640" y2="65" stroke="#334155" stroke-dasharray="2,2" />
+            <line x1="440" y1="65" x2="700" y2="65" stroke="#334155" stroke-dasharray="2,2" />
             <!-- Upper 0.25A grid line -->
-            <line x1="480" y1="42" x2="640" y2="42" stroke="#1e293b" stroke-dasharray="1,2" />
+            <line x1="440" y1="42" x2="700" y2="42" stroke="#1e293b" stroke-dasharray="1,2" />
             <!-- Lower -0.25A grid line -->
-            <line x1="480" y1="88" x2="640" y2="88" stroke="#1e293b" stroke-dasharray="1,2" />
+            <line x1="440" y1="88" x2="700" y2="88" stroke="#1e293b" stroke-dasharray="1,2" />
 
             <!-- Axis Labels -->
-            <text x="485" y="32" font-size="8" font-family="sans-serif" fill="#ef4444" font-weight="bold">+I (充)</text>
-            <text x="485" y="103" font-size="8" font-family="sans-serif" fill="#3b82f6" font-weight="bold">-I (放)</text>
-            <text x="632" y="61" font-size="8" font-family="sans-serif" fill="#64748b" text-anchor="end">t</text>
-            <text x="560" y="14" font-size="8" font-family="sans-serif" fill="#94a3b8" text-anchor="middle" font-weight="bold">I-t 暂态电流图</text>
+            <text x="428" y="42" font-size="8" font-family="sans-serif" fill="#ef4444" font-weight="bold" text-anchor="end">I</text>
+            <text x="428" y="88" font-size="8" font-family="sans-serif" fill="#3b82f6" font-weight="bold" text-anchor="end">I</text>
+            <text x="700" y="61" font-size="8" font-family="sans-serif" fill="#64748b" text-anchor="end">t</text>
+            <text x="560" y="18" font-size="9" font-family="sans-serif" fill="#94a3b8" text-anchor="middle" font-weight="bold">I — t</text>
 
             <!-- Dynamic trace path -->
             <path :d="graphPath" stroke="#10b981" stroke-width="2" fill="none" stroke-linecap="round" />

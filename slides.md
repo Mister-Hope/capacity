@@ -185,10 +185,10 @@ layout: default
   <div class="flex items-center gap-2 mb-3"><mdi-battery-charging class="text-accent-2 text-xl" /><span class="font-semibold text-lg">充电</span></div>
   <v-clicks>
 
-  <div class="mb-2 text-sm">电源正极<span class="text-red-400">吸引电子</span>，负极<span class="text-accent-2">提供电子</span></div>
   <div class="mb-2 text-sm">与正极相连的极板<span class="text-red-400">失去电子 → 带正电</span></div>
   <div class="mb-2 text-sm">与负极相连的极板<span class="text-accent-2">获得电子 → 带负电</span></div>
-  <div class="text-sm opacity-60 mt-2">两极板间建立电场，电能 → 电场能储存</div>
+  <div class="mb-2 text-sm">两极板间<span class="text-accent">电势差逐渐升高</span>，直至等于电源电压</div>
+  <div class="text-sm opacity-60 mt-2">充电完成，电源的能量 → 储存在电容器中</div>
 
   </v-clicks>
 </div>
@@ -197,10 +197,10 @@ layout: default
   <div class="flex items-center gap-2 mb-3"><mdi-lightbulb-on-outline class="text-accent text-xl" /><span class="font-semibold text-lg">放电</span></div>
   <v-clicks>
 
-  <div class="mb-2 text-sm">用导线连接两极板，<span class="text-accent-2">电子回流</span></div>
-  <div class="mb-2 text-sm">负电荷从负极板经导线 → 正极板</div>
-  <div class="mb-2 text-sm">电荷中和，电流通过用电器</div>
-  <div class="text-sm opacity-60 mt-2">电场能 → 光能/热能，电场逐渐消失</div>
+  <div class="mb-2 text-sm">用导线连接两极板</div>
+  <div class="mb-2 text-sm">电子从<span class="text-accent-2">负极板</span>经导线流向<span class="text-red-400">正极板</span></div>
+  <div class="mb-2 text-sm">两极板电荷逐渐中和，<span class="text-accent">电势差降低</span></div>
+  <div class="text-sm opacity-60 mt-2">电容器储存的能量 → 释放到电路中</div>
 
   </v-clicks>
 </div>
