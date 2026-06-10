@@ -1,41 +1,45 @@
 /* ═══════════════════════════════════════════════
-   电容器的电容 — 公开课设计系统
-   大教室 · 大字号 · 大圆角 · 深蓝学术风
+   电容器的电容 — 公开课设计系统 v2
+   玻璃态 · 微动效 · 专业学术质感
    ═══════════════════════════════════════════════ */
 
 :root {
-  /* 配色 */
-  --c-bg: #0f172a;              /* 深蓝黑底 */
-  --c-surface: #1e293b;         /* 卡片表面 */
-  --c-surface-hover: #273449;   /* 卡片悬停 */
-  --c-border: rgba(148, 163, 184, 0.12); /* 柔和边框 */
-  --c-text: #f1f5f9;            /* 主文字 */
-  --c-text-dim: #94a3b8;        /* 次级文字 */
-  --c-accent: #e2a846;          /* 暖金强调 */
-  --c-accent-2: #38bdf8;        /* 天蓝辅助 */
-  --c-physics: #2dd4bf;         /* 青绿 — 物理量 */
-  --c-formula: #f9a8d4;         /* 粉 — 公式高亮 */
-  --radius-lg: 1.5rem;
-  --radius-md: 1rem;
-  --radius-sm: 0.625rem;
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
-  --shadow-glow: 0 0 40px rgba(56, 189, 248, 0.08);
+  /* 配色系统 */
+  --c-bg: #090d1a;
+  --c-bg-soft: #0f1425;
+  --c-surface: rgba(30, 41, 59, 0.65);
+  --c-surface-solid: #1e293b;
+  --c-border: rgba(148, 163, 184, 0.10);
+  --c-border-glow: rgba(226, 168, 70, 0.2);
+  --c-text: #f1f5f9;
+  --c-text-dim: #94a3b8;
+  --c-accent: #e2a846;
+  --c-accent-glow: #f59e0b;
+  --c-accent-2: #38bdf8;
+  --c-accent-2-glow: #0ea5e9;
+  --c-physics: #2dd4bf;
+  --c-danger: #f87171;
+  --radius-xl: 1.75rem;
+  --radius-lg: 1.25rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
 }
 
 /* ── 基础 ── */
 html {
   font-size: 28px;
   color: var(--c-text);
+  background: var(--c-bg);
 }
 
 body {
   font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', system-ui, -apple-system, sans-serif;
-  background: var(--c-bg);
+  background: linear-gradient(160deg, var(--c-bg) 0%, #0c1122 40%, var(--c-bg-soft) 100%);
 }
 
 .slidev-layout {
   padding: 2.5rem 3.5rem !important;
-  background: var(--c-bg);
+  background: transparent !important;
 }
 
 /* ── 标题层级 ── */
@@ -44,16 +48,17 @@ h1 {
   font-weight: 700 !important;
   letter-spacing: -0.02em;
   color: var(--c-text);
+  margin-bottom: 0.75rem;
 }
 
 h2 {
-  font-size: 1.8rem !important;
+  font-size: 1.6rem !important;
   font-weight: 600 !important;
   color: var(--c-text);
 }
 
 h3 {
-  font-size: 1.3rem !important;
+  font-size: 1.2rem !important;
   font-weight: 500 !important;
   color: var(--c-text-dim);
 }
@@ -61,21 +66,31 @@ h3 {
 /* ── 正文 ── */
 p, li {
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-/* ── 卡片 ── */
+/* ══════════════════════════════════════
+   卡片系统 — 玻璃态
+   ══════════════════════════════════════ */
 .card {
   background: var(--c-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-lg);
-  padding: 1.5rem 2rem;
-  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.75rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(148, 163, 184, 0.18);
+  transform: translateY(-1px);
 }
 
 .card-highlight {
-  border-color: rgba(226, 168, 70, 0.25);
-  box-shadow: var(--shadow-card), var(--shadow-glow);
+  border-color: var(--c-border-glow);
+  box-shadow: 0 0 30px rgba(226, 168, 70, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 /* ── 圆角标签 ── */
@@ -83,9 +98,9 @@ p, li {
   display: inline-block;
   background: var(--c-surface);
   border: 1px solid var(--c-border);
-  border-radius: var(--radius-sm);
+  border-radius: 2rem;
   padding: 0.3rem 0.9rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--c-text-dim);
 }
 
@@ -106,19 +121,20 @@ table {
   border-spacing: 0;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
 }
 
 th {
-  background: var(--c-surface);
+  background: var(--c-surface-solid);
   font-weight: 600;
   padding: 0.6rem 1.2rem;
   text-align: left;
+  border-bottom: 1px solid var(--c-border);
 }
 
 td {
   padding: 0.5rem 1.2rem;
   border-top: 1px solid var(--c-border);
+  background: rgba(15, 20, 37, 0.4);
 }
 
 /* ── 代码块 ── */
@@ -128,56 +144,139 @@ pre, code {
 }
 
 /* ══════════════════════════════════════
-   封面页专用样式
+   封面页
    ══════════════════════════════════════ */
 .cover-title {
   font-size: 3.6rem !important;
   font-weight: 800 !important;
   letter-spacing: 0.04em !important;
-  background: linear-gradient(135deg, var(--c-accent) 0%, #f59e0b 50%, var(--c-accent-2) 100%);
+  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-accent-glow) 35%, var(--c-accent-2) 70%, var(--c-accent-2-glow) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  animation: title-shimmer 4s ease-in-out infinite alternate;
+}
+
+@keyframes title-shimmer {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.15); }
 }
 
 .cover-subtitle {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--c-text-dim);
+  letter-spacing: 0.04em;
 }
 
 .cover-decoration {
   color: var(--c-text-dim);
-  opacity: 0.6;
+  opacity: 0.55;
+  transition: opacity 0.6s ease;
+}
+
+.cover-decoration:hover {
+  opacity: 0.8;
 }
 
 .cover-decoration svg {
   display: block;
   height: auto;
+  filter: drop-shadow(0 0 20px rgba(148, 163, 184, 0.08));
 }
 
-.cover-meta {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 2.5rem;
+/* ── 占位图片 ── */
+.placeholder-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--c-surface-solid);
+  border: 1px dashed rgba(148, 163, 184, 0.15);
+  transition: all 0.3s ease;
 }
 
-.cover-tag {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  border-radius: 2rem;
-  padding: 0.4rem 1.2rem;
-  font-size: 0.75rem;
-  color: var(--c-text-dim);
+.placeholder-img:hover {
+  border-color: rgba(148, 163, 184, 0.35);
 }
 
 /* ══════════════════════════════════════
-   全局过渡与动画
+   动效系统
    ══════════════════════════════════════ */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* v-click 增强动效 */
+.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* 页面过渡 */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 0.4s;
+  animation-duration: 0.5s;
+}
+
+/* ── 文字强调色 ── */
+.text-accent {
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.text-accent-2 {
+  color: var(--c-accent-2);
+  font-weight: 600;
+}
+
+/* ── 缩放强调 ── */
+.text-lg {
+  font-size: 1.15rem !important;
+}
+
+.text-xl {
+  font-size: 1.35rem !important;
+}
+
+.text-2xl {
+  font-size: 1.6rem !important;
+}
+
+.text-3xl {
+  font-size: 2rem !important;
+}
+
+.text-4xl {
+  font-size: 2.5rem !important;
+}
+
+.text-5xl {
+  font-size: 3.2rem !important;
 }

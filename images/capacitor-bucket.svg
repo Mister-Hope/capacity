@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect fill="#1e293b" width="400" height="300" rx="12"/>
+  <rect fill="none" stroke="rgba(148,163,184,0.3)" stroke-dasharray="8 4" width="360" height="260" x="20" y="20" rx="8"/>
+  <text fill="rgba(148,163,184,0.5)" font-family="sans-serif" font-size="18" text-anchor="middle" x="200" y="140">桶状电容器</text>
+  <text fill="rgba(148,163,184,0.35)" font-family="sans-serif" font-size="14" text-anchor="middle" x="200" y="170">待补充实物照片</text>
+</svg>

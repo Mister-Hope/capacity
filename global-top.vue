@@ -1,9 +1,20 @@
 <template>
   <div class="global-top">
-    <span class="global-top-title">电容器的电容</span>
+    <Transition name="top-text" mode="out-in">
+      <span class="global-top-title" :key="isCover ? 'chapter' : 'topic'">
+        {{ isCover ? '第十章 静电场' : '电容器的电容' }}
+      </span>
+    </Transition>
     <img src="/logo.png" alt="东北育才学校" class="global-top-logo" />
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const nav = ($slidev as any).nav
+const isCover = computed(() => nav.currentPage === 1)
+</script>
 
 <style scoped>
 .global-top {
@@ -24,11 +35,28 @@
   font-weight: 600;
   color: rgba(241, 245, 249, 0.5);
   letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .global-top-logo {
   height: 2rem;
   width: auto;
   opacity: 0.8;
+}
+
+/* 文字切换动画 */
+.top-text-enter-active,
+.top-text-leave-active {
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-text-enter-from {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.95);
+}
+
+.top-text-leave-to {
+  opacity: 0;
+  transform: translateY(12px) scale(1.05);
 }
 </style>
