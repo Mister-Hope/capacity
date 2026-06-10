@@ -308,16 +308,67 @@ code {
   }
 }
 
-/* v-click 增强动效 */
+/* ── v-click 增强动效 ── */
+.slidev-vclick-target {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .slidev-vclick-hidden {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(16px);
+}
+
+/* 预设：卡片入场 — 上浮 + 轻微缩放恢复 */
+.slidev-vclick-anim-card.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(28px) scale(0.95);
+}
+
+/* 预设：左侧滑入（聊天气泡-左） */
+.slidev-vclick-anim-left.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+/* 预设：右侧滑入（聊天气泡-右） */
+.slidev-vclick-anim-right.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* 预设：缩放弹入（居中大字） */
+.slidev-vclick-anim-pop.slidev-vclick-hidden {
+  opacity: 0;
+  transform: scale(0.85);
 }
 
 /* 页面过渡 */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 0.5s;
+}
+
+/* ── 封面 SVG 微动 ── */
+.cover-decoration svg {
+  animation: cover-float 6s ease-in-out infinite alternate;
+}
+
+@keyframes cover-float {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ── 卡片 hover 增强 ── */
+.card.card-highlight:hover {
+  border-color: rgba(226, 168, 70, 0.35);
+  box-shadow:
+    0 0 40px rgba(226, 168, 70, 0.1),
+    0 0 80px rgba(226, 168, 70, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 /* ── 文字强调色 ── */

@@ -7,6 +7,7 @@ transition: fade
 mdc: true
 layout: cover
 colorSchema: dark
+clickAnimation: card
 fonts:
   sans: Nunito Sans
   mono: Fira Code
@@ -321,19 +322,35 @@ layout: default
 
 ---
 layout: default
+transition: slide-left
+preload: false
 ---
 
-<div class="text-center mt-8">
+<div class="text-center mt-10">
 
-<div class="text-4xl font-bold leading-relaxed">
+<div
+  v-motion
+  :initial="{ opacity: 0, scale: 0.8, y: 40 }"
+  :enter="{ opacity: 1, scale: 1, y: 0 }"
+>
 
-<mdi-help-circle-outline class="text-accent text-5xl mb-3" />
+<mdi-help-circle-outline class="text-accent text-6xl mb-4" />
 
 </div>
 
-<div class="text-4xl font-bold leading-relaxed">不同电容器的储存本领<br/>是否一样？如何量化？</div>
+<div
+  v-motion
+  :initial="{ opacity: 0, y: 30 }"
+  :enter="{ opacity: 1, y: 0, transition: { delay: 200 } }"
+  class="text-4xl font-bold leading-relaxed mt-4"
+>不同电容器的储存本领<br/>是否一样？如何量化？</div>
 
-<div class="mt-6 text-lg opacity-60">
+<div
+  v-motion
+  :initial="{ opacity: 0, y: 20 }"
+  :enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
+  class="mt-6 text-lg opacity-60"
+>
 
 <mdi-account-group-outline class="text-accent-2 text-xl mr-1" /> 请讨论并尝试设计一个实验方案。
 
@@ -440,38 +457,22 @@ layout: default
 
 <div class="flex flex-col gap-4">
 
-<v-click>
-
-<div class="chat-msg chat-left">
+<div v-click.left class="chat-msg chat-left">
   电容器上标的电压是什么？
 </div>
 
-</v-click>
-
-<v-click>
-
-<div class="chat-msg chat-right">
+<div v-click.right class="chat-msg chat-right">
   <span class="chat-em">额定工作电压</span>—— 电容器正常工作的最大电压
 </div>
 
-</v-click>
-
-<v-click>
-
-<div class="chat-msg chat-left mt-3">
+<div v-click.left class="chat-msg chat-left mt-3">
   从闪电中，我们能得到什么启示？
 </div>
 
-</v-click>
-
-<v-click>
-
-<div class="chat-msg chat-right">
+<div v-click.right class="chat-msg chat-right">
   云层与大地 → 天然电容器<br/>
   电势差过大 → 空气<span class="text-red-400 font-semibold">击穿</span> → 闪电放电
 </div>
-
-</v-click>
 
 </div>
 
@@ -511,17 +512,35 @@ layout: default
 
 ---
 layout: default
+transition: slide-left
+preload: false
 ---
 
-<div class="text-center mt-8">
+<div class="text-center mt-10">
 
-<mdi-lightbulb-on-outline class="text-accent text-5xl mb-3" />
+<div
+  v-motion
+  :initial="{ opacity: 0, scale: 0.8, y: 40 }"
+  :enter="{ opacity: 1, scale: 1, y: 0 }"
+>
 
-<div class="text-3xl font-bold leading-relaxed">
-电容——电容器的储存本领——<br/>和什么有关？
+<mdi-lightbulb-on-outline class="text-accent text-6xl mb-4" />
+
 </div>
 
-<div class="mt-6 text-lg opacity-60">
+<div
+  v-motion
+  :initial="{ opacity: 0, y: 30 }"
+  :enter="{ opacity: 1, y: 0, transition: { delay: 200 } }"
+  class="text-3xl font-bold leading-relaxed mt-4"
+>电容——电容器的储存本领——<br/>和什么有关？</div>
+
+<div
+  v-motion
+  :initial="{ opacity: 0, y: 20 }"
+  :enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
+  class="mt-6 text-lg opacity-60"
+>
 
 <mdi-account-group-outline class="text-accent-2 text-xl mr-1" /> 以最简单的平行板电容器为例，展开小组讨论。
 
