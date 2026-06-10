@@ -345,12 +345,6 @@ layout: default
 
 <div class="card card-highlight">
 
-电容器所带电荷量 $Q$ 与两极板间电势差 $U$ 的关系：
-
-</div>
-
-<div class="card mt-3">
-
 同一个电容器，$Q$ 与 $U$ 的比值是一个<span class="text-accent">定值</span>
 
 </div>
@@ -373,8 +367,7 @@ layout: default
 
 <div class="card text-center">
 
-<div class="text-5xl mb-3">🪣</div>
-<div class="font-semibold text-lg mb-2">水桶装水</div>
+<div class="font-semibold text-xl mb-2">水桶装水</div>
 
 <v-clicks>
 
@@ -391,8 +384,7 @@ layout: default
 
 <div class="card text-center">
 
-<div class="text-5xl mb-3">⚡</div>
-<div class="font-semibold text-lg mb-2">电容器充电</div>
+<div class="font-semibold text-xl mb-2">电容器充电</div>
 
 <v-clicks>
 
@@ -415,37 +407,39 @@ layout: default
 
 # 电容
 
-<div class="card card-highlight">
+<v-clicks>
 
-## 定义
+<div class="font-bold text-xl mt-2">一、定义</div>
 
-<div class="text-2xl font-semibold mt-2">
+<div class="text-lg mt-1">
 
-$$C = \frac{Q}{U}$$
-
-</div>
-
-<div class="mt-3 text-lg opacity-70">
-电容器所带电荷量 $Q$ 与两极板间电势差 $U$ 的比值
-</div>
+电容器所带电荷量 $Q$ 与两极板间电势差 $U$ 的比值，反映电容器储存电荷的本领。
 
 </div>
+
+<div class="my-2 border-t border-slate-700/50"></div>
+
+<span class="font-bold text-xl">二、定义式：</span> $C = \dfrac{Q}{U}$
+
+<div class="my-2 border-t border-slate-700/50"></div>
+
+<span class="font-bold text-xl">三、单位：</span> 法拉，简称 **法**，符号 $F$，&ensp;$1\,\text{F} = 1\,\text{C/V}$
+
+</v-clicks>
 
 <v-click>
 
-<div class="card mt-3">
-
-## 单位：法拉（F）
-
-<div class="text-xl mt-2">$1\,\text{F} = 1\,\text{C/V}$</div>
-
 <div class="grid grid-cols-2 gap-3 mt-3">
-  <div class="text-sm">$1\,\mu\text{F} = 10^{-6}\,\text{F}$ <span class="opacity-50">微法</span></div>
-  <div class="text-sm">$1\,\text{pF} = 10^{-12}\,\text{F}$ <span class="opacity-50">皮法</span></div>
-</div>
+  <div class="text-sm">
 
-<div class="text-sm opacity-50 mt-2">1 F 是非常大的单位，常见电容器都是 μF 或 pF 级别</div>
+  $1\,\mu\text{F} = 10^{-6}\,\text{F}$ &nbsp;<span class="opacity-50">微法</span>
 
+  </div>
+  <div class="text-sm">
+
+  $1\,\text{pF} = 10^{-12}\,\text{F}$ &nbsp;<span class="opacity-50">皮法</span>
+
+  </div>
 </div>
 
 </v-click>
@@ -454,30 +448,76 @@ $$C = \frac{Q}{U}$$
 layout: default
 ---
 
-# 工作电压与击穿
+<div class="flex flex-col gap-4">
+
+<v-click>
+
+<div class="chat-msg chat-left">
+  电容器上标的电压是什么？
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="chat-msg chat-right">
+  <span class="chat-em">额定工作电压</span>—— 电容器正常工作的最大电压
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="chat-msg chat-left mt-3">
+  从闪电中，我们能得到什么启示？
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="chat-msg chat-right">
+  云层与大地 → 天然电容器<br/>
+  电势差过大 → 空气<span class="text-red-400 font-semibold">击穿</span> → 闪电放电
+</div>
+
+</v-click>
+
+</div>
+
+---
+layout: default
+---
+
+# 工作电压与击穿电压
 
 <v-clicks>
 
-<div class="card card-highlight">
+<div class="font-bold text-xl mt-2">一、额定工作电压</div>
 
-电容器上标的电压是什么？
+<div class="text-lg mt-1">
 
-<div class="mt-2 text-lg opacity-70">——<span class="text-accent">额定工作电压</span></div>
-
-</div>
-
-<div class="card mt-3">
-
-<div class="font-semibold text-lg mb-1">回顾：云层与大地</div>
-<div class="text-sm opacity-70">电势差过大 → 空气<span class="text-red-400">击穿</span> → 闪电放电</div>
+电容器上标注的电压——电容器<span class="text-accent font-semibold">长期、可靠工作</span>的最大电压。
 
 </div>
 
-<div class="card mt-3">
+<div class="my-3 border-t border-slate-700/50"></div>
 
-<div class="font-semibold text-lg mb-1">对电容器的启示</div>
-<div class="text-sm opacity-70">两极板间电压超过介质承受能力 → 介质<span class="text-red-400">击穿</span> → 电容器损坏</div>
-<div class="text-sm opacity-50 mt-1">额定工作电压 < 击穿电压，留有安全裕度</div>
+<div class="font-bold text-xl">二、击穿电压</div>
+
+<div class="text-lg mt-1">
+
+介质所能承受的<span class="text-red-400 font-semibold">极限电压</span>。超过此值，介质被<span class="text-red-400 font-semibold">击穿</span>——形成导电通路，不可逆损伤导致电容器永久损坏。
+
+</div>
+
+<div class="my-3 border-t border-slate-700/50"></div>
+
+<div class="font-bold text-xl">三、为什么要有安全裕度？</div>
+
+<div class="text-lg mt-1">
+
+额定工作电压 &lt; 击穿电压，留有余量，确保电容器在标称条件下<span class="text-accent font-semibold">稳定运行</span>。
 
 </div>
 
@@ -489,10 +529,8 @@ layout: default
 
 # 平行板电容器的电容
 
-<div class="card card-highlight">
-
+<div class="text-lg opacity-70 mt-2 mb-4">
 平行板电容器的电容由<span class="text-accent">结构参数</span>决定：
-
 </div>
 
 <v-clicks>
@@ -501,16 +539,22 @@ layout: default
 
 $$C = \frac{\varepsilon_r S}{4\pi k d}$$
 
-<div class="grid grid-cols-3 gap-3 mt-3 text-sm opacity-70">
-  <div>$S$ — 极板正对面积</div>
-  <div>$d$ — 极板间距</div>
-  <div>$\varepsilon_r$ — 介质相对介电常数</div>
-</div>
+<div class="text-sm opacity-70 mt-3 space-y-1">
+
+$S$ — 极板正对面积
+
+$d$ — 极板间距
+
+$\varepsilon_r$ — 介质相对介电常数
 
 </div>
 
-<div class="card mt-3">
-  <div class="text-sm opacity-70">$S \uparrow$ 电容 ↑ &nbsp;&nbsp;|&nbsp;&nbsp; $d \uparrow$ 电容 ↓ &nbsp;&nbsp;|&nbsp;&nbsp; $\varepsilon_r \uparrow$ 电容 ↑</div>
+</div>
+
+<div class="card mt-3 text-center text-sm opacity-70">
+
+$S \uparrow$ 电容 ↑ &nbsp;&nbsp;|&nbsp;&nbsp; $d \uparrow$ 电容 ↓ &nbsp;&nbsp;|&nbsp;&nbsp; $\varepsilon_r \uparrow$ 电容 ↑
+
 </div>
 
 </v-clicks>
@@ -525,26 +569,53 @@ class: text-center
 <div class="grid grid-cols-2 gap-4 mt-6 text-left">
 
 <div class="card">
-  <div class="font-semibold text-lg mb-2">电容器</div>
-  <div class="text-sm opacity-70">相互靠近 + 彼此绝缘的导体</div>
-  <div class="text-sm opacity-70 mt-1">充电：电能→储存 | 放电：储存→释放</div>
+  <div class="font-semibold text-lg mb-2">一、电容器</div>
+
+  定义：
+
+  <span class="text-accent font-semibold">相互靠近</span> + <span class="text-accent-2 font-semibold">彼此绝缘</span> 的导体
+
+  <div class="text-sm opacity-60 mt-1">—— 能够储存电荷的容器</div>
+
 </div>
 
 <div class="card">
-  <div class="font-semibold text-lg mb-2">电容 $C = Q/U$</div>
-  <div class="text-sm opacity-70">反映储存电荷的本领</div>
-  <div class="text-sm opacity-70 mt-1">单位：法拉 F，常用 μF、pF</div>
+  <div class="font-semibold text-lg mb-2">二、电容</div>
+
+  $C = \dfrac{Q}{U}$
+
+  <div class="text-sm opacity-60 mt-1">反映储存电荷的本领</div>
+  <div class="text-sm opacity-50 mt-1">
+
+  单位：法拉（F），常用 $\mu\text{F}$、$\text{pF}$
+
+  </div>
 </div>
 
-<div class="card">
-  <div class="font-semibold text-lg mb-2">工作电压</div>
-  <div class="text-sm opacity-70">电压过高 → 介质击穿 → 损坏</div>
 </div>
 
-<div class="card">
-  <div class="font-semibold text-lg mb-2">平行板电容器</div>
-  <div class="text-sm opacity-70">$C = \varepsilon_r S / (4\pi k d)$</div>
-  <div class="text-sm opacity-70 mt-1">$S \uparrow C \uparrow$，$d \uparrow C \downarrow$</div>
+<div class="card mt-4">
+
+<div class="font-semibold text-lg mb-2">三、平行板电容器的电容</div>
+
+$$C = \frac{\varepsilon_r S}{4\pi k d}$$
+
+<div class="text-sm opacity-60 mt-2">
+
+$S$ — 极板正对面积 &nbsp;|&nbsp; $d$ — 极板间距 &nbsp;|&nbsp; $\varepsilon_r$ — 介质相对介电常数
+
 </div>
+
+<div class="text-sm opacity-50 mt-1">
+
+$S \uparrow$ 电容 ↑ &nbsp;|&nbsp; $d \uparrow$ 电容 ↓ &nbsp;|&nbsp; $\varepsilon_r \uparrow$ 电容 ↑
+
+</div>
+
+</div>
+
+<div class="text-center mt-4">
+
+<span class="text-sm opacity-40">⚠️ 工作电压：电压过高 → 介质击穿 → 电容器损坏</span>
 
 </div>

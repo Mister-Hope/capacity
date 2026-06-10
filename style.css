@@ -314,3 +314,38 @@ pre, code {
 .text-5xl {
   font-size: 2.6rem !important;
 }
+
+/* ══════════════════════════════════════
+   聊天气泡系统
+   ══════════════════════════════════════ */
+.chat-msg {
+  max-width: 75%;
+  padding: 0.65rem 1.1rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* 左侧气泡（教师/提问）— 蓝色调，尾巴在左 */
+.chat-left {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 1.25rem 1.25rem 1.25rem 0.35rem;
+  margin-right: auto;
+  color: #e2e8f0;
+}
+
+/* 右侧气泡（学生/回答）— 暖金色调 */
+.chat-right {
+  background: rgba(226, 168, 70, 0.1);
+  border: 1px solid rgba(226, 168, 70, 0.2);
+  border-radius: 1.25rem 1.25rem 0.35rem 1.25rem;
+  margin-left: auto;
+  color: #f1f5f9;
+}
+
+/* 气泡内强调文字 */
+.chat-left .chat-em { color: #60a5fa; font-weight: 600; }
+.chat-right .chat-em { color: #f59e0b; font-weight: 600; }

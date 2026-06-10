@@ -44,7 +44,7 @@ const s1Target = computed(() => {
 
 // Switch 2 Target - Mathematically exact rotation of length L = 81
 const s2Target = computed(() => {
-  return s2Closed.value 
+  return s2Closed.value
     ? { x: 240, y: 99 }      // Closed: straight pointing up to Terminal 2 (240, 99)
     : { x: 199.5, y: 110 };  // Open: 30 degrees to the left (199.5, 110)
 });
@@ -86,12 +86,12 @@ function runPhysicsStep() {
     const startA = qA.value;
     const steps = 15;
     let step = 0;
-    
+
     timerId = setInterval(() => {
       step++;
       electronOffset.value += 5;
       qA.value = startA + (8.0 - startA) * (step / steps);
-      
+
       if (step >= steps) {
         clearInterval(timerId);
         timerId = null;
@@ -100,7 +100,7 @@ function runPhysicsStep() {
       }
     }, 25);
   }
-  
+
   // Case 2: S1 to 2 (Parallel / Sharing)
   else if (s1Pos.value === '2') {
     // Subcase 2a: S2 is closed -> any connected charge immediately shorts to ground!
@@ -110,13 +110,13 @@ function runPhysicsStep() {
       const startB = qB.value;
       const steps = 15;
       let step = 0;
-      
+
       timerId = setInterval(() => {
         step++;
         electronOffset.value += 6;
         qA.value = startA * (1 - step / steps);
         qB.value = startB * (1 - step / steps);
-        
+
         if (step >= steps) {
           clearInterval(timerId);
           timerId = null;
@@ -125,7 +125,7 @@ function runPhysicsStep() {
           simState.value = 'idle';
         }
       }, 25);
-    } 
+    }
     // Subcase 2b: S2 is open -> dynamic charge sharing between A and B!
     else {
       const avgExchange = (qA.value + qB.value) / 2;
@@ -134,19 +134,19 @@ function runPhysicsStep() {
         simState.value = 'idle';
         return;
       }
-      
+
       simState.value = 'sharing';
       const startA = qA.value;
       const startB = qB.value;
       const steps = 15;
       let step = 0;
-      
+
       timerId = setInterval(() => {
         step++;
         electronOffset.value += 5;
         qA.value = startA + (avgExchange - startA) * (step / steps);
         qB.value = startB + (avgExchange - startB) * (step / steps);
-        
+
         if (step >= steps) {
           clearInterval(timerId);
           timerId = null;
@@ -157,7 +157,7 @@ function runPhysicsStep() {
       }, 25);
     }
   }
-  
+
   // Case 3: S1 is open (separated)
   else if (s1Pos.value === 'open') {
     // If S2 is closed, B discharges immediately
@@ -166,12 +166,12 @@ function runPhysicsStep() {
       const startB = qB.value;
       const steps = 10;
       let step = 0;
-      
+
       timerId = setInterval(() => {
         step++;
         electronOffset.value += 8;
         qB.value = startB * (1 - step / steps);
-        
+
         if (step >= steps) {
           clearInterval(timerId);
           timerId = null;
@@ -203,305 +203,305 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="circuit-container">
-    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl text-slate-100 flex flex-col gap-6 select-none">
-      
-      <!-- Upper Simulation Graphic & Voltmeter Display Row -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        
-        <!-- SVG Interactive Breadboard Graphic (Col span 8) -->
-        <div class="lg:col-span-8 bg-slate-950/60 rounded-xl p-5 border border-slate-950 overflow-hidden relative flex flex-col justify-center">
-          
-          <!-- Main SVG Drawing with precise constant-length switches and visual guide arcs -->
-          <svg viewBox="0 0 580 240" class="sharing-circuit-svg w-full h-auto">
-            
-            <!-- BOTTOM COMMON RETURN RAIL (GROUND/NEGATIVE) -->
-            <line x1="60" y1="180" x2="500" y2="180" stroke="#475569" stroke-width="2.5" />
-            
-            <!-- BATTERY E (Positive left vertical bus) -->
-            <line x1="60" y1="40" x2="60" y2="98" stroke="#475569" stroke-width="2.5" />
-            <line x1="60" y1="122" x2="60" y2="180" stroke="#475569" stroke-width="2.5" />
-            
-            <!-- BATTERY SYMBOL -->
-            <line x1="46" y1="98" x2="74" y2="98" stroke="#ef4444" stroke-width="2.5" />
-            <line x1="52" y1="106" x2="68" y2="106" stroke="#475569" stroke-width="4" />
-            <line x1="46" y1="114" x2="74" y2="114" stroke="#ef4444" stroke-width="2.5" />
-            <line x1="52" y1="122" x2="68" y2="122" stroke="#475569" stroke-width="4" />
-            
-            <!-- Battery Label -->
-            <text x="30" y="115" class="svg-text-bold" fill="#ef4444" font-size="11" font-weight="950" text-anchor="middle">E = 8V</text>
+  <div class="circuit-root">
+    <!-- 电路 SVG：占满全宽 -->
+    <div class="circuit-svg-wrap">
+      <svg viewBox="0 0 580 220" class="circuit-svg">
 
-            <!-- WIRE PATHS -->
-            <line x1="60" y1="40" x2="240" y2="40" stroke="#475569" stroke-width="2.5" />
+        <!-- 地线 -->
+        <line x1="60" y1="180" x2="500" y2="180" stroke="#475569" stroke-width="2.5" />
 
-            <!-- Cap 2 top plate supply wire directly connecting to Terminal 2 -->
-            <line x1="150" y1="110" x2="150" y2="99" stroke="#475569" stroke-width="2.5" />
-            <line x1="150" y1="99" x2="240" y2="99" stroke="#475569" stroke-width="2.5" />
+        <!-- 电池 E -->
+        <line x1="60" y1="40" x2="60" y2="98" stroke="#475569" stroke-width="2.5" />
+        <line x1="60" y1="122" x2="60" y2="180" stroke="#475569" stroke-width="2.5" />
+        <line x1="44" y1="98" x2="76" y2="98" stroke="#ef4444" stroke-width="3" />
+        <line x1="52" y1="106" x2="68" y2="106" stroke="#475569" stroke-width="5" />
+        <line x1="44" y1="114" x2="76" y2="114" stroke="#ef4444" stroke-width="3" />
+        <line x1="52" y1="122" x2="68" y2="122" stroke="#475569" stroke-width="5" />
+        <text x="24" y="22" font-size="14" font-weight="950" fill="#ef4444" text-anchor="start">E=8V</text>
 
-            <!-- S1 Curved Guide Arc of radius 85 to visually align terminal selectors -->
-            <path d="M 240 41 A 85 85 0 0 0 240 99" fill="none" stroke="#334155" stroke-dasharray="3,3" stroke-width="2" />
+        <!-- 上部导线 -->
+        <line x1="60" y1="40" x2="240" y2="40" stroke="#475569" stroke-width="2.5" />
 
-            <!-- SWITCH S1 DYNAMIC INTERACTIVE GATES ON SVG -->
-            <!-- Terminal 1 Contact (Charge) - Positioned at 160 degrees relative to Pivot (320, 70) -->
-            <g class="cursor-pointer group" @click="toggleS1('1')">
-              <!-- Enlarged click hotspot -->
-              <circle cx="240" cy="41" r="16" fill="transparent" />
-              <circle cx="240" cy="41" r="10" fill="#1e293b" :stroke="s1Pos === '1' ? '#ef4444' : '#475569'" stroke-width="2.5" />
-              <text x="240" y="45" class="svg-text-number" fill="#ef4444" text-anchor="middle">1</text>
-            </g>
-            
-            <!-- Terminal 0 Contact (Neutral) - Positioned at 180 degrees (235, 70) -->
-            <g class="cursor-pointer group" @click="toggleS1('open')">
-              <!-- Enlarged click hotspot -->
-              <circle cx="235" cy="70" r="16" fill="transparent" />
-              <circle cx="235" cy="70" r="10" fill="#1e293b" :stroke="s1Pos === 'open' ? '#e2a846' : '#475569'" stroke-width="2.5" />
-              <text x="235" y="74" class="svg-text-number" fill="#e2a846" text-anchor="middle">0</text>
-            </g>
+        <!-- C₂ 上极板连线 -->
+        <line x1="150" y1="110" x2="150" y2="99" stroke="#475569" stroke-width="2.5" />
+        <line x1="150" y1="99" x2="240" y2="99" stroke="#475569" stroke-width="2.5" />
 
-            <!-- Terminal 2 Contact (Share) - Positioned at 200 degrees (240, 99) -->
-            <g class="cursor-pointer group" @click="toggleS1('2')">
-              <!-- Enlarged click hotspot -->
-              <circle cx="240" cy="99" r="16" fill="transparent" />
-              <circle cx="240" cy="99" r="10" fill="#1e293b" :stroke="s1Pos === '2' ? '#a78bfa' : '#475569'" stroke-width="2.5" />
-              <text x="240" y="103" class="svg-text-number" fill="#a78bfa" text-anchor="middle">2</text>
-            </g>
+        <!-- S1 导轨弧线 -->
+        <path d="M 240 41 A 85 85 0 0 0 240 99" fill="none" stroke="#334155" stroke-dasharray="3,3" stroke-width="2" />
 
-            <!-- Active Pivot Joint base of S1 -->
-            <circle cx="320" cy="70" r="7" fill="#e2a846" stroke="#101827" stroke-width="2" />
-            <text x="320" y="52" class="svg-text-bold" fill="#e2a846" font-size="11" text-anchor="middle">S₁</text>
+        <!-- S1 触点 1（充电） -->
+        <g class="cursor-pointer group" @click="toggleS1('1')">
+          <circle cx="240" cy="41" r="18" fill="transparent" />
+          <circle cx="240" cy="41" r="11" fill="#1e293b" :stroke="s1Pos === '1' ? '#ef4444' : '#475569'" stroke-width="2.5" />
+          <text x="240" y="47" font-size="15" font-weight="950" fill="#ef4444" text-anchor="middle">1</text>
+        </g>
 
-            <!-- Swing arm line representation for switch 1 (Rigidly rotation without deformation, length 72) -->
-            <line 
-              x1="320" 
-              y1="70" 
-              :x2="s1Target.x" 
-              :y2="s1Target.y" 
-              stroke="#e2a846" 
-              stroke-width="4.5" 
-              stroke-linecap="round" 
-              class="transition-all duration-300 ease-in-out cursor-pointer"
-              @click="toggleS1(s1Pos === 'open' ? '1' : s1Pos === '1' ? '2' : 'open')"
-            />
+        <!-- S1 触点 0（断开） -->
+        <g class="cursor-pointer group" @click="toggleS1('open')">
+          <circle cx="235" cy="70" r="18" fill="transparent" />
+          <circle cx="235" cy="70" r="11" fill="#1e293b" :stroke="s1Pos === 'open' ? '#e2a846' : '#475569'" stroke-width="2.5" />
+          <text x="235" y="76" font-size="15" font-weight="950" fill="#e2a846" text-anchor="middle">0</text>
+        </g>
 
-            <!-- SWITCH S2 DYNAMIC INTERACTIVE (CLICK DIRECTLY TO TOGGLE) -->
-            <!-- Merged directly to terminal 2 as requested, eliminating floating connections -->
-            <g class="cursor-pointer class-s2-hotspot" @click="toggleS2()">
-              <!-- Curved indicator arc for S2 movement guide -->
-              <path d="M 240 99 A 81 81 0 0 0 199.5 110" fill="none" stroke="#334155" stroke-dasharray="2,2" stroke-width="1.5" />
+        <!-- S1 触点 2（共享） -->
+        <g class="cursor-pointer group" @click="toggleS1('2')">
+          <circle cx="240" cy="99" r="18" fill="transparent" />
+          <circle cx="240" cy="99" r="11" fill="#1e293b" :stroke="s1Pos === '2' ? '#a78bfa' : '#475569'" stroke-width="2.5" />
+          <text x="240" y="105" font-size="15" font-weight="950" fill="#a78bfa" text-anchor="middle">2</text>
+        </g>
 
-              <!-- Bottom ground hinge point -->
-              <circle cx="240" cy="180" r="6" fill="#64748b" stroke="#101827" stroke-width="1.5" />
-              
-              <!-- Switch blade (Constrained length = 81 pixels without deforming, directly touching Terminal 2 when closed) -->
-              <line 
-                x1="240" 
-                y1="180" 
-                :x2="s2Target.x" 
-                :y2="s2Target.y" 
-                stroke="#e2a846" 
-                stroke-width="3.5" 
-                stroke-linecap="round" 
-                class="transition-all duration-200 ease-out" 
-              />
-              <text x="214" y="146" class="svg-text-bold" fill="#e2a846" font-size="11" text-anchor="middle">S₂</text>
+        <!-- S1 枢轴 -->
+        <circle cx="320" cy="70" r="8" fill="#e2a846" stroke="#101827" stroke-width="2" />
+        <text x="320" y="47" font-size="14" font-weight="950" fill="#e2a846" text-anchor="middle">S₁</text>
 
-              <!-- Large invisible hover / active clicking hotspot overlay -->
-              <circle cx="220" cy="140" r="28" fill="transparent" />
-            </g>
+        <!-- S1 刀臂 -->
+        <line
+          x1="320" y1="70"
+          :x2="s1Target.x" :y2="s1Target.y"
+          stroke="#e2a846" stroke-width="5"
+          stroke-linecap="round"
+          class="switch-arm transition-all duration-300 ease-in-out cursor-pointer"
+          @click="toggleS1(s1Pos === 'open' ? '1' : s1Pos === '1' ? '2' : 'open')"
+        />
 
-            <!-- CAPACITOR 2 SYSTEM -->
-            <g id="cap-b-group">
-              <!-- Upper Plate -->
-              <line x1="120" y1="110" x2="180" y2="110" :stroke="bUpperColor" stroke-width="6" stroke-linecap="round" class="transition-colors duration-300" />
-              <!-- Lower Plate -->
-              <line x1="120" y1="130" x2="180" y2="130" :stroke="bLowerColor" stroke-width="6" stroke-linecap="round" class="transition-colors duration-300" />
-              <!-- Ground connect wire -->
-              <line x1="150" y1="130" x2="150" y2="180" stroke="#475569" stroke-width="2.5" />
-              
-              <text x="150" y="152" class="svg-text-bold font-bold" fill="#60a5fa" font-size="10" text-anchor="middle">电容器 2</text>
+        <!-- S2 -->
+        <g class="cursor-pointer s2-hotspot" @click="toggleS2()">
+          <path d="M 240 99 A 81 81 0 0 0 199.5 110" fill="none" stroke="#334155" stroke-dasharray="2,2" stroke-width="1.5" />
+          <circle cx="240" cy="180" r="7" fill="#64748b" stroke="#101827" stroke-width="1.5" />
+          <line
+            x1="240" y1="180"
+            :x2="s2Target.x" :y2="s2Target.y"
+            stroke="#e2a846" stroke-width="4"
+            stroke-linecap="round"
+            class="transition-all duration-200 ease-out"
+          />
+          <text x="252" y="148" font-size="14" font-weight="950" fill="#e2a846" text-anchor="start">S₂</text>
+          <circle cx="220" cy="140" r="30" fill="transparent" />
+        </g>
 
-              <!-- Dynamic Pluses and Minuses based on Cap 2 charge status -->
-              <g v-if="qB > 0.1">
-                <text x="130" y="102" class="svg-text-sign font-bold" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
-                <text x="150" y="102" class="svg-text-sign font-bold" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
-                <text x="170" y="102" class="svg-text-sign font-bold" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
-                
-                <text x="130" y="142" class="svg-text-sign font-bold" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">-</text>
-                <text x="150" y="142" class="svg-text-sign font-bold" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">-</text>
-                <text x="170" y="142" class="svg-text-sign font-bold" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">-</text>
-              </g>
-            </g>
+        <!-- C₂ -->
+        <g>
+          <line x1="120" y1="110" x2="180" y2="110" :stroke="bUpperColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
+          <line x1="120" y1="130" x2="180" y2="130" :stroke="bLowerColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
+          <line x1="150" y1="130" x2="150" y2="180" stroke="#475569" stroke-width="2.5" />
+          <text x="150" y="155" font-size="13" font-weight="950" fill="#60a5fa" text-anchor="middle">C₂</text>
+          <g v-if="qB > 0.1">
+            <text x="130" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
+            <text x="150" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
+            <text x="170" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
+            <text x="130" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">−</text>
+            <text x="150" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">−</text>
+            <text x="170" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">−</text>
+          </g>
+        </g>
 
-            <!-- WIRE SYSTEM FROM S1 PIVOT TO CAPACITOR 1 -->
-            <line x1="320" y1="70" x2="420" y2="70" stroke="#475569" stroke-width="2.5" />
-            <line x1="420" y1="70" x2="420" y2="110" stroke="#475569" stroke-width="2.5" />
+        <!-- S1 → C₁ 导线 -->
+        <line x1="320" y1="70" x2="420" y2="70" stroke="#475569" stroke-width="2.5" />
+        <line x1="420" y1="70" x2="420" y2="110" stroke="#475569" stroke-width="2.5" />
 
-            <!-- CAPACITOR 1 SYSTEM -->
-            <g id="cap-a-group">
-              <!-- Upper Plate -->
-              <line x1="390" y1="110" x2="450" y2="110" :stroke="aUpperColor" stroke-width="6" stroke-linecap="round" class="transition-colors duration-300" />
-              <!-- Lower Plate -->
-              <line x1="390" y1="130" x2="450" y2="130" :stroke="aLowerColor" stroke-width="6" stroke-linecap="round" class="transition-colors duration-300" />
-              <!-- Ground wire -->
-              <line x1="420" y1="130" x2="420" y2="180" stroke="#475569" stroke-width="2.5" />
-              
-              <text x="420" y="152" class="svg-text-bold font-bold" fill="#34d399" font-size="10" text-anchor="middle">电容器 1</text>
+        <!-- C₁ -->
+        <g>
+          <line x1="390" y1="110" x2="450" y2="110" :stroke="aUpperColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
+          <line x1="390" y1="130" x2="450" y2="130" :stroke="aLowerColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
+          <line x1="420" y1="130" x2="420" y2="180" stroke="#475569" stroke-width="2.5" />
+          <text x="420" y="155" font-size="13" font-weight="950" fill="#34d399" text-anchor="middle">C₁</text>
+          <g v-if="qA > 0.1">
+            <text x="400" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
+            <text x="420" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
+            <text x="440" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
+            <text x="400" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">−</text>
+            <text x="420" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">−</text>
+            <text x="440" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">−</text>
+          </g>
+        </g>
 
-              <!-- Dynamic Charge indicator signs for Cap 1 -->
-              <g v-if="qA > 0.1">
-                <text x="400" y="102" class="svg-text-sign font-bold" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
-                <text x="420" y="102" class="svg-text-sign font-bold" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
-                <text x="440" y="102" class="svg-text-sign font-bold" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
-                
-                <text x="400" y="142" class="svg-text-sign font-bold" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">-</text>
-                <text x="420" y="142" class="svg-text-sign font-bold" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">-</text>
-                <text x="440" y="142" class="svg-text-sign font-bold" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">-</text>
-              </g>
-            </g>
+        <!-- 电压表 V（与 C₁ 并联） -->
+        <line x1="420" y1="70" x2="500" y2="70" stroke="#475569" stroke-width="2.5" />
+        <line x1="500" y1="70" x2="500" y2="95" stroke="#475569" stroke-width="2.5" />
+        <line x1="500" y1="145" x2="500" y2="180" stroke="#475569" stroke-width="2.5" />
+        <g class="cursor-pointer" @click="performReset">
+          <circle cx="500" cy="120" r="20" fill="#1e293b" stroke="#34d399" stroke-width="2.5" />
+          <text x="500" y="128" font-size="18" font-weight="950" fill="#34d399" text-anchor="middle">V</text>
+        </g>
 
-            <!-- VOLTMETER SYSTEM IN PARALLEL WITH CAP 1 -->
-            <line x1="420" y1="70" x2="500" y2="70" stroke="#475569" stroke-width="2.5" />
-            <line x1="500" y1="70" x2="500" y2="95" stroke="#475569" stroke-width="2.5" />
-            <line x1="500" y1="145" x2="500" y2="180" stroke="#475569" stroke-width="2.5" />
+        <!-- 电子流动画 -->
+        <g v-if="simState === 'charging_A'">
+          <g v-for="i in 3" :key="'chg-' + i" :transform="`translate(${60 + ((electronOffset + i * 40) % 180)}, 40)`">
+            <circle cx="0" cy="0" r="5" fill="#38bdf8" />
+            <text x="0" y="-9" font-size="13" font-weight="900" fill="#60a5fa" text-anchor="middle">e⁻</text>
+          </g>
+        </g>
+        <g v-if="simState === 'sharing'">
+          <g v-for="i in 2" :key="'share-' + i" :transform="`translate(${240 + ((electronOffset + i * 35) % 80)}, 100)`">
+            <circle cx="0" cy="0" r="5" fill="#a78bfa" />
+            <text x="0" y="-9" font-size="13" font-weight="900" fill="#c084fc" text-anchor="middle">e⁻</text>
+          </g>
+        </g>
+        <g v-if="simState === 'discharging_B'">
+          <g v-for="i in 2" :key="'disb-' + i" :transform="`translate(240, ${99 + ((electronOffset + i * 25) % 81)})`">
+            <circle cx="0" cy="0" r="5" fill="#f87171" />
+            <text x="14" y="3" font-size="13" font-weight="900" fill="#f87171" text-anchor="start">e⁻</text>
+          </g>
+        </g>
 
-            <!-- Voltmeter round gauge -->
-            <g id="voltmeter-circle" class="cursor-pointer" @click="performReset">
-              <circle cx="500" cy="120" r="24" fill="#1e293b" stroke="#34d399" stroke-width="3" />
-              <text x="500" y="127" class="svg-text-gauge font-black text-xl" fill="#34d399" text-anchor="middle">V</text>
-            </g>
+      </svg>
 
-            <!-- ANIMATED ELECTRON (e⁻) PHYSICS TRAJECTORIES ON SVG -->
-            <g v-if="simState === 'charging_A'">
-              <g v-for="i in 3" :key="'chg-a-' + i" :transform="`translate(${60 + ((electronOffset + i * 40) % 180)}, 40)`">
-                <circle cx="0" cy="0" r="4.5" fill="#38bdf8" />
-                <text x="0" y="-8" class="svg-electron-text font-black text-[12px]" fill="#60a5fa" text-anchor="middle">e⁻</text>
-              </g>
-            </g>
-
-            <g v-if="simState === 'sharing'">
-              <g v-for="i in 2" :key="'share-e-' + i" :transform="`translate(${240 + ((electronOffset + i * 35) % 80)}, 100)`">
-                <circle cx="0" cy="0" r="4.5" fill="#a78bfa" />
-                <text x="0" y="-8" class="svg-electron-text font-black text-[12px]" fill="#c084fc" text-anchor="middle">e⁻</text>
-              </g>
-            </g>
-
-            <g v-if="simState === 'discharging_B'">
-              <g v-for="i in 2" :key="'dis-b-' + i" :transform="`translate(240, ${99 + ((electronOffset + i * 25) % 81)})`">
-                <circle cx="0" cy="0" r="4.5" fill="#f87171" />
-                <text x="12" y="3" class="svg-electron-text font-black text-[12px]" fill="#f87171" text-anchor="start">e⁻</text>
-              </g>
-            </g>
-
-          </svg>
-
-        </div>
-
-        <!-- High Legibility Voltmeter Reading Panel on the right (Col span 4) -->
-        <div class="lg:col-span-4 flex flex-col justify-center gap-4">
-          
-          <div class="bg-slate-950 p-4 rounded-2xl border-2 border-emerald-500/40 flex flex-col items-center justify-center shadow-inner h-full">
-            <span class="text-xs font-black uppercase tracking-wider text-emerald-400 mb-4 font-sans text-center">
-              电压表读数
-            </span>
-            <div class="text-2xl font-mono font-bold text-emerald-300 font-digital select-none transition-all duration-150">
-              {{ qA.toFixed(2) }}<span class="text-lg text-emerald-500 ml-1 font-sans font-bold">V</span>
-            </div>
-            
-            <!-- Real-time Level Progress -->
-            <div class="w-full bg-slate-900 h-4 rounded-full mt-2 overflow-hidden border border-slate-800">
-              <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-300" :style="{ width: `${(qA / 8.0) * 100}%` }"></div>
-            </div>
-          </div>
-
-        </div>
-
+      <!-- 电压表读数 -->
+      <div class="voltage-badge">
+        <span class="voltage-value">{{ qA.toFixed(2) }}</span>
+        <span class="voltage-unit">V</span>
       </div>
+    </div>
 
-      <!-- Minimal PPT Status Deck with ONLY reset button and state lines -->
-      <div class="bg-slate-950 p-5 rounded-xl border border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-6">
-        
-        <!-- State Indicators side -->
-        <div class="flex flex-col sm:flex-row sm:items-center gap-6 text-xs font-bold w-full sm:w-auto">
-          <div class="flex items-center gap-2">
-            <span class="text-slate-400 font-black">s1:</span>
-            <span :class="s1Pos === '1' ? 'text-rose-400' : s1Pos === '2' ? 'text-purple-400' : 'text-amber-400'" class="font-extrabold uppercase">
-              {{ s1StatusText }}
-            </span>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <span class="text-slate-400 font-black">s2:</span>
-            <span :class="s2Closed ? 'text-emerald-400' : 'text-slate-400'" class="font-extrabold uppercase">
-              {{ s2StatusText }}
-            </span>
-          </div>
-        </div>
-
-        <!-- Single Action Control - Reset button only -->
-        <div class="flex items-center justify-end w-full sm:w-auto shrink-0">
-          <button 
-            @click="performReset" 
-            class="px-5 py-2 bg-gradient-to-r from-red-800 to-rose-700 hover:from-red-700 hover:to-rose-600 font-black text-white text-sm rounded-xl transition-all shadow-md focus:outline-none w-full sm:w-auto"
-          >
-            重置实验
-          </button>
-        </div>
-
+    <!-- 底部状态栏 -->
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="status-key">S₁</span>
+        <span
+          :class="s1Pos === '1' ? 'text-rose-400' : s1Pos === '2' ? 'text-purple-400' : 'text-amber-400'"
+          class="status-val"
+        >{{ s1StatusText }}</span>
       </div>
-
+      <div class="status-item">
+        <span class="status-key">S₂</span>
+        <span
+          :class="s2Closed ? 'text-emerald-400' : 'text-slate-500'"
+          class="status-val"
+        >{{ s2StatusText }}</span>
+      </div>
+      <button @click="performReset" class="reset-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        重置
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.circuit-container {
+.circuit-root {
   width: 100%;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
-.sharing-circuit-svg {
+/* ── SVG 容器：电路占满空间 ── */
+.circuit-svg-wrap {
+  position: relative;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  padding: 0.4rem;
+}
+
+.circuit-svg {
   display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* Hardened typography locking for crisp slides display */
-.sharing-circuit-svg text {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !important;
+.circuit-svg text {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   user-select: none !important;
   pointer-events: none !important;
-  line-height: normal !important;
-  letter-spacing: normal !important;
-  font-weight: bold;
 }
 
-.svg-text-bold {
-  fill: #94a3b8 !important;
+/* ── 电压表读数覆盖层 ── */
+.voltage-badge {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
 }
 
-.svg-text-number {
-  font-size: 13px !important;
-  font-weight: 950 !important;
+.voltage-label {
+  font-size: 0.7rem;
+  font-weight: 950;
+  color: #34d399;
+  opacity: 0.7;
 }
 
-.svg-text-gauge {
-  font-weight: 950 !important;
+.voltage-value {
+  font-size: 1.4rem;
+  font-weight: 900;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #6ee7b7;
+  text-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
+  line-height: 1;
 }
 
-.svg-text-sign {
-  font-size: 14px !important;
-  font-weight: 950 !important;
+.voltage-unit {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #34d399;
 }
 
-.svg-electron-text {
-  font-weight: bold;
+/* ── 底部状态栏 ── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  padding: 0.5rem 1rem;
 }
 
-/* high contrast glowing digital font styling */
-.font-digital {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
-  text-shadow: 0 0 18px rgba(16, 185, 129, 0.45);
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.class-s2-hotspot:hover line {
+.status-key {
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.status-val {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.reset-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(185, 28, 28, 0.25);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 0.5rem;
+  color: #f87171;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.reset-btn:hover {
+  background: rgba(185, 28, 28, 0.45);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+}
+
+/* ── 交互 ── */
+.s2-hotspot:hover line {
   stroke: #fbbf24 !important;
+}
+.switch-arm {
+  cursor: pointer;
 }
 </style>
