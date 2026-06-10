@@ -169,92 +169,51 @@ layout: default
 layout: default
 ---
 
-# 充电过程
+# 充电与放电 · 交互演示
 
-<div class="grid grid-cols-2 gap-4 mt-4">
-<div>
-
-## 实验装置
-
-<div class="card mt-4">
-  <div class="text-center text-5xl my-6">
-    <span class="text-red-400">⊖ 电源 ⊕</span>
-  </div>
-  <div class="text-center text-sm opacity-50">
-    开关闭合 → 电荷转移
-  </div>
-</div>
-
-</div>
-<div>
-
-<v-clicks>
-
-<div class="card mb-2">
-  <div class="font-semibold">① 接电源</div>
-  <div class="text-sm opacity-60">两平行金属板接入电源两端</div>
-</div>
-
-<div class="card mb-2">
-  <div class="font-semibold">② 电子移动</div>
-  <div class="text-sm opacity-60">负极附近极板<span class="text-accent-2">获得</span>电子</div>
-  <div class="text-sm opacity-60">正极附近极板<span class="text-red-400">失去</span>电子</div>
-</div>
-
-<div class="card mb-2">
-  <div class="font-semibold">③ 完成充电</div>
-  <div class="text-sm opacity-60">一板带正电，一板带负电</div>
-</div>
-
-</v-clicks>
-
-</div>
-</div>
+<CapacitorCircuit />
 
 ---
 layout: default
 ---
 
-# 放电过程
+# 充放电过程
 
 <div class="grid grid-cols-2 gap-4 mt-4">
-<div>
 
-## 实验装置
+<div class="card">
+  <div class="flex items-center gap-2 mb-3"><mdi-battery-charging class="text-accent-2 text-xl" /><span class="font-semibold text-lg">充电</span></div>
+  <v-clicks>
 
-<div class="card mt-4">
-  <div class="text-center text-5xl my-6">
-    <span class="text-accent">⊖ 💡 ⊕</span>
-  </div>
-  <div class="text-center text-sm opacity-50">
-    替换电源 → 接入小灯泡
-  </div>
+  <div class="mb-2 text-sm">电源正极<span class="text-red-400">吸引电子</span>，负极<span class="text-accent-2">提供电子</span></div>
+  <div class="mb-2 text-sm">与正极相连的极板<span class="text-red-400">失去电子 → 带正电</span></div>
+  <div class="mb-2 text-sm">与负极相连的极板<span class="text-accent-2">获得电子 → 带负电</span></div>
+  <div class="text-sm opacity-60 mt-2">两极板间建立电场，电能 → 电场能储存</div>
+
+  </v-clicks>
+</div>
+
+<div class="card">
+  <div class="flex items-center gap-2 mb-3"><mdi-lightbulb-on-outline class="text-accent text-xl" /><span class="font-semibold text-lg">放电</span></div>
+  <v-clicks>
+
+  <div class="mb-2 text-sm">用导线连接两极板，<span class="text-accent-2">电子回流</span></div>
+  <div class="mb-2 text-sm">负电荷从负极板经导线 → 正极板</div>
+  <div class="mb-2 text-sm">电荷中和，电流通过用电器</div>
+  <div class="text-sm opacity-60 mt-2">电场能 → 光能/热能，电场逐渐消失</div>
+
+  </v-clicks>
 </div>
 
 </div>
-<div>
 
-<v-clicks>
+<v-click>
 
-<div class="card mb-2">
-  <div class="font-semibold">① 接入负载</div>
-  <div class="text-sm opacity-60">用灯泡替代电源，闭合开关</div>
+<div class="card card-highlight mt-4 text-center">
+  <span class="text-accent font-semibold">电荷守恒</span>：充电不是创造电荷，放电不是消灭电荷——只是<span class="text-accent-2">转移</span>
 </div>
 
-<div class="card mb-2">
-  <div class="font-semibold">② 电子回流</div>
-  <div class="text-sm opacity-60">电子从<span class="text-red-400">负极板</span>经灯泡 → <span class="text-accent-2">正极板</span></div>
-</div>
-
-<div class="card mb-2">
-  <div class="font-semibold">③ 中和完毕</div>
-  <div class="text-sm opacity-60">两板电荷完全中和，灯泡熄灭</div>
-</div>
-
-</v-clicks>
-
-</div>
-</div>
+</v-click>
 
 ---
 layout: default
