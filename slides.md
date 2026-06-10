@@ -172,7 +172,7 @@ layout: default
 layout: default
 ---
 
-# 充电与放电 · 交互演示
+# 充电与放电
 
 <CapacitorCircuit />
 
