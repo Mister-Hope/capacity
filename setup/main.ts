@@ -8,7 +8,6 @@ export default () => {
     if (e.button !== 0) return
 
     const target = e.target as HTMLElement
-    // 忽略导航按钮、表单控件、链接
     if (target.closest('button, a, input, textarea, select, [role="button"]')) return
     if (target.closest('.slidev-nav-controls')) return
 

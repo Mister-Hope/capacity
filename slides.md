@@ -80,7 +80,9 @@ layout: default
 layout: default
 ---
 
-<div class="abs-tr m-6 text-sm opacity-40">电容器：储存电荷的容器</div>
+<div class="tag-icon mb-4"><mdi-lightbulb-on-outline /> 电容器：储存电荷的容器</div>
+
+<v-clicks>
 
 <div class="card card-highlight">
   <div class="text-2xl font-semibold">
@@ -88,9 +90,7 @@ layout: default
   </div>
 </div>
 
-<v-click>
-
-<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="grid grid-cols-2 gap-3 mt-3">
   <div class="card">
     <div class="font-semibold text-lg">相互靠近</div>
     <div class="text-sm opacity-50 mt-1">电荷相互吸引，不会流失</div>
@@ -101,7 +101,7 @@ layout: default
   </div>
 </div>
 
-</v-click>
+</v-clicks>
 
 ---
 layout: default
@@ -114,23 +114,23 @@ layout: default
 <v-clicks>
 
 <div class="card">
-  <div class="font-semibold text-xl">地球 与 火星</div>
-  <div class="text-sm opacity-50 mt-1">真空绝缘，彼此靠近</div>
+  <div class="flex items-center gap-2 mb-1"><mdi-earth class="text-accent-2 text-xl" /><span class="font-semibold text-lg">地球 与 火星</span></div>
+  <div class="text-sm opacity-50">真空绝缘，彼此靠近</div>
 </div>
 
 <div class="card">
-  <div class="font-semibold text-xl">人 与 金属板</div>
-  <div class="text-sm opacity-50 mt-1">不接触即构成电容器</div>
+  <div class="flex items-center gap-2 mb-1"><mdi-account class="text-accent-2 text-xl" /><span class="font-semibold text-lg">人 与 金属板</span></div>
+  <div class="text-sm opacity-50">不接触即构成电容器</div>
 </div>
 
 <div class="card">
-  <div class="font-semibold text-xl">云层 与 大地</div>
-  <div class="text-sm opacity-50 mt-1">云层带电，大地感应</div>
+  <div class="flex items-center gap-2 mb-1"><mdi-weather-lightning class="text-accent-2 text-xl" /><span class="font-semibold text-lg">云层 与 大地</span></div>
+  <div class="text-sm opacity-50">云层带电，大地感应</div>
 </div>
 
 <div class="card">
-  <div class="font-semibold text-xl">任意两个导体</div>
-  <div class="text-sm opacity-50 mt-1">靠近 + 绝缘 = 电容器</div>
+  <div class="flex items-center gap-2 mb-1"><mdi-all-inclusive class="text-accent-2 text-xl" /><span class="font-semibold text-lg">任意两个导体</span></div>
+  <div class="text-sm opacity-50">靠近 + 绝缘 = 电容器</div>
 </div>
 
 </v-clicks>

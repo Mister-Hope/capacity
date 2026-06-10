@@ -15,8 +15,8 @@
   --c-text-dim: #94a3b8;
   --c-accent: #e2a846;
   --c-accent-glow: #f59e0b;
-  --c-accent-2: #38bdf8;
-  --c-accent-2-glow: #0ea5e9;
+  --c-accent-2: #3b82f6;
+  --c-accent-2-glow: #2563eb;
   --c-physics: #2dd4bf;
   --c-danger: #f87171;
   --radius-xl: 1.75rem;
@@ -171,6 +171,27 @@ pre, code {
   font-size: 0.85rem;
   color: var(--c-text-dim);
   letter-spacing: 0.04em;
+}
+
+.tag-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 2rem;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.8rem;
+  color: var(--c-accent-2);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.tag-icon svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .cover-decoration {
