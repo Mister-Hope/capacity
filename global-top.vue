@@ -24,7 +24,7 @@ const isCover = computed(() => nav.currentPage === 1)
   right: 0;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 0.5rem 2.5rem;
   z-index: 100;
   pointer-events: none;

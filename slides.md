@@ -38,15 +38,13 @@ defaults:
 layout: default
 ---
 
-# 提出问题
-
-<div class="card card-highlight mt-8">
+<div class="card card-highlight mt-4">
   <div class="text-2xl font-semibold">我们如何把电荷<span class="text-accent">存</span>起来？</div>
 </div>
 
 <v-click>
 
-<div class="mt-8">
+<div class="mt-5">
 
 ## 我们已经学过三种起电方式
 
@@ -93,7 +91,7 @@ layout: default
 
 <v-click>
 
-<div class="mt-8 text-lg opacity-70">两个条件：</div>
+<div class="mt-5 text-lg opacity-70">两个条件：</div>
 
 <div class="grid grid-cols-2 gap-4 mt-4">
   <div class="card">
@@ -114,7 +112,7 @@ layout: default
 
 # 哪些东西可以看成电容器？
 
-<div class="grid grid-cols-2 gap-5 mt-6">
+<div class="grid grid-cols-2 gap-3 mt-6">
 
 <v-clicks>
 
@@ -150,7 +148,7 @@ layout: default
 
 <div class="text-sm opacity-40 mb-4">⚠️ 待补充实物照片</div>
 
-<div class="grid grid-cols-3 gap-5 mt-6">
+<div class="grid grid-cols-3 gap-3 mt-6">
 
 <div class="card text-center">
   <img src="/images/capacitor-bucket.svg" alt="桶状电容器" class="placeholder-img" />
@@ -178,7 +176,7 @@ layout: default
 
 # 充电过程
 
-<div class="grid grid-cols-2 gap-8 mt-4">
+<div class="grid grid-cols-2 gap-4 mt-4">
 <div>
 
 ## 实验装置
@@ -197,18 +195,18 @@ layout: default
 
 <v-clicks>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold">① 接电源</div>
   <div class="text-sm opacity-60">两平行金属板接入电源两端</div>
 </div>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold">② 电子移动</div>
   <div class="text-sm opacity-60">负极附近极板<span class="text-accent-2">获得</span>电子</div>
   <div class="text-sm opacity-60">正极附近极板<span class="text-red-400">失去</span>电子</div>
 </div>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold">③ 完成充电</div>
   <div class="text-sm opacity-60">一板带正电，一板带负电</div>
 </div>
@@ -224,7 +222,7 @@ layout: default
 
 # 放电过程
 
-<div class="grid grid-cols-2 gap-8 mt-4">
+<div class="grid grid-cols-2 gap-4 mt-4">
 <div>
 
 ## 实验装置
@@ -243,17 +241,17 @@ layout: default
 
 <v-clicks>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold">① 接入负载</div>
   <div class="text-sm opacity-60">用灯泡替代电源，闭合开关</div>
 </div>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold">② 电子回流</div>
   <div class="text-sm opacity-60">电子从<span class="text-red-400">负极板</span>经灯泡 → <span class="text-accent-2">正极板</span></div>
 </div>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold">③ 中和完毕</div>
   <div class="text-sm opacity-60">两板电荷完全中和，灯泡熄灭</div>
 </div>
@@ -270,7 +268,7 @@ layout: default
 # 为什么能保持电荷？
 
 <div class="card card-highlight mt-6 mb-6">
-  <div class="text-xl font-semibold mb-3">关键实验：负极接地</div>
+  <div class="text-xl font-semibold mb-2">关键实验：负极接地</div>
   <div class="text-lg leading-relaxed opacity-80">
     充电后将<span class="text-red-400">负极接地</span>，正极板上的电荷<span class="text-accent">几乎不流失</span>
   </div>
@@ -278,12 +276,12 @@ layout: default
 
 <v-clicks>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold text-xl">静电引力</div>
   <div class="text-sm opacity-60 mt-1">负极板上的负电荷吸引正极板上的正电荷，正电荷不会流入大地</div>
 </div>
 
-<div class="card mb-3">
+<div class="card mb-2">
   <div class="font-semibold text-xl">开路状态</div>
   <div class="text-sm opacity-60 mt-1">即使外接导线和电阻，只要不构成闭合回路，电荷仍大部分保留</div>
 </div>
@@ -302,27 +300,21 @@ layout: default
 
 # 电容器的带电量
 
-<div class="card card-highlight mt-6">
-  <div class="text-xl font-semibold mb-4">核心规律</div>
-  <div class="text-2xl leading-relaxed">
-    充电/放电本质是电荷的<span class="text-accent">转移</span><br/>
-    不是创造，不是消灭 —— <span class="text-accent-2">电荷守恒</span>
+<div class="card card-highlight mt-4">
+  <div class="text-xl leading-relaxed">
+    充电/放电本质是电荷的<span class="text-accent">转移</span>——<br/>
+    不是创造，不是消灭：<span class="text-accent-2">电荷守恒</span>
   </div>
 </div>
 
 <v-click>
 
-<div class="mt-8">
-  <div class="text-lg opacity-70 mb-3">因此：</div>
-
-  <div class="card card-highlight">
-    <div class="text-center">
-      <div class="text-lg opacity-70 mb-2">当一个极板带电量为 <span class="katex-inline">+Q</span> 时</div>
-      <div class="text-2xl text-accent font-semibold">另一个极板必然带电 −Q</div>
-      <div class="mt-4 text-xl">
-        电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span>
-      </div>
-      <div class="text-2xl mt-2 font-mono">Q</div>
+<div class="card card-highlight mt-3">
+  <div class="text-center leading-relaxed">
+    <div class="text-lg opacity-70">当一个极板带电量为 <span class="katex-inline">+Q</span> 时</div>
+    <div class="text-xl text-accent font-semibold mt-1">另一个极板必然带电 −Q</div>
+    <div class="mt-2 text-lg">
+      电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span>
     </div>
   </div>
 </div>
@@ -335,29 +327,29 @@ layout: default
 
 # 充电与放电中的能量转化
 
-<div class="grid grid-cols-2 gap-8 mt-8">
+<div class="grid grid-cols-2 gap-3 mt-4">
 
 <div class="card">
-  <div class="text-2xl mb-4 text-center font-semibold">充电</div>
+  <div class="text-xl font-semibold mb-3 text-center">充电</div>
   <v-clicks>
 
-  <div class="text-lg mb-2">电场强度<span class="text-accent">逐渐增大</span></div>
-  <div class="text-lg mb-2">电势差 → 电源电压</div>
-  <div class="card-highlight rounded-lg p-3 mt-3 text-center text-xl">
-    <span class="text-accent-2">电能</span> → 储存于电容器
+  <div class="mb-1">电场强度<span class="text-accent">逐渐增大</span></div>
+  <div class="mb-1">电势差 → 电源电压</div>
+  <div class="card-highlight rounded-lg p-2 mt-2 text-center">
+    <span class="text-accent-2 font-semibold">电能</span> → 储存于电容器
   </div>
 
   </v-clicks>
 </div>
 
 <div class="card">
-  <div class="text-2xl mb-4 text-center font-semibold">放电</div>
+  <div class="text-xl font-semibold mb-3 text-center">放电</div>
   <v-clicks>
 
-  <div class="text-lg mb-2">电场强度<span class="text-red-400">逐渐减小</span></div>
-  <div class="text-lg mb-2">电流通过用电器</div>
-  <div class="card-highlight rounded-lg p-3 mt-3 text-center text-xl">
-    储存能量 → <span class="text-accent">其他形式</span>能量
+  <div class="mb-1">电场强度<span class="text-red-400">逐渐减小</span></div>
+  <div class="mb-1">电流通过用电器</div>
+  <div class="card-highlight rounded-lg p-2 mt-2 text-center">
+    储存能量 → <span class="text-accent font-semibold">其他形式</span>能量
   </div>
 
   </v-clicks>
@@ -367,7 +359,7 @@ layout: default
 
 <v-click>
 
-<div class="card card-highlight mt-6 text-center text-xl">
+<div class="card card-highlight mt-4 text-center font-semibold text-lg">
   电容器是<span class="text-accent">电场储能</span>元件
 </div>
 
