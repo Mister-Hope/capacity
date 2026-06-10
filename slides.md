@@ -143,26 +143,24 @@ layout: default
 
 # 常见电容器
 
-<div class="text-sm opacity-40 mb-4">⚠️ 待补充实物照片</div>
-
-<div class="grid grid-cols-3 gap-3 mt-6">
+<div class="grid grid-cols-3 gap-3 mt-4">
 
 <div class="card text-center">
-  <img src="/images/capacitor-bucket.svg" alt="桶状电容器" class="placeholder-img" />
-  <div class="font-semibold text-xl mt-3">桶状电容器</div>
-  <div class="text-sm opacity-50 mt-1">高压电力设备</div>
+  <img src="/images/陶瓷.png" alt="陶瓷电容器" class="placeholder-img" />
+  <div class="font-semibold text-lg mt-2">陶瓷电容器</div>
+  <div class="text-sm opacity-50 mt-1">固定电容 · 电路板常用</div>
 </div>
 
 <div class="card text-center">
-  <img src="/images/capacitor-ceramic.svg" alt="陶瓷电容器" class="placeholder-img" />
-  <div class="font-semibold text-xl mt-3">陶瓷电容器</div>
-  <div class="text-sm opacity-50 mt-1">电路板常用</div>
+  <img src="/images/电解.png" alt="电解电容器" class="placeholder-img" />
+  <div class="font-semibold text-lg mt-2">电解电容器</div>
+  <div class="text-sm opacity-50 mt-1">固定电容 · 大容量 · 有极性</div>
 </div>
 
 <div class="card text-center">
-  <img src="/images/capacitor-electrolytic.svg" alt="铝电解电容器" class="placeholder-img" />
-  <div class="font-semibold text-xl mt-3">铝电解电容器</div>
-  <div class="text-sm opacity-50 mt-1">大容量滤波</div>
+  <img src="/images/可变.png" alt="可变电容器" class="placeholder-img" />
+  <div class="font-semibold text-lg mt-2">可变电容器</div>
+  <div class="text-sm opacity-50 mt-1">旋转调节 · 改变正对面积</div>
 </div>
 
 </div>
