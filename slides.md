@@ -567,6 +567,38 @@ layout: default
 <ParallelPlateCapacitor />
 
 ---
+layout: default
+---
+
+# 平行板电容器的电容
+
+<div class="card card-highlight">
+
+平行板电容器的电容由<span class="text-accent">结构参数</span>决定：
+
+</div>
+
+<v-clicks>
+
+<div class="card mt-3">
+
+$$C = \frac{\varepsilon_r S}{4\pi k d}$$
+
+<div class="grid grid-cols-3 gap-3 mt-3 text-sm opacity-70">
+  <div>$S$ — 极板正对面积</div>
+  <div>$d$ — 极板间距</div>
+  <div>$\varepsilon_r$ — 介质相对介电常数</div>
+</div>
+
+</div>
+
+<div class="card mt-3">
+  <div class="text-sm opacity-70">$S \uparrow$ 电容 ↑ &nbsp;&nbsp;|&nbsp;&nbsp; $d \uparrow$ 电容 ↓ &nbsp;&nbsp;|&nbsp;&nbsp; $\varepsilon_r \uparrow$ 电容 ↑</div>
+</div>
+
+</v-clicks>
+
+---
 layout: center
 class: text-center
 ---
