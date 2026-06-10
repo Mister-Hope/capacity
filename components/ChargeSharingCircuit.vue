@@ -392,7 +392,6 @@ onUnmounted(() => {
   background: rgba(15, 23, 42, 0.5);
   border-radius: 0.75rem;
   border: 1px solid rgba(51, 65, 85, 0.3);
-  padding: 0.4rem;
 }
 
 .circuit-svg {

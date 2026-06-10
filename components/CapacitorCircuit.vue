@@ -143,7 +143,7 @@ onUnmounted(() => {
 
 <template>
   <div class="circuit-wrap">
-    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl text-slate-100 flex flex-col items-center select-none">
+    <div class="bg-slate-900 border border-slate-800 rounded-xl shadow-xl text-slate-100 flex flex-col items-center select-none">
       
       <!-- SVG Drawing -->
       <div id="capacitor-circuit-svg-container" class="w-full relative bg-slate-950/40 rounded-lg p-2 border border-slate-900 overflow-hidden">

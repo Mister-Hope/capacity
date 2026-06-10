@@ -16,6 +16,8 @@ defaults:
   transition: fade
 ---
 
+<div class="cover-chapter"><span class="cover-section">§</span> 10.4</div>
+
 <h1 class="cover-title">电容器的电容</h1>
 
 <div class="cover-subtitle">
@@ -221,7 +223,7 @@ layout: default
 
 # 为什么能保持电荷？
 
-<div class="card card-highlight">
+<div class="card card-highlight px-4 py-3">
   <div class="text-xl font-semibold">
     如果将充好电的电容器的<span class="text-red-400">负极接地</span>，电荷会流失吗？
   </div>
@@ -229,20 +231,18 @@ layout: default
 
 <v-clicks>
 
-<div class="card mt-3">
-  <div class="font-semibold text-lg mb-1">不会。因为——</div>
+<div class="card mt-2 px-4 py-2">
+  <div class="font-semibold text-lg mb-0.5">不会。因为——</div>
   <div class="text-sm opacity-70">负极板上的负电荷与正极板上的正电荷<span class="text-accent">相互吸引</span>，正极板上的电荷被"拉住"，几乎不会流入大地。</div>
 </div>
 
-<div class="card mt-3">
-  <div class="font-semibold text-lg mb-1">进一步——</div>
+<div class="card mt-2 px-4 py-2">
+  <div class="font-semibold text-lg mb-0.5">进一步——</div>
   <div class="text-sm opacity-70">即使把导线、电阻接在正极和负极两端，只要<span class="text-accent-2">不构成闭合回路</span>，两极板之间的相互吸引力仍然会让大部分电荷保留下来。</div>
 </div>
 
-<div class="card card-highlight mt-3">
-  <div class="text-center text-lg">
-    <span class="text-accent">相互靠近</span> + <span class="text-accent">彼此绝缘</span> → 电容器能够储存电荷
-  </div>
+<div class="card card-highlight mt-2 px-4 py-2 text-center text-lg">
+  <span class="text-accent font-semibold">相互靠近</span> + <span class="text-accent-2 font-semibold">彼此绝缘</span> → 电容器能够储存电荷
 </div>
 
 </v-clicks>
@@ -323,9 +323,21 @@ layout: default
 layout: default
 ---
 
-<div class="text-center mt-10 text-3xl font-semibold leading-relaxed">
+<div class="text-center mt-8">
 
-不同电容器的储存本领<br/>是否一样？如何量化？
+<div class="text-4xl font-bold leading-relaxed">
+
+<mdi-help-circle-outline class="text-accent text-5xl mb-3" />
+
+</div>
+
+<div class="text-4xl font-bold leading-relaxed">不同电容器的储存本领<br/>是否一样？如何量化？</div>
+
+<div class="mt-6 text-lg opacity-60">
+
+<mdi-account-group-outline class="text-accent-2 text-xl mr-1" /> 请讨论并尝试设计一个实验方案。
+
+</div>
 
 </div>
 
@@ -343,17 +355,9 @@ layout: default
 
 <v-clicks>
 
-<div class="card card-highlight">
+- 同一个电容器，$Q$ 与 $U$ 的比值是一个<span class="text-accent font-semibold">定值</span>
 
-同一个电容器，$Q$ 与 $U$ 的比值是一个<span class="text-accent">定值</span>
-
-</div>
-
-<div class="card mt-3">
-
-不同电容器，这个比值<span class="text-accent-2">不同</span>——反映了电容器储存电荷的本领
-
-</div>
+- 不同电容器，这个比值<span class="text-accent-2 font-semibold">不同</span>
 
 </v-clicks>
 
@@ -361,45 +365,31 @@ layout: default
 layout: default
 ---
 
-# 水桶类比
+<WaterBucketAnalogy />
+
+<v-click>
 
 <div class="grid grid-cols-2 gap-4 mt-4">
 
 <div class="card text-center">
+  <div class="card-highlight rounded-lg p-2">
 
-<div class="font-semibold text-xl mb-2">水桶装水</div>
+  $V = S \cdot h$
 
-<v-clicks>
-
-<div class="text-sm opacity-70">水位高度 $h$ ← 水龙头高度</div>
-<div class="text-sm opacity-70">水的体积 $V$ ← 水桶容量</div>
-<div class="card-highlight rounded-lg p-2 mt-2">
-  <span class="text-accent">横截面积</span> $S = V/h$
-</div>
-<div class="text-sm opacity-50 mt-1">反映装水本领</div>
-
-</v-clicks>
-
+  </div>
 </div>
 
 <div class="card text-center">
+  <div class="card-highlight rounded-lg p-2">
 
-<div class="font-semibold text-xl mb-2">电容器充电</div>
+  $Q = ? \cdot U$
 
-<v-clicks>
-
-<div class="text-sm opacity-70">电势差 $U$ ← 电源电压</div>
-<div class="text-sm opacity-70">电荷量 $Q$ ← 电容器容量</div>
-<div class="card-highlight rounded-lg p-2 mt-2">
-  <span class="text-accent-2">电容</span> $C = Q/U$
-</div>
-<div class="text-sm opacity-50 mt-1">反映储存电荷的本领</div>
-
-</v-clicks>
-
+  </div>
 </div>
 
 </div>
+
+</v-click>
 
 ---
 layout: default
@@ -511,13 +501,9 @@ layout: default
 
 </div>
 
-<div class="my-3 border-t border-slate-700/50"></div>
+<div class="text-lg mt-2">
 
-<div class="font-bold text-xl">三、为什么要有安全裕度？</div>
-
-<div class="text-lg mt-1">
-
-额定工作电压 &lt; 击穿电压，留有余量，确保电容器在标称条件下<span class="text-accent font-semibold">稳定运行</span>。
+因此，额定工作电压 &lt; 击穿电压，留有余量，确保电容器<span class="text-accent font-semibold">稳定运行</span>。
 
 </div>
 
@@ -527,37 +513,39 @@ layout: default
 layout: default
 ---
 
-# 平行板电容器的电容
+<div class="text-center mt-8">
 
-<div class="text-lg opacity-70 mt-2 mb-4">
-平行板电容器的电容由<span class="text-accent">结构参数</span>决定：
+<mdi-lightbulb-on-outline class="text-accent text-5xl mb-3" />
+
+<div class="text-3xl font-bold leading-relaxed">
+电容——电容器的储存本领——<br/>和什么有关？
 </div>
 
-<v-clicks>
+<div class="mt-6 text-lg opacity-60">
 
-<div class="card mt-3">
-
-$$C = \frac{\varepsilon_r S}{4\pi k d}$$
-
-<div class="text-sm opacity-70 mt-3 space-y-1">
-
-$S$ — 极板正对面积
-
-$d$ — 极板间距
-
-$\varepsilon_r$ — 介质相对介电常数
+<mdi-account-group-outline class="text-accent-2 text-xl mr-1" /> 以最简单的平行板电容器为例，展开小组讨论。
 
 </div>
 
 </div>
 
-<div class="card mt-3 text-center text-sm opacity-70">
-
-$S \uparrow$ 电容 ↑ &nbsp;&nbsp;|&nbsp;&nbsp; $d \uparrow$ 电容 ↓ &nbsp;&nbsp;|&nbsp;&nbsp; $\varepsilon_r \uparrow$ 电容 ↑
-
+<div class="cover-decoration abs-br m-6" aria-hidden="true">
+  <svg viewBox="0 0 200 140" width="200" xmlns="http://www.w3.org/2000/svg">
+    <line x1="30" y1="60" x2="85" y2="60" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <rect x="85" y="8" width="10" height="104" rx="5" fill="none" stroke="currentColor" stroke-width="3"/>
+    <rect x="105" y="8" width="10" height="104" rx="5" fill="none" stroke="currentColor" stroke-width="3"/>
+    <line x1="115" y1="60" x2="170" y2="60" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <line x1="50" y1="20" x2="50" y2="100" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.35"/>
+    <line x1="150" y1="20" x2="150" y2="100" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.35"/>
+    <text x="100" y="134" text-anchor="middle" style="font-size:13px" fill="#94a3b8" opacity="0.7">平行板电容器</text>
+  </svg>
 </div>
 
-</v-clicks>
+---
+layout: default
+---
+
+<ParallelPlateCapacitor />
 
 ---
 layout: center
@@ -566,56 +554,47 @@ class: text-center
 
 # 课堂小结
 
-<div class="grid grid-cols-2 gap-4 mt-6 text-left">
+<div class="grid grid-cols-2 gap-3 mt-3 text-left leading-snug">
 
-<div class="card">
-  <div class="font-semibold text-lg mb-2">一、电容器</div>
+<div class="card px-3 py-1.5">
+  <div class="font-semibold text-lg mb-0.5">一、电容器</div>
 
-  定义：
+  <div class="text-sm opacity-80">
 
-  <span class="text-accent font-semibold">相互靠近</span> + <span class="text-accent-2 font-semibold">彼此绝缘</span> 的导体
+  定义：<span class="text-accent font-semibold">相互靠近</span> + <span class="text-accent-2 font-semibold">彼此绝缘</span> 的导体
 
-  <div class="text-sm opacity-60 mt-1">—— 能够储存电荷的容器</div>
+  </div>
+  <div class="text-sm opacity-50 mt-0.5">—— 能够储存电荷的容器</div>
 
 </div>
 
-<div class="card">
-  <div class="font-semibold text-lg mb-2">二、电容</div>
+<div class="card px-3 py-1.5">
+  <div class="font-semibold text-lg mb-0.5">二、电容</div>
 
-  $C = \dfrac{Q}{U}$
+  <div class="text-sm mt-0.5">
 
-  <div class="text-sm opacity-60 mt-1">反映储存电荷的本领</div>
-  <div class="text-sm opacity-50 mt-1">
+  $C = \dfrac{Q}{U}$，反映储存电荷的本领
 
-  单位：法拉（F），常用 $\mu\text{F}$、$\text{pF}$
+  </div>
+  <div class="text-sm opacity-50 mt-0.5">
+
+  单位：法拉（$F$），常用 $\mu\text{F}$、$\text{pF}$
 
   </div>
 </div>
 
 </div>
 
-<div class="card mt-4">
+<div class="card mt-2 px-3 py-1.5">
 
-<div class="font-semibold text-lg mb-2">三、平行板电容器的电容</div>
+<div class="font-semibold text-lg mb-0.5">三、平行板电容器的电容</div>
 
 $$C = \frac{\varepsilon_r S}{4\pi k d}$$
 
-<div class="text-sm opacity-60 mt-2">
+<div class="text-sm opacity-60 mt-0.5">
 
 $S$ — 极板正对面积 &nbsp;|&nbsp; $d$ — 极板间距 &nbsp;|&nbsp; $\varepsilon_r$ — 介质相对介电常数
 
 </div>
-
-<div class="text-sm opacity-50 mt-1">
-
-$S \uparrow$ 电容 ↑ &nbsp;|&nbsp; $d \uparrow$ 电容 ↓ &nbsp;|&nbsp; $\varepsilon_r \uparrow$ 电容 ↑
-
-</div>
-
-</div>
-
-<div class="text-center mt-4">
-
-<span class="text-sm opacity-40">⚠️ 工作电压：电压过高 → 介质击穿 → 电容器损坏</span>
 
 </div>
