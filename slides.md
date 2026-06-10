@@ -253,10 +253,9 @@ layout: default
 
 # 电容器的带电量
 
-<div class="card card-highlight mt-4">
-  <div class="text-xl leading-relaxed">
-    充电/放电本质是电荷的<span class="text-accent">转移</span>——<br/>
-    不是创造，不是消灭：<span class="text-accent-2">电荷守恒</span>
+<div class="card card-highlight">
+  <div class="text-xl font-semibold">
+    充放电是电荷在两极板之间<span class="text-accent">转移</span>——那么，电容器的带电量如何计算？
   </div>
 </div>
 
@@ -264,10 +263,10 @@ layout: default
 
 <div class="card card-highlight mt-3">
   <div class="text-center leading-relaxed">
-    <div class="text-lg opacity-70">当一个极板带电量为 <span class="katex-inline">+Q</span> 时</div>
-    <div class="text-xl text-accent font-semibold mt-1">另一个极板必然带电 −Q</div>
+    <div class="text-lg opacity-70">当一个极板带电量为 $+Q$ 时</div>
+    <div class="text-xl text-accent font-semibold mt-1">另一个极板必然带电 $-Q$</div>
     <div class="mt-2 text-lg">
-      电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span>
+      电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span> $Q$
     </div>
   </div>
 </div>
