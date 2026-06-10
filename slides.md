@@ -221,28 +221,27 @@ layout: default
 
 # 为什么能保持电荷？
 
-<div class="card card-highlight mt-6 mb-6">
-  <div class="text-xl font-semibold mb-2">关键实验：负极接地</div>
-  <div class="text-lg leading-relaxed opacity-80">
-    充电后将<span class="text-red-400">负极接地</span>，正极板上的电荷<span class="text-accent">几乎不流失</span>
+<div class="card card-highlight">
+  <div class="text-xl font-semibold">
+    如果将充好电的电容器的<span class="text-red-400">负极接地</span>，电荷会流失吗？
   </div>
 </div>
 
 <v-clicks>
 
-<div class="card mb-2">
-  <div class="font-semibold text-xl">静电引力</div>
-  <div class="text-sm opacity-60 mt-1">负极板上的负电荷吸引正极板上的正电荷，正电荷不会流入大地</div>
+<div class="card mt-3">
+  <div class="font-semibold text-lg mb-1">不会。因为——</div>
+  <div class="text-sm opacity-70">负极板上的负电荷与正极板上的正电荷<span class="text-accent">相互吸引</span>，正极板上的电荷被"拉住"，几乎不会流入大地。</div>
 </div>
 
-<div class="card mb-2">
-  <div class="font-semibold text-xl">开路状态</div>
-  <div class="text-sm opacity-60 mt-1">即使外接导线和电阻，只要不构成闭合回路，电荷仍大部分保留</div>
+<div class="card mt-3">
+  <div class="font-semibold text-lg mb-1">进一步——</div>
+  <div class="text-sm opacity-70">即使把导线、电阻接在正极和负极两端，只要<span class="text-accent-2">不构成闭合回路</span>，两极板之间的相互吸引力仍然会让大部分电荷保留下来。</div>
 </div>
 
-<div class="card card-highlight mt-4">
-  <div class="text-center text-xl">
-    <span class="text-accent">相互靠近</span> + <span class="text-accent">彼此绝缘</span> → 有效储存电荷 ✓
+<div class="card card-highlight mt-3">
+  <div class="text-center text-lg">
+    <span class="text-accent">相互靠近</span> + <span class="text-accent">彼此绝缘</span> → 电容器能够储存电荷
   </div>
 </div>
 
