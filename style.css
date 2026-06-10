@@ -27,7 +27,7 @@
 
 /* ── 基础 ── */
 html {
-  font-size: 28px;
+  font-size: 24px;
   color: var(--c-text);
   background: var(--c-bg);
 }
@@ -38,27 +38,27 @@ body {
 }
 
 .slidev-layout {
-  padding: 2.5rem 3.5rem !important;
+  padding: 2rem 3rem !important;
   background: transparent !important;
 }
 
 /* ── 标题层级 ── */
 h1 {
-  font-size: 2.4rem !important;
+  font-size: 2rem !important;
   font-weight: 700 !important;
   letter-spacing: -0.02em;
   color: var(--c-text);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
 h2 {
-  font-size: 1.6rem !important;
+  font-size: 1.35rem !important;
   font-weight: 600 !important;
   color: var(--c-text);
 }
 
 h3 {
-  font-size: 1.2rem !important;
+  font-size: 1.1rem !important;
   font-weight: 500 !important;
   color: var(--c-text-dim);
 }
@@ -66,7 +66,7 @@ h3 {
 /* ── 正文 ── */
 p, li {
   font-size: 1rem;
-  line-height: 1.75;
+  line-height: 1.65;
 }
 
 /* ══════════════════════════════════════
@@ -78,7 +78,7 @@ p, li {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-lg);
-  padding: 1.25rem 1.75rem;
+  padding: 1rem 1.5rem;
   transition: all 0.3s ease;
 }
 
@@ -147,14 +147,14 @@ pre, code {
    封面页
    ══════════════════════════════════════ */
 .cover-title {
-  font-size: 3.6rem !important;
+  font-size: 3rem !important;
   font-weight: 800 !important;
   letter-spacing: 0.04em !important;
   background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-accent-glow) 35%, var(--c-accent-2) 70%, var(--c-accent-2-glow) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   animation: title-shimmer 4s ease-in-out infinite alternate;
 }
 
@@ -258,25 +258,25 @@ pre, code {
 
 /* ── 缩放强调 ── */
 .text-lg {
-  font-size: 1.15rem !important;
+  font-size: 1.1rem !important;
 }
 
 .text-xl {
-  font-size: 1.35rem !important;
+  font-size: 1.25rem !important;
 }
 
 .text-2xl {
-  font-size: 1.6rem !important;
+  font-size: 1.4rem !important;
 }
 
 .text-3xl {
-  font-size: 2rem !important;
+  font-size: 1.7rem !important;
 }
 
 .text-4xl {
-  font-size: 2.5rem !important;
+  font-size: 2.1rem !important;
 }
 
 .text-5xl {
-  font-size: 3.2rem !important;
+  font-size: 2.6rem !important;
 }

@@ -41,7 +41,7 @@ layout: default
 # 提出问题
 
 <div class="card card-highlight mt-8">
-  <div class="text-2xl font-semibold mb-4">我们如何把电荷<span class="text-accent">存</span>起来？</div>
+  <div class="text-2xl font-semibold">我们如何把电荷<span class="text-accent">存</span>起来？</div>
 </div>
 
 <v-click>
