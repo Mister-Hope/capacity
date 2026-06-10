@@ -15,9 +15,7 @@ fonts:
 <h1 class="cover-title">电容器的电容</h1>
 
 <div class="cover-subtitle">
-  <span>第八章 · 静电场</span>
-  <span class="cover-dot">·</span>
-  <span>高中物理 选修3-1</span>
+  <span>第十章 · 静电场</span>
 </div>
 
 <div class="cover-decoration" aria-hidden="true">
