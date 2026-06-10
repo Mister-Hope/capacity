@@ -24,24 +24,25 @@ const isCover = computed(() => nav.currentPage === 1)
   right: 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1rem 3.5rem;
+  align-items: flex-start;
+  padding: 0.5rem 2.5rem;
   z-index: 100;
   pointer-events: none;
 }
 
 .global-top-title {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  color: rgba(241, 245, 249, 0.5);
+  color: rgba(241, 245, 249, 0.45);
   letter-spacing: 0.06em;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .global-top-logo {
-  height: 2rem;
+  height: 1.4rem;
   width: auto;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 /* 文字切换动画 */

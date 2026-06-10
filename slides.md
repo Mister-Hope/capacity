@@ -52,19 +52,16 @@ layout: default
 
 <div class="grid grid-cols-3 gap-4 mt-6">
   <div class="card">
-    <div class="text-4xl mb-3">⚡</div>
-    <div class="font-semibold">摩擦起电</div>
-    <div class="text-sm opacity-60 mt-1">电子转移</div>
+    <div class="font-semibold text-xl">摩擦起电</div>
+    <div class="text-sm opacity-60 mt-1">通过摩擦使电子转移</div>
   </div>
   <div class="card">
-    <div class="text-4xl mb-3">🤝</div>
-    <div class="font-semibold">接触起电</div>
-    <div class="text-sm opacity-60 mt-1">电荷传导</div>
+    <div class="font-semibold text-xl">接触起电</div>
+    <div class="text-sm opacity-60 mt-1">带电体接触使电荷转移</div>
   </div>
   <div class="card">
-    <div class="text-4xl mb-3">🧲</div>
-    <div class="font-semibold">感应起电</div>
-    <div class="text-sm opacity-60 mt-1">静电感应</div>
+    <div class="font-semibold text-xl">感应起电</div>
+    <div class="text-sm opacity-60 mt-1">电场作用下电荷重新分布</div>
   </div>
 </div>
 
@@ -100,12 +97,10 @@ layout: default
 
 <div class="grid grid-cols-2 gap-4 mt-4">
   <div class="card">
-    <div class="text-2xl mb-2">📍</div>
     <div class="font-semibold text-xl">相互靠近</div>
     <div class="text-sm opacity-50 mt-1">电荷才能相互吸引</div>
   </div>
   <div class="card">
-    <div class="text-2xl mb-2">🧱</div>
     <div class="font-semibold text-xl">彼此绝缘</div>
     <div class="text-sm opacity-50 mt-1">电荷不会逃走</div>
   </div>
@@ -124,25 +119,21 @@ layout: default
 <v-clicks>
 
 <div class="card">
-  <div class="text-3xl mb-2">🌍 ↔ 🔴</div>
   <div class="font-semibold text-xl">地球 与 火星</div>
   <div class="text-sm opacity-50 mt-1">真空绝缘，彼此靠近</div>
 </div>
 
 <div class="card">
-  <div class="text-3xl mb-2">🧑 ↔ 🪨</div>
   <div class="font-semibold text-xl">人 与 金属板</div>
   <div class="text-sm opacity-50 mt-1">不接触即构成电容器</div>
 </div>
 
 <div class="card">
-  <div class="text-3xl mb-2">☁️ ↔ 🌏</div>
   <div class="font-semibold text-xl">云层 与 大地</div>
   <div class="text-sm opacity-50 mt-1">云层带电，大地感应</div>
 </div>
 
 <div class="card">
-  <div class="text-3xl mb-2">💡</div>
   <div class="font-semibold text-xl">任意两个导体</div>
   <div class="text-sm opacity-50 mt-1">靠近 + 绝缘 = 电容器</div>
 </div>
@@ -288,12 +279,12 @@ layout: default
 <v-clicks>
 
 <div class="card mb-3">
-  <div class="font-semibold text-xl">🧲 静电引力</div>
+  <div class="font-semibold text-xl">静电引力</div>
   <div class="text-sm opacity-60 mt-1">负极板上的负电荷吸引正极板上的正电荷，正电荷不会流入大地</div>
 </div>
 
 <div class="card mb-3">
-  <div class="font-semibold text-xl">🔗 开路状态</div>
+  <div class="font-semibold text-xl">开路状态</div>
   <div class="text-sm opacity-60 mt-1">即使外接导线和电阻，只要不构成闭合回路，电荷仍大部分保留</div>
 </div>
 
@@ -347,7 +338,7 @@ layout: default
 <div class="grid grid-cols-2 gap-8 mt-8">
 
 <div class="card">
-  <div class="text-2xl mb-4 text-center">⚡ 充电</div>
+  <div class="text-2xl mb-4 text-center font-semibold">充电</div>
   <v-clicks>
 
   <div class="text-lg mb-2">电场强度<span class="text-accent">逐渐增大</span></div>
@@ -360,7 +351,7 @@ layout: default
 </div>
 
 <div class="card">
-  <div class="text-2xl mb-4 text-center">💡 放电</div>
+  <div class="text-2xl mb-4 text-center font-semibold">放电</div>
   <v-clicks>
 
   <div class="text-lg mb-2">电场强度<span class="text-red-400">逐渐减小</span></div>
