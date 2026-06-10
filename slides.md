@@ -11,6 +11,9 @@ fonts:
   sans: Nunito Sans
   mono: Fira Code
   provider: none
+defaults:
+  layout: default
+  transition: fade
 ---
 
 <h1 class="cover-title">电容器的电容</h1>
