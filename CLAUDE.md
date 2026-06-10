@@ -18,55 +18,82 @@
 
 - **玻璃态**：卡片使用 `backdrop-filter: blur(16px)` + 半透明背景
 - **大圆角**：`border-radius: 1.25rem ~ 1.75rem`
-- **字号**：基础 28px，标题 48-72px，公开课大教室后排清晰可读
+- **字号**：基础 22px，封面标题 ~57px，正文 22px，公开课大教室后排清晰可读
 - **配色**：
   - 背景：深蓝渐变 `#090d1a → #0c1122 → #0f1425`
   - 卡片：半透明 `rgba(30, 41, 59, 0.65)` + backdrop-blur
-  - 强调色：暖金 `#e2a846`，天蓝 `#38bdf8`，青绿（物理量）`#2dd4bf`
-  - 危险/负电：红色 `#f87171`
+  - 强调色：暖金 `#e2a846`，深蓝 `#3b82f6`
+  - 正电/危险：红色 `#f87171`，负电：蓝色 `#3b82f6`
 - **字体**：仅使用系统字体（PingFang SC, Microsoft YaHei 等），**禁止 Google Fonts**（中国大陆不可用）
 - **封面标题**：渐变文字 + 微弱的亮度呼吸动画
 
 ### 动画系统
 
 - **页面过渡**：`transition: fade`（0.5s）
-- **顶栏文字切换**：封面"第十章 静电场" → 内页"电容器的电容"，使用 Vue `<Transition>` 上下平移 + 缩放（0.45s cubic-bezier）
-- **内容逐条呈现**：`v-click` 增强为 slide-up 效果（0.5s ease）
+- **顶栏文字切换**：封面"第十章 静电场" → 内页"电容器的电容"，使用 Vue `<Transition>` 上下平移 + 缩放
+- **内容逐条呈现**：`v-click` / `v-clicks`
 - **卡片 hover**：微上浮 + 边框增亮
-- **封面标题**：shimmer 呼吸动画
 
 ### 顶栏规则
 
 - **封面（第1页）**：顶栏左显示"第十章 静电场"
 - **内页（第2页起）**：顶栏左显示"电容器的电容"
 - **所有页**：顶栏右显示东北育才学校 logo（`/logo.png`）
-- 切换时文字有放大缩小 + 平移的过渡动画，不干闪
 
 ### 页脚
 
 - 仅保留一条两侧渐隐的装饰线，**不显示页码**（公开课不需要）
 
+## 图标
+
+- 使用 `@iconify-json/mdi`（Material Design Icons），Slidev 原生支持 `<mdi-xxx />`
+- **不要用 emoji** 替代图标，emoji 不专业且跨平台渲染不一致
+
 ## 技术约定
 
-- 包管理：`pnpm`（不要用 npm 或 yarn）
-- LaTeX：Slidev 内置 KaTeX，行内 `$...$`，行间 `$$...$$`
-- 占位素材：实物照片等用 SVG 占位图 + `content/待补充素材.md` 提醒，**不要用 emoji 替代**
+- 包管理：`pnpm`
+- **LaTeX**：Slidev 内置 KaTeX。在 Markdown 段落中直接用 `$...$`。**HTML block 内**需要加空行让 Markdown 解析器处理 `$...$`
+- **导航**：使用键盘（→ ←）或翻页笔，**不要试图 hack 点击翻页**（Slidev 设计如此：只响应留黑区域点击）
 - 组件：Vue 3 组件放 `components/`，Slidev 自动注册
-- 全局层：`global-top.vue`、`global-bottom.vue` 放项目根目录
-- 样式：全局 `style.css`，组件内 `<style scoped>`
+- 样式：全局 `style.css`
+
+## 开发注意事项
+
+### 1. HTML 内 LaTeX 需要空行
+`$...$` 在 HTML `<div>` 内部不会被 KaTeX 处理，除非在 `$...$` 所在段落前后加空行，使其识别为 Markdown 段落。
+
+### 2. SVG font-size 被 UnoCSS 劫持
+`html { font-size: 22px }` 会级联到 SVG。更严重的是 UnoCSS 的属性选择器 `[font-size~="11"]` 会匹配 SVG 的 `font-size="11"` 属性并覆盖为 `2.75rem`。已在 `style.css` 中加入：
+```css
+svg { font-size: 16px; }
+svg [font-size] { font-size: unset !important; }
+```
+
+### 3. 点击翻页不要 hack
+Slidev 52 的 click-to-advance 只响应 `#slide-container` 自身（留黑区域）的点击，不响应子元素。16:9 幻灯片铺满屏幕时留黑区域≈0。这是设计行为，不是 bug。使用键盘或翻页笔，**不要添加全局 click handler**。
+
+### 4. 不提学生没学过的概念
+学生此时没有学电场强度、电场能。只提电势差、能量转移。
+
+### 5. 物理表述必须准确
+- ✅ "与正极相连的极板失去电子 → 带正电"
+- ❌ "电源正极吸引电子"（正极是电子离开的方向，不是吸引的因）
+
+### 6. 课件结构：先问后答
+每页幻灯片应该**先抛问题，再给答案**，而不是一开始就把结论亮出来。这是授课视角，不是知识罗列。
 
 ## 项目结构
 
 ```
 slides.md              ─ 主课件
-global-top.vue         ─ 全局顶栏（课题名 + logo，封面/内页不同）
+global-top.vue         ─ 全局顶栏
 global-bottom.vue      ─ 全局底栏（装饰线）
-style.css              ─ 设计系统
+style.css              ─ 设计系统 + SVG保护
 components/            ─ 交互式 Vue 组件（自动注册）
-public/images/         ─ 静态图片素材
+images/                ─ 实物照片素材
 content/
   思路.md              ─ 课程设计思路
   教案.md              ─ 完整教案
   逐字稿.md            ─ 逐句台词
-  待补充素材.md         ─ 需要补充的素材清单
+  待补充素材.md         ─ 素材清单
 ```

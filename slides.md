@@ -261,14 +261,16 @@ layout: default
 
 <v-click>
 
-<div class="card card-highlight mt-3">
-  <div class="text-center leading-relaxed">
-    <div class="text-lg opacity-70">当一个极板带电量为 $+Q$ 时</div>
-    <div class="text-xl text-accent font-semibold mt-1">另一个极板必然带电 $-Q$</div>
-    <div class="mt-2 text-lg">
-      电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span> $Q$
-    </div>
-  </div>
+<div class="card card-highlight mt-3 text-center">
+
+当一个极板带电量为 $+Q$ 时，另一个极板必然带电 $-Q$
+
+<div class="text-lg">
+
+电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span> $Q$
+
+</div>
+
 </div>
 
 </v-click>
