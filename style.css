@@ -1,0 +1,186 @@
+/* ═══════════════════════════════════════════════
+   电容器的电容 — 公开课设计系统
+   大教室 · 大字号 · 大圆角 · 深蓝学术风
+   ═══════════════════════════════════════════════ */
+
+:root {
+  /* 配色 */
+  --c-bg: #0f172a;              /* 深蓝黑底 */
+  --c-surface: #1e293b;         /* 卡片表面 */
+  --c-surface-hover: #273449;   /* 卡片悬停 */
+  --c-border: rgba(148, 163, 184, 0.12); /* 柔和边框 */
+  --c-text: #f1f5f9;            /* 主文字 */
+  --c-text-dim: #94a3b8;        /* 次级文字 */
+  --c-accent: #e2a846;          /* 暖金强调 */
+  --c-accent-2: #38bdf8;        /* 天蓝辅助 */
+  --c-physics: #2dd4bf;         /* 青绿 — 物理量 */
+  --c-formula: #f9a8d4;         /* 粉 — 公式高亮 */
+  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.625rem;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 40px rgba(56, 189, 248, 0.08);
+}
+
+/* ── 基础 ── */
+html {
+  font-size: 28px;
+  color: var(--c-text);
+}
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', system-ui, -apple-system, sans-serif;
+  background: var(--c-bg);
+}
+
+.slidev-layout {
+  padding: 2.5rem 3.5rem !important;
+  background: var(--c-bg);
+}
+
+/* ── 标题层级 ── */
+h1 {
+  font-size: 2.4rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+}
+
+h2 {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: var(--c-text);
+}
+
+h3 {
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  color: var(--c-text-dim);
+}
+
+/* ── 正文 ── */
+p, li {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ── 卡片 ── */
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.card-highlight {
+  border-color: rgba(226, 168, 70, 0.25);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+/* ── 圆角标签 ── */
+.tag {
+  display: inline-block;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.75rem;
+  color: var(--c-text-dim);
+}
+
+/* ── LaTeX 公式 ── */
+.katex {
+  font-size: 1.15rem !important;
+}
+
+.katex-display {
+  font-size: 1.35rem !important;
+  margin: 1rem 0 !important;
+}
+
+/* ── 表格 ── */
+table {
+  font-size: 0.9rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+th {
+  background: var(--c-surface);
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  text-align: left;
+}
+
+td {
+  padding: 0.5rem 1.2rem;
+  border-top: 1px solid var(--c-border);
+}
+
+/* ── 代码块 ── */
+pre, code {
+  font-size: 0.8rem !important;
+  border-radius: var(--radius-md);
+}
+
+/* ══════════════════════════════════════
+   封面页专用样式
+   ══════════════════════════════════════ */
+.cover-title {
+  font-size: 3.6rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  background: linear-gradient(135deg, var(--c-accent) 0%, #f59e0b 50%, var(--c-accent-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.cover-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--c-text-dim);
+}
+
+.cover-decoration {
+  margin-top: 3rem;
+  color: var(--c-text-dim);
+  opacity: 0.65;
+  width: 180px;
+}
+
+.cover-decoration svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cover-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.cover-tag {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 2rem;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.75rem;
+  color: var(--c-text-dim);
+}
+
+/* ══════════════════════════════════════
+   全局过渡与动画
+   ══════════════════════════════════════ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+}
