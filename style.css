@@ -150,15 +150,12 @@ pre, code {
 }
 
 .cover-decoration {
-  margin-top: 3rem;
   color: var(--c-text-dim);
-  opacity: 0.65;
-  width: 180px;
+  opacity: 0.6;
 }
 
 .cover-decoration svg {
   display: block;
-  width: 100%;
   height: auto;
 }
 
