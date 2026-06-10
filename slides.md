@@ -80,27 +80,24 @@ layout: default
 layout: default
 ---
 
-# 电容器
+<div class="abs-tr m-6 text-sm opacity-40">电容器：储存电荷的容器</div>
 
-<div class="card card-highlight mt-6">
-  <div class="text-2xl font-semibold mb-2">定义</div>
-  <div class="text-3xl leading-relaxed">
-    <span class="text-accent">相互靠近</span>且<span class="text-accent">彼此绝缘</span>的两个导体<br/>构成电容器
+<div class="card card-highlight">
+  <div class="text-2xl font-semibold">
+    定义：<span class="text-accent">相互靠近</span>且<span class="text-accent">彼此绝缘</span>的两个导体，构成电容器
   </div>
 </div>
 
 <v-click>
 
-<div class="mt-5 text-lg opacity-70">两个条件：</div>
-
-<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="grid grid-cols-2 gap-3 mt-4">
   <div class="card">
-    <div class="font-semibold text-xl">相互靠近</div>
-    <div class="text-sm opacity-50 mt-1">电荷才能相互吸引</div>
+    <div class="font-semibold text-lg">相互靠近</div>
+    <div class="text-sm opacity-50 mt-1">电荷相互吸引，不会流失</div>
   </div>
   <div class="card">
-    <div class="font-semibold text-xl">彼此绝缘</div>
-    <div class="text-sm opacity-50 mt-1">电荷不会逃走</div>
+    <div class="font-semibold text-lg">彼此绝缘</div>
+    <div class="text-sm opacity-50 mt-1">没有导电通路，电荷无法逃逸</div>
   </div>
 </div>
 
