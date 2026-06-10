@@ -2,7 +2,7 @@
   <div class="global-top">
     <Transition name="top-text" mode="out-in">
       <span class="global-top-title" :key="isCover ? 'chapter' : 'topic'">
-        {{ isCover ? '第十章 静电场' : '电容器的电容' }}
+        {{ isCover ? "第十章 静电场" : "电容器的电容" }}
       </span>
     </Transition>
     <img src="/logo.png" alt="东北育才学校" class="global-top-logo" />
@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from "vue";
 
-const nav = ($slidev as any).nav
-const isCover = computed(() => nav.currentPage === 1)
+const nav = ($slidev as any).nav;
+const isCover = computed(() => nav.currentPage === 1);
 </script>
 
 <style scoped>

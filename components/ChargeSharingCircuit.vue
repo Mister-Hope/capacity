@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue';
+import { ref, computed, onUnmounted } from "vue";
 
 // State definition
 const qA = ref<number>(0); // Charge on Cap 1 (voltage range 0 to 8 V)
 const qB = ref<number>(0); // Charge on Cap 2
-const s1Pos = ref<'open' | '1' | '2'>('open'); // Switch 1 position
+const s1Pos = ref<"open" | "1" | "2">("open"); // Switch 1 position
 const s2Closed = ref<boolean>(false); // Switch 2 closed/open status
 
-const simState = ref<'idle' | 'charging_A' | 'sharing' | 'discharging_B' | 'discharging_A_and_B'>('idle');
+const simState = ref<"idle" | "charging_A" | "sharing" | "discharging_B" | "discharging_A_and_B">(
+  "idle",
+);
 const electronOffset = ref<number>(0);
 
 let timerId: any = null;
@@ -15,7 +17,7 @@ let timerId: any = null;
 // Color helper function
 function interpolateColor(color1: string, color2: string, factor: number) {
   const parseHex = (hex: string) => {
-    const match = hex.replace('#', '');
+    const match = hex.replace("#", "");
     const r = parseInt(match.substring(0, 2), 16);
     const g = parseInt(match.substring(2, 4), 16);
     const b = parseInt(match.substring(4, 6), 16);
@@ -30,38 +32,46 @@ function interpolateColor(color1: string, color2: string, factor: number) {
 }
 
 // Compute colors based on voltages (charge size, where 8.0 is max)
-const aUpperColor = computed(() => interpolateColor('#475569', '#ef4444', Math.min(1, qA.value / 8.0)));
-const aLowerColor = computed(() => interpolateColor('#475569', '#3b82f6', Math.min(1, qA.value / 8.0)));
-const bUpperColor = computed(() => interpolateColor('#475569', '#ef4444', Math.min(1, qB.value / 8.0)));
-const bLowerColor = computed(() => interpolateColor('#475569', '#3b82f6', Math.min(1, qB.value / 8.0)));
+const aUpperColor = computed(() =>
+  interpolateColor("#475569", "#ef4444", Math.min(1, qA.value / 8.0)),
+);
+const aLowerColor = computed(() =>
+  interpolateColor("#475569", "#3b82f6", Math.min(1, qA.value / 8.0)),
+);
+const bUpperColor = computed(() =>
+  interpolateColor("#475569", "#ef4444", Math.min(1, qB.value / 8.0)),
+);
+const bLowerColor = computed(() =>
+  interpolateColor("#475569", "#3b82f6", Math.min(1, qB.value / 8.0)),
+);
 
 // Switch 1 Target - Mathematically exact rotation of length L = 72
 const s1Target = computed(() => {
-  if (s1Pos.value === '1') return { x: 252.3, y: 45.5 };     // Length = 72 at 160.1 degrees
-  if (s1Pos.value === '2') return { x: 252.3, y: 94.5 };     // Length = 72 at 199.9 degrees
-  return { x: 248.0, y: 70.0 };                              // Length = 72 at 180 degrees
+  if (s1Pos.value === "1") return { x: 252.3, y: 45.5 }; // Length = 72 at 160.1 degrees
+  if (s1Pos.value === "2") return { x: 252.3, y: 94.5 }; // Length = 72 at 199.9 degrees
+  return { x: 248.0, y: 70.0 }; // Length = 72 at 180 degrees
 });
 
 // Switch 2 Target - Mathematically exact rotation of length L = 81
 const s2Target = computed(() => {
   return s2Closed.value
-    ? { x: 240, y: 99 }      // Closed: straight pointing up to Terminal 2 (240, 99)
-    : { x: 199.5, y: 110 };  // Open: 30 degrees to the left (199.5, 110)
+    ? { x: 240, y: 99 } // Closed: straight pointing up to Terminal 2 (240, 99)
+    : { x: 199.5, y: 110 }; // Open: 30 degrees to the left (199.5, 110)
 });
 
 // Simple and literal status texts requested by user
 const s1StatusText = computed(() => {
-  if (s1Pos.value === '1') return '接通电源';
-  if (s1Pos.value === '2') return '连接另一电容器';
-  return '断开';
+  if (s1Pos.value === "1") return "接通电源";
+  if (s1Pos.value === "2") return "连接另一电容器";
+  return "断开";
 });
 
 const s2StatusText = computed(() => {
-  return s2Closed.value ? '接通' : '断开';
+  return s2Closed.value ? "接通" : "断开";
 });
 
 // Trigger simulation logic when switches are operated
-function toggleS1(pos: 'open' | '1' | '2') {
+function toggleS1(pos: "open" | "1" | "2") {
   if (timerId) {
     clearInterval(timerId);
     timerId = null;
@@ -81,8 +91,8 @@ function toggleS2() {
 
 function runPhysicsStep() {
   // Case 1: S1 to 1 (Charge A up to battery 8.0 V)
-  if (s1Pos.value === '1') {
-    simState.value = 'charging_A';
+  if (s1Pos.value === "1") {
+    simState.value = "charging_A";
     const startA = qA.value;
     const steps = 15;
     let step = 0;
@@ -96,16 +106,16 @@ function runPhysicsStep() {
         clearInterval(timerId);
         timerId = null;
         qA.value = 8.0;
-        simState.value = 'idle';
+        simState.value = "idle";
       }
     }, 25);
   }
 
   // Case 2: S1 to 2 (Parallel / Sharing)
-  else if (s1Pos.value === '2') {
+  else if (s1Pos.value === "2") {
     // Subcase 2a: S2 is closed -> any connected charge immediately shorts to ground!
     if (s2Closed.value) {
-      simState.value = qA.value > 0 || qB.value > 0 ? 'discharging_A_and_B' : 'idle';
+      simState.value = qA.value > 0 || qB.value > 0 ? "discharging_A_and_B" : "idle";
       const startA = qA.value;
       const startB = qB.value;
       const steps = 15;
@@ -122,7 +132,7 @@ function runPhysicsStep() {
           timerId = null;
           qA.value = 0;
           qB.value = 0;
-          simState.value = 'idle';
+          simState.value = "idle";
         }
       }, 25);
     }
@@ -131,11 +141,11 @@ function runPhysicsStep() {
       const avgExchange = (qA.value + qB.value) / 2;
       const diff = Math.abs(qA.value - qB.value);
       if (diff < 0.02) {
-        simState.value = 'idle';
+        simState.value = "idle";
         return;
       }
 
-      simState.value = 'sharing';
+      simState.value = "sharing";
       const startA = qA.value;
       const startB = qB.value;
       const steps = 15;
@@ -152,17 +162,17 @@ function runPhysicsStep() {
           timerId = null;
           qA.value = avgExchange;
           qB.value = avgExchange;
-          simState.value = 'idle';
+          simState.value = "idle";
         }
       }, 25);
     }
   }
 
   // Case 3: S1 is open (separated)
-  else if (s1Pos.value === 'open') {
+  else if (s1Pos.value === "open") {
     // If S2 is closed, B discharges immediately
     if (s2Closed.value && qB.value > 0) {
-      simState.value = 'discharging_B';
+      simState.value = "discharging_B";
       const startB = qB.value;
       const steps = 10;
       let step = 0;
@@ -176,11 +186,11 @@ function runPhysicsStep() {
           clearInterval(timerId);
           timerId = null;
           qB.value = 0;
-          simState.value = 'idle';
+          simState.value = "idle";
         }
       }, 25);
     } else {
-      simState.value = 'idle';
+      simState.value = "idle";
     }
   }
 }
@@ -192,9 +202,9 @@ function performReset() {
   }
   qA.value = 0;
   qB.value = 0;
-  s1Pos.value = 'open';
+  s1Pos.value = "open";
   s2Closed.value = false;
-  simState.value = 'idle';
+  simState.value = "idle";
 }
 
 onUnmounted(() => {
@@ -207,7 +217,6 @@ onUnmounted(() => {
     <!-- 电路 SVG：占满全宽 -->
     <div class="circuit-svg-wrap">
       <svg viewBox="0 0 580 220" class="circuit-svg">
-
         <!-- 地线 -->
         <line x1="60" y1="180" x2="500" y2="180" stroke="#475569" stroke-width="2.5" />
 
@@ -218,7 +227,9 @@ onUnmounted(() => {
         <line x1="52" y1="106" x2="68" y2="106" stroke="#475569" stroke-width="5" />
         <line x1="44" y1="114" x2="76" y2="114" stroke="#ef4444" stroke-width="3" />
         <line x1="52" y1="122" x2="68" y2="122" stroke="#475569" stroke-width="5" />
-        <text x="24" y="22" font-size="14" font-weight="950" fill="#ef4444" text-anchor="start">E=8V</text>
+        <text x="24" y="22" font-size="14" font-weight="950" fill="#ef4444" text-anchor="start">
+          E=8V
+        </text>
 
         <!-- 上部导线 -->
         <line x1="60" y1="40" x2="240" y2="40" stroke="#475569" stroke-width="2.5" />
@@ -228,38 +239,83 @@ onUnmounted(() => {
         <line x1="150" y1="99" x2="240" y2="99" stroke="#475569" stroke-width="2.5" />
 
         <!-- S1 导轨弧线 -->
-        <path d="M 240 41 A 85 85 0 0 0 240 99" fill="none" stroke="#334155" stroke-dasharray="3,3" stroke-width="2" />
+        <path
+          d="M 240 41 A 85 85 0 0 0 240 99"
+          fill="none"
+          stroke="#334155"
+          stroke-dasharray="3,3"
+          stroke-width="2"
+        />
 
         <!-- S1 触点 1（充电） -->
         <g class="cursor-pointer group" @click="toggleS1('1')">
           <circle cx="240" cy="41" r="18" fill="transparent" />
-          <circle cx="240" cy="41" r="11" fill="#1e293b" :stroke="s1Pos === '1' ? '#ef4444' : '#475569'" stroke-width="2.5" />
-          <text x="240" y="47" font-size="15" font-weight="950" fill="#ef4444" text-anchor="middle">1</text>
+          <circle
+            cx="240"
+            cy="41"
+            r="11"
+            fill="#1e293b"
+            :stroke="s1Pos === '1' ? '#ef4444' : '#475569'"
+            stroke-width="2.5"
+          />
+          <text x="240" y="47" font-size="15" font-weight="950" fill="#ef4444" text-anchor="middle">
+            1
+          </text>
         </g>
 
         <!-- S1 触点 0（断开） -->
         <g class="cursor-pointer group" @click="toggleS1('open')">
           <circle cx="235" cy="70" r="18" fill="transparent" />
-          <circle cx="235" cy="70" r="11" fill="#1e293b" :stroke="s1Pos === 'open' ? '#e2a846' : '#475569'" stroke-width="2.5" />
-          <text x="235" y="76" font-size="15" font-weight="950" fill="#e2a846" text-anchor="middle">0</text>
+          <circle
+            cx="235"
+            cy="70"
+            r="11"
+            fill="#1e293b"
+            :stroke="s1Pos === 'open' ? '#e2a846' : '#475569'"
+            stroke-width="2.5"
+          />
+          <text x="235" y="76" font-size="15" font-weight="950" fill="#e2a846" text-anchor="middle">
+            0
+          </text>
         </g>
 
         <!-- S1 触点 2（共享） -->
         <g class="cursor-pointer group" @click="toggleS1('2')">
           <circle cx="240" cy="99" r="18" fill="transparent" />
-          <circle cx="240" cy="99" r="11" fill="#1e293b" :stroke="s1Pos === '2' ? '#a78bfa' : '#475569'" stroke-width="2.5" />
-          <text x="240" y="105" font-size="15" font-weight="950" fill="#a78bfa" text-anchor="middle">2</text>
+          <circle
+            cx="240"
+            cy="99"
+            r="11"
+            fill="#1e293b"
+            :stroke="s1Pos === '2' ? '#a78bfa' : '#475569'"
+            stroke-width="2.5"
+          />
+          <text
+            x="240"
+            y="105"
+            font-size="15"
+            font-weight="950"
+            fill="#a78bfa"
+            text-anchor="middle"
+          >
+            2
+          </text>
         </g>
 
         <!-- S1 枢轴 -->
         <circle cx="320" cy="70" r="8" fill="#e2a846" stroke="#101827" stroke-width="2" />
-        <text x="320" y="47" font-size="14" font-weight="950" fill="#e2a846" text-anchor="middle">S₁</text>
+        <text x="320" y="47" font-size="14" font-weight="950" fill="#e2a846" text-anchor="middle">
+          S₁
+        </text>
 
         <!-- S1 刀臂 -->
         <line
-          x1="320" y1="70"
-          :x2="s1Target.x" :y2="s1Target.y"
-          stroke="#e2a846" stroke-width="5"
+          x1="320"
+          y1="70"
+          :x2="s1Target.x"
+          :y2="s1Target.y"
+          stroke="#e2a846"
+          stroke-width="5"
           stroke-linecap="round"
           class="switch-arm transition-all duration-300 ease-in-out cursor-pointer"
           @click="toggleS1(s1Pos === 'open' ? '1' : s1Pos === '1' ? '2' : 'open')"
@@ -267,32 +323,130 @@ onUnmounted(() => {
 
         <!-- S2 -->
         <g class="cursor-pointer s2-hotspot" @click="toggleS2()">
-          <path d="M 240 99 A 81 81 0 0 0 199.5 110" fill="none" stroke="#334155" stroke-dasharray="2,2" stroke-width="1.5" />
+          <path
+            d="M 240 99 A 81 81 0 0 0 199.5 110"
+            fill="none"
+            stroke="#334155"
+            stroke-dasharray="2,2"
+            stroke-width="1.5"
+          />
           <circle cx="240" cy="180" r="7" fill="#64748b" stroke="#101827" stroke-width="1.5" />
           <line
-            x1="240" y1="180"
-            :x2="s2Target.x" :y2="s2Target.y"
-            stroke="#e2a846" stroke-width="4"
+            x1="240"
+            y1="180"
+            :x2="s2Target.x"
+            :y2="s2Target.y"
+            stroke="#e2a846"
+            stroke-width="4"
             stroke-linecap="round"
             class="transition-all duration-200 ease-out"
           />
-          <text x="252" y="148" font-size="14" font-weight="950" fill="#e2a846" text-anchor="start">S₂</text>
+          <text x="252" y="148" font-size="14" font-weight="950" fill="#e2a846" text-anchor="start">
+            S₂
+          </text>
           <circle cx="220" cy="140" r="30" fill="transparent" />
         </g>
 
         <!-- C₂ -->
         <g>
-          <line x1="120" y1="110" x2="180" y2="110" :stroke="bUpperColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
-          <line x1="120" y1="130" x2="180" y2="130" :stroke="bLowerColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
+          <line
+            x1="120"
+            y1="110"
+            x2="180"
+            y2="110"
+            :stroke="bUpperColor"
+            stroke-width="7"
+            stroke-linecap="round"
+            class="transition-colors duration-300"
+          />
+          <line
+            x1="120"
+            y1="130"
+            x2="180"
+            y2="130"
+            :stroke="bLowerColor"
+            stroke-width="7"
+            stroke-linecap="round"
+            class="transition-colors duration-300"
+          />
           <line x1="150" y1="130" x2="150" y2="180" stroke="#475569" stroke-width="2.5" />
-          <text x="150" y="155" font-size="13" font-weight="950" fill="#60a5fa" text-anchor="middle">C₂</text>
+          <text
+            x="150"
+            y="155"
+            font-size="13"
+            font-weight="950"
+            fill="#60a5fa"
+            text-anchor="middle"
+          >
+            C₂
+          </text>
           <g v-if="qB > 0.1">
-            <text x="130" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
-            <text x="150" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
-            <text x="170" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qB/8.0">+</text>
-            <text x="130" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">−</text>
-            <text x="150" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">−</text>
-            <text x="170" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qB/8.0">−</text>
+            <text
+              x="130"
+              y="100"
+              font-size="16"
+              font-weight="950"
+              fill="#ef4444"
+              text-anchor="middle"
+              :fill-opacity="qB / 8.0"
+            >
+              +
+            </text>
+            <text
+              x="150"
+              y="100"
+              font-size="16"
+              font-weight="950"
+              fill="#ef4444"
+              text-anchor="middle"
+              :fill-opacity="qB / 8.0"
+            >
+              +
+            </text>
+            <text
+              x="170"
+              y="100"
+              font-size="16"
+              font-weight="950"
+              fill="#ef4444"
+              text-anchor="middle"
+              :fill-opacity="qB / 8.0"
+            >
+              +
+            </text>
+            <text
+              x="130"
+              y="145"
+              font-size="16"
+              font-weight="950"
+              fill="#3b82f6"
+              text-anchor="middle"
+              :fill-opacity="qB / 8.0"
+            >
+              −
+            </text>
+            <text
+              x="150"
+              y="145"
+              font-size="16"
+              font-weight="950"
+              fill="#3b82f6"
+              text-anchor="middle"
+              :fill-opacity="qB / 8.0"
+            >
+              −
+            </text>
+            <text
+              x="170"
+              y="145"
+              font-size="16"
+              font-weight="950"
+              fill="#3b82f6"
+              text-anchor="middle"
+              :fill-opacity="qB / 8.0"
+            >
+              −
+            </text>
           </g>
         </g>
 
@@ -302,17 +456,104 @@ onUnmounted(() => {
 
         <!-- C₁ -->
         <g>
-          <line x1="390" y1="110" x2="450" y2="110" :stroke="aUpperColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
-          <line x1="390" y1="130" x2="450" y2="130" :stroke="aLowerColor" stroke-width="7" stroke-linecap="round" class="transition-colors duration-300" />
+          <line
+            x1="390"
+            y1="110"
+            x2="450"
+            y2="110"
+            :stroke="aUpperColor"
+            stroke-width="7"
+            stroke-linecap="round"
+            class="transition-colors duration-300"
+          />
+          <line
+            x1="390"
+            y1="130"
+            x2="450"
+            y2="130"
+            :stroke="aLowerColor"
+            stroke-width="7"
+            stroke-linecap="round"
+            class="transition-colors duration-300"
+          />
           <line x1="420" y1="130" x2="420" y2="180" stroke="#475569" stroke-width="2.5" />
-          <text x="420" y="155" font-size="13" font-weight="950" fill="#34d399" text-anchor="middle">C₁</text>
+          <text
+            x="420"
+            y="155"
+            font-size="13"
+            font-weight="950"
+            fill="#34d399"
+            text-anchor="middle"
+          >
+            C₁
+          </text>
           <g v-if="qA > 0.1">
-            <text x="400" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
-            <text x="420" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
-            <text x="440" y="100" font-size="16" font-weight="950" fill="#ef4444" text-anchor="middle" :fill-opacity="qA/8.0">+</text>
-            <text x="400" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">−</text>
-            <text x="420" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">−</text>
-            <text x="440" y="145" font-size="16" font-weight="950" fill="#3b82f6" text-anchor="middle" :fill-opacity="qA/8.0">−</text>
+            <text
+              x="400"
+              y="100"
+              font-size="16"
+              font-weight="950"
+              fill="#ef4444"
+              text-anchor="middle"
+              :fill-opacity="qA / 8.0"
+            >
+              +
+            </text>
+            <text
+              x="420"
+              y="100"
+              font-size="16"
+              font-weight="950"
+              fill="#ef4444"
+              text-anchor="middle"
+              :fill-opacity="qA / 8.0"
+            >
+              +
+            </text>
+            <text
+              x="440"
+              y="100"
+              font-size="16"
+              font-weight="950"
+              fill="#ef4444"
+              text-anchor="middle"
+              :fill-opacity="qA / 8.0"
+            >
+              +
+            </text>
+            <text
+              x="400"
+              y="145"
+              font-size="16"
+              font-weight="950"
+              fill="#3b82f6"
+              text-anchor="middle"
+              :fill-opacity="qA / 8.0"
+            >
+              −
+            </text>
+            <text
+              x="420"
+              y="145"
+              font-size="16"
+              font-weight="950"
+              fill="#3b82f6"
+              text-anchor="middle"
+              :fill-opacity="qA / 8.0"
+            >
+              −
+            </text>
+            <text
+              x="440"
+              y="145"
+              font-size="16"
+              font-weight="950"
+              fill="#3b82f6"
+              text-anchor="middle"
+              :fill-opacity="qA / 8.0"
+            >
+              −
+            </text>
           </g>
         </g>
 
@@ -322,29 +563,55 @@ onUnmounted(() => {
         <line x1="500" y1="145" x2="500" y2="180" stroke="#475569" stroke-width="2.5" />
         <g class="cursor-pointer" @click="performReset">
           <circle cx="500" cy="120" r="20" fill="#1e293b" stroke="#34d399" stroke-width="2.5" />
-          <text x="500" y="128" font-size="18" font-weight="950" fill="#34d399" text-anchor="middle">V</text>
+          <text
+            x="500"
+            y="128"
+            font-size="18"
+            font-weight="950"
+            fill="#34d399"
+            text-anchor="middle"
+          >
+            V
+          </text>
         </g>
 
         <!-- 电子流动画 -->
         <g v-if="simState === 'charging_A'">
-          <g v-for="i in 3" :key="'chg-' + i" :transform="`translate(${60 + ((electronOffset + i * 40) % 180)}, 40)`">
+          <g
+            v-for="i in 3"
+            :key="'chg-' + i"
+            :transform="`translate(${60 + ((electronOffset + i * 40) % 180)}, 40)`"
+          >
             <circle cx="0" cy="0" r="5" fill="#38bdf8" />
-            <text x="0" y="-9" font-size="13" font-weight="900" fill="#60a5fa" text-anchor="middle">e⁻</text>
+            <text x="0" y="-9" font-size="13" font-weight="900" fill="#60a5fa" text-anchor="middle">
+              e⁻
+            </text>
           </g>
         </g>
         <g v-if="simState === 'sharing'">
-          <g v-for="i in 2" :key="'share-' + i" :transform="`translate(${240 + ((electronOffset + i * 35) % 80)}, 100)`">
+          <g
+            v-for="i in 2"
+            :key="'share-' + i"
+            :transform="`translate(${240 + ((electronOffset + i * 35) % 80)}, 100)`"
+          >
             <circle cx="0" cy="0" r="5" fill="#a78bfa" />
-            <text x="0" y="-9" font-size="13" font-weight="900" fill="#c084fc" text-anchor="middle">e⁻</text>
+            <text x="0" y="-9" font-size="13" font-weight="900" fill="#c084fc" text-anchor="middle">
+              e⁻
+            </text>
           </g>
         </g>
         <g v-if="simState === 'discharging_B'">
-          <g v-for="i in 2" :key="'disb-' + i" :transform="`translate(240, ${99 + ((electronOffset + i * 25) % 81)})`">
+          <g
+            v-for="i in 2"
+            :key="'disb-' + i"
+            :transform="`translate(240, ${99 + ((electronOffset + i * 25) % 81)})`"
+          >
             <circle cx="0" cy="0" r="5" fill="#f87171" />
-            <text x="14" y="3" font-size="13" font-weight="900" fill="#f87171" text-anchor="start">e⁻</text>
+            <text x="14" y="3" font-size="13" font-weight="900" fill="#f87171" text-anchor="start">
+              e⁻
+            </text>
           </g>
         </g>
-
       </svg>
 
       <!-- 电压表读数 -->
@@ -359,19 +626,34 @@ onUnmounted(() => {
       <div class="status-item">
         <span class="status-key">S₁</span>
         <span
-          :class="s1Pos === '1' ? 'text-rose-400' : s1Pos === '2' ? 'text-purple-400' : 'text-amber-400'"
+          :class="
+            s1Pos === '1' ? 'text-rose-400' : s1Pos === '2' ? 'text-purple-400' : 'text-amber-400'
+          "
           class="status-val"
-        >{{ s1StatusText }}</span>
+          >{{ s1StatusText }}</span
+        >
       </div>
       <div class="status-item">
         <span class="status-key">S₂</span>
-        <span
-          :class="s2Closed ? 'text-emerald-400' : 'text-slate-500'"
-          class="status-val"
-        >{{ s2StatusText }}</span>
+        <span :class="s2Closed ? 'text-emerald-400' : 'text-slate-500'" class="status-val">{{
+          s2StatusText
+        }}</span>
       </div>
       <button @click="performReset" class="reset-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+          <path d="M3 3v5h5" />
+        </svg>
         重置
       </button>
     </div>
@@ -401,7 +683,13 @@ onUnmounted(() => {
 }
 
 .circuit-svg text {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif !important;
   user-select: none !important;
   pointer-events: none !important;
 }

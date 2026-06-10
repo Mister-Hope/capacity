@@ -16,7 +16,8 @@
 
 .global-bottom-line {
   height: 2px;
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     rgba(148, 163, 184, 0) 0%,
     rgba(148, 163, 184, 0.15) 15%,
     rgba(148, 163, 184, 0.15) 85%,

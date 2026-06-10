@@ -9,7 +9,7 @@
   --c-bg-soft: #0f1425;
   --c-surface: rgba(30, 41, 59, 0.65);
   --c-surface-solid: #1e293b;
-  --c-border: rgba(148, 163, 184, 0.10);
+  --c-border: rgba(148, 163, 184, 0.1);
   --c-border-glow: rgba(226, 168, 70, 0.2);
   --c-text: #f1f5f9;
   --c-text-dim: #94a3b8;
@@ -45,7 +45,14 @@ svg [font-size] {
 }
 
 body {
-  font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', system-ui, -apple-system, sans-serif;
+  font-family:
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Hiragino Sans GB",
+    "WenQuanYi Micro Hei",
+    system-ui,
+    -apple-system,
+    sans-serif;
   background: linear-gradient(160deg, var(--c-bg) 0%, #0c1122 40%, var(--c-bg-soft) 100%);
 }
 
@@ -77,7 +84,8 @@ h3 {
 }
 
 /* ── 正文 ── */
-p, li {
+p,
+li {
   font-size: 1rem;
   line-height: 1.55;
 }
@@ -103,7 +111,9 @@ p, li {
 
 .card-highlight {
   border-color: var(--c-border-glow);
-  box-shadow: 0 0 30px rgba(226, 168, 70, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  box-shadow:
+    0 0 30px rgba(226, 168, 70, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 /* ── 圆角标签 ── */
@@ -151,7 +161,8 @@ td {
 }
 
 /* ── 代码块 ── */
-pre, code {
+pre,
+code {
   font-size: 0.8rem !important;
   border-radius: var(--radius-md);
 }
@@ -160,7 +171,8 @@ pre, code {
    封面页
    ══════════════════════════════════════ */
 .cover-chapter {
-  font-family: "Times New Roman", "STIX Two Text", "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
+  font-family:
+    "Times New Roman", "STIX Two Text", "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--c-text-dim);
@@ -177,7 +189,14 @@ pre, code {
   font-size: 3.5rem !important;
   font-weight: 900 !important;
   letter-spacing: 0.04em !important;
-  background: linear-gradient(135deg, #f59e0b 0%, #e2a846 25%, #fbbf24 50%, #60a5fa 75%, #3b82f6 100%);
+  background: linear-gradient(
+    135deg,
+    #f59e0b 0%,
+    #e2a846 25%,
+    #fbbf24 50%,
+    #60a5fa 75%,
+    #3b82f6 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -186,8 +205,12 @@ pre, code {
 }
 
 @keyframes title-shimmer {
-  0% { filter: brightness(1); }
-  100% { filter: brightness(1.15); }
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(1.15);
+  }
 }
 
 .cover-subtitle {
@@ -266,8 +289,12 @@ pre, code {
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scale-in {
@@ -361,5 +388,11 @@ pre, code {
 }
 
 /* 气泡内强调文字 */
-.chat-left .chat-em { color: #60a5fa; font-weight: 600; }
-.chat-right .chat-em { color: #f59e0b; font-weight: 600; }
+.chat-left .chat-em {
+  color: #60a5fa;
+  font-weight: 600;
+}
+.chat-right .chat-em {
+  color: #f59e0b;
+  font-weight: 600;
+}
