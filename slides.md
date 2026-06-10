@@ -285,7 +285,7 @@ layout: default
   <div class="text-xl font-semibold mb-3 text-center">充电</div>
   <v-clicks>
 
-  <div class="mb-1">电场强度<span class="text-accent">逐渐增大</span></div>
+  <div class="mb-1">两极板间<span class="text-accent">电势差逐渐增大</span></div>
   <div class="mb-1">电势差 → 电源电压</div>
   <div class="card-highlight rounded-lg p-2 mt-2 text-center">
     <span class="text-accent-2 font-semibold">电能</span> → 储存于电容器
@@ -298,7 +298,7 @@ layout: default
   <div class="text-xl font-semibold mb-3 text-center">放电</div>
   <v-clicks>
 
-  <div class="mb-1">电场强度<span class="text-red-400">逐渐减小</span></div>
+  <div class="mb-1">两极板间<span class="text-red-400">电势差逐渐减小</span></div>
   <div class="mb-1">电流通过用电器</div>
   <div class="card-highlight rounded-lg p-2 mt-2 text-center">
     储存能量 → <span class="text-accent font-semibold">其他形式</span>能量
@@ -312,7 +312,7 @@ layout: default
 <v-click>
 
 <div class="card card-highlight mt-4 text-center font-semibold text-lg">
-  电容器是<span class="text-accent">电场储能</span>元件
+  电容器，不仅可以储存<span class="text-accent">电荷</span>，还同时存储了<span class="text-accent-2">能量</span>
 </div>
 
 </v-click>
