@@ -1,10 +1,10 @@
-import { defineAppSetup } from '@slidev/types'
+// Slidev 52 的 click handler (play.vue) 只响应点击在
+// #slide-container 自身的事件，不响应子元素。
+// 实际使用中文字和卡片会挡住 container，导致点击无反应。
+// 这里补一个 document 级别的 pointerdown 监听。
 
-export default defineAppSetup(() => {
-  // Slidev 52 的 click handler (play.vue) 只响应点击在
-  // #slide-container 自身的事件，不响应子元素。
-  // 实际使用中文字和卡片会挡住 container，导致点击无反应。
-  document.addEventListener('pointerdown', (e) => {
+export default () => {
+  document.addEventListener('pointerdown', (e: PointerEvent) => {
     if (e.button !== 0) return
 
     const target = e.target as HTMLElement
@@ -20,4 +20,4 @@ export default defineAppSetup(() => {
     else
       nav.prev()
   })
-})
+}
