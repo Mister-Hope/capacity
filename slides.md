@@ -225,27 +225,26 @@ layout: default
 layout: default
 ---
 
-# 为什么能保持电荷？
+# 电容器能较好地储存电荷么？
 
-<div class="card card-highlight px-4 py-3">
-  <div class="text-xl font-semibold">
-    如果将充好电的电容器的<span class="text-red-400">负极接地</span>，电荷会流失吗？
+<div class="card card-highlight mt-4">
+  <div class="text-xl font-semibold"><mdi-head-question-outline class="text-accent text-2xl inline-block align-middle mr-3" />如果将充好电的电容器的<span class="text-red-400">负极接地</span>，电荷会流失吗？
   </div>
 </div>
 
 <v-clicks>
 
-<div class="card mt-2 px-4 py-2">
-  <div class="font-semibold text-lg mb-0.5">不会。因为——</div>
+<div class="card mt-2 px-3 py-1.5">
+  <div class="font-semibold text-base mb-0.5">不会。因为——</div>
   <div class="text-sm opacity-70">负极板上的负电荷与正极板上的正电荷<span class="text-accent">相互吸引</span>，正极板上的电荷被"拉住"，几乎不会流入大地。</div>
 </div>
 
-<div class="card mt-2 px-4 py-2">
-  <div class="font-semibold text-lg mb-0.5">进一步——</div>
+<div class="card mt-2 px-3 py-1.5">
+  <div class="font-semibold text-base mb-0.5">进一步——</div>
   <div class="text-sm opacity-70">即使把导线、电阻接在正极和负极两端，只要<span class="text-accent-2">不构成闭合回路</span>，两极板之间的相互吸引力仍然会让大部分电荷保留下来。</div>
 </div>
 
-<div class="card card-highlight mt-2 px-4 py-2 text-center text-lg">
+<div class="card card-highlight mt-2 px-3 py-1.5 text-center text-base">
   <span class="text-accent font-semibold">相互靠近</span> + <span class="text-accent-2 font-semibold">彼此绝缘</span> → 电容器能够储存电荷
 </div>
 
