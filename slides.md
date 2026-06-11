@@ -25,8 +25,10 @@ defaults:
   <span>授课教师：张伯望</span>
 </div>
 
+<div class="cover-school">东北育才学校</div>
+
 <div class="cover-decoration abs-br m-8" aria-hidden="true">
-  <svg viewBox="0 0 200 140" width="240" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 200 140" width="300" xmlns="http://www.w3.org/2000/svg">
     <line x1="30" y1="60" x2="85" y2="60" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
     <rect x="85" y="8" width="10" height="104" rx="5" fill="none" stroke="currentColor" stroke-width="3"/>
     <rect x="105" y="8" width="10" height="104" rx="5" fill="none" stroke="currentColor" stroke-width="3"/>
