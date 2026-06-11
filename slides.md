@@ -196,7 +196,6 @@ layout: default
   <div class="mb-2 text-sm">与正极相连的极板<span class="text-red-400">失去电子 → 带正电</span></div>
   <div class="mb-2 text-sm">与负极相连的极板<span class="text-accent-2">获得电子 → 带负电</span></div>
   <div class="mb-2 text-sm">两极板间<span class="text-accent">电势差逐渐升高</span>，直至等于电源电压</div>
-  <div class="text-sm opacity-60 mt-2">充电完成，电源的能量 → 储存在电容器中</div>
 
   </v-clicks>
 </div>
@@ -208,7 +207,6 @@ layout: default
   <div class="mb-2 text-sm">用导线连接两极板</div>
   <div class="mb-2 text-sm">电子从<span class="text-accent-2">负极板</span>经导线流向<span class="text-red-400">正极板</span></div>
   <div class="mb-2 text-sm">两极板电荷逐渐中和，<span class="text-accent">电势差降低</span></div>
-  <div class="text-sm opacity-60 mt-2">电容器储存的能量 → 释放到电路中</div>
 
   </v-clicks>
 </div>
