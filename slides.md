@@ -43,40 +43,43 @@ defaults:
 layout: default
 ---
 
-<div class="card card-highlight mt-4">
-  <div class="text-2xl font-semibold">我们如何把电荷<span class="text-accent">存</span>起来？</div>
+## 我们学过哪些起电方式？
+
+<div class="grid grid-cols-3 gap-4 mt-4">
+
+<v-clicks>
+
+<div class="card">
+  <div class="font-semibold text-lg">摩擦起电</div>
+  <div class="text-sm opacity-60 mt-1">通过摩擦使电子转移</div>
+</div>
+
+<div class="card">
+  <div class="font-semibold text-lg">接触起电</div>
+  <div class="text-sm opacity-60 mt-1">带电体接触使电荷转移</div>
+</div>
+
+<div class="card">
+  <div class="font-semibold text-lg">感应起电</div>
+  <div class="text-sm opacity-60 mt-1">电场作用下电荷重新分布</div>
+</div>
+
+</v-clicks>
+
 </div>
 
 <v-click>
 
-<div class="mt-5">
-
-## 我们已经学过三种起电方式
-
-<div class="grid grid-cols-3 gap-4 mt-6">
-  <div class="card">
-    <div class="font-semibold text-xl">摩擦起电</div>
-    <div class="text-sm opacity-60 mt-1">通过摩擦使电子转移</div>
-  </div>
-  <div class="card">
-    <div class="font-semibold text-xl">接触起电</div>
-    <div class="text-sm opacity-60 mt-1">带电体接触使电荷转移</div>
-  </div>
-  <div class="card">
-    <div class="font-semibold text-xl">感应起电</div>
-    <div class="text-sm opacity-60 mt-1">电场作用下电荷重新分布</div>
-  </div>
-</div>
-
+<div class="mt-6 text-center opacity-70">
+但这些方法只能让物体<span class="text-accent">带电</span>——
 </div>
 
 </v-click>
 
 <v-click>
 
-<div class="mt-6 text-center opacity-70">
-但这些方法只能让物体<span class="text-accent">带电</span>——<br/>
-<span class="font-semibold text-accent-2">如何把电荷储存起来？</span>
+<div class="card card-highlight mt-5">
+  <div class="text-2xl font-semibold"><mdi-head-question-outline class="text-accent text-3xl inline-block align-middle mr-3" />我们如何把电荷<span class="text-accent">存</span>起来？</div>
 </div>
 
 </v-click>
@@ -119,11 +122,6 @@ layout: default
 <v-clicks>
 
 <div class="card">
-  <div class="flex items-center gap-2 mb-1"><mdi-earth class="text-accent-2 text-xl" /><span class="font-semibold text-lg">地球 与 火星</span></div>
-  <div class="text-sm opacity-50">真空绝缘，彼此靠近</div>
-</div>
-
-<div class="card">
   <div class="flex items-center gap-2 mb-1"><mdi-account class="text-accent-2 text-xl" /><span class="font-semibold text-lg">人 与 金属板</span></div>
   <div class="text-sm opacity-50">不接触即构成电容器</div>
 </div>
@@ -131,6 +129,11 @@ layout: default
 <div class="card">
   <div class="flex items-center gap-2 mb-1"><mdi-weather-lightning class="text-accent-2 text-xl" /><span class="font-semibold text-lg">云层 与 大地</span></div>
   <div class="text-sm opacity-50">云层带电，大地感应</div>
+</div>
+
+<div class="card">
+  <div class="flex items-center gap-2 mb-1"><mdi-earth class="text-accent-2 text-xl" /><span class="font-semibold text-lg">地球 与 火星</span></div>
+  <div class="text-sm opacity-50">真空绝缘，彼此靠近</div>
 </div>
 
 <div class="card">
