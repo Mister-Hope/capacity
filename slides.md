@@ -457,6 +457,37 @@ layout: default
 layout: default
 ---
 
+# 课堂练习
+
+<div class="card card-highlight mt-4">
+
+<div class="text-xl font-semibold mb-3">
+
+一个电容器所带电荷量为 $2\times10^{-4}\,\text{C}$，两极板间电势差为 $10\,\text{V}$，它的电容是多少？
+
+</div>
+
+</div>
+
+<v-click>
+
+<div class="card mt-4">
+
+**解：** 由 $C = \dfrac{Q}{U}$ 得
+
+<div class="text-center text-xl mt-2">
+
+$C = \dfrac{2\times10^{-4}}{10} = 2\times10^{-5}\,\text{F} = 20\,\mu\text{F}$
+
+</div>
+
+</div>
+
+</v-click>
+---
+layout: default
+---
+
 <div class="flex flex-col gap-4">
 
 <div v-click.left class="chat-msg chat-left">
