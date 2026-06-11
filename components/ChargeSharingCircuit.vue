@@ -52,11 +52,11 @@ const s1Target = computed(() => {
   return { x: 248.0, y: 70.0 }; // Length = 72 at 180 degrees
 });
 
-// Switch 2 Target - Mathematically exact rotation of length L = 81
+// S₂ 枢轴在 (205,99)，稍左于S₁触点2；向右下~28°摆到接线柱3（断开），正下摆到接线柱4（接地）
 const s2Target = computed(() => {
   return s2Closed.value
-    ? { x: 240, y: 99 } // Closed: straight pointing up to Terminal 2 (240, 99)
-    : { x: 199.5, y: 110 }; // Open: 30 degrees to the left (199.5, 110)
+    ? { x: 205, y: 178 } // Closed: 正下连接接线柱4（接地，竖直）
+    : { x: 242, y: 169 }; // Open: 右下~28°连接接线柱3（断开）
 });
 
 // Simple and literal status texts requested by user
@@ -80,12 +80,12 @@ function toggleS1(pos: "open" | "1" | "2") {
   runPhysicsStep();
 }
 
-function toggleS2() {
+function toggleS2(closed: boolean) {
   if (timerId) {
     clearInterval(timerId);
     timerId = null;
   }
-  s2Closed.value = !s2Closed.value;
+  s2Closed.value = closed;
   runPhysicsStep();
 }
 
@@ -227,7 +227,7 @@ onUnmounted(() => {
         <line x1="52" y1="106" x2="68" y2="106" stroke="#475569" stroke-width="5" />
         <line x1="44" y1="114" x2="76" y2="114" stroke="#ef4444" stroke-width="3" />
         <line x1="52" y1="122" x2="68" y2="122" stroke="#475569" stroke-width="5" />
-        <text x="24" y="22" font-size="14" font-weight="950" fill="#ef4444" text-anchor="start">
+        <text x="24" y="22" font-size="14" font-weight="950" font-family="Times New Roman, STIX Two Text, serif" font-style="italic" fill="#ef4444" text-anchor="start">
           E=8V
         </text>
 
@@ -271,10 +271,10 @@ onUnmounted(() => {
             cy="70"
             r="11"
             fill="#1e293b"
-            :stroke="s1Pos === 'open' ? '#e2a846' : '#475569'"
+            :stroke="s1Pos === 'open' ? '#94a3b8' : '#475569'"
             stroke-width="2.5"
           />
-          <text x="235" y="76" font-size="15" font-weight="950" fill="#e2a846" text-anchor="middle">
+          <text x="235" y="76" font-size="15" font-weight="950" fill="#94a3b8" text-anchor="middle">
             0
           </text>
         </g>
@@ -321,19 +321,51 @@ onUnmounted(() => {
           @click="toggleS1(s1Pos === 'open' ? '1' : s1Pos === '1' ? '2' : 'open')"
         />
 
-        <!-- S2 -->
-        <g class="cursor-pointer s2-hotspot" @click="toggleS2()">
+        <!-- S₂ 接线柱3（断开，点击切换） -->
+        <g class="cursor-pointer" @click="toggleS2(false)">
+          <circle cx="242" cy="169" r="18" fill="transparent" />
+          <circle
+            cx="242"
+            cy="169"
+            r="11"
+            fill="#1e293b"
+            :stroke="!s2Closed ? '#94a3b8' : '#475569'"
+            stroke-width="2.5"
+          />
+          <text x="242" y="175" font-size="15" font-weight="950" fill="#94a3b8" text-anchor="middle">
+            3
+          </text>
+        </g>
+
+        <!-- S₂ 接线柱4（接地，点击切换） -->
+        <g class="cursor-pointer" @click="toggleS2(true)">
+          <circle cx="205" cy="178" r="18" fill="transparent" />
+          <circle
+            cx="205"
+            cy="178"
+            r="11"
+            fill="#1e293b"
+            :stroke="s2Closed ? '#34d399' : '#475569'"
+            stroke-width="2.5"
+          />
+          <text x="205" y="184" font-size="15" font-weight="950" fill="#34d399" text-anchor="middle">
+            4
+          </text>
+        </g>
+
+        <!-- S₂ 刀臂（枢轴在205,99，向右下~28°/正下摆动） -->
+        <g>
           <path
-            d="M 240 99 A 81 81 0 0 0 199.5 110"
+            d="M 242 169 A 79 79 0 0 1 205 178"
             fill="none"
             stroke="#334155"
             stroke-dasharray="2,2"
             stroke-width="1.5"
           />
-          <circle cx="240" cy="180" r="7" fill="#64748b" stroke="#101827" stroke-width="1.5" />
+          <circle cx="205" cy="99" r="6" fill="#e2a846" stroke="#101827" stroke-width="1.5" />
           <line
-            x1="240"
-            y1="180"
+            x1="205"
+            y1="99"
             :x2="s2Target.x"
             :y2="s2Target.y"
             stroke="#e2a846"
@@ -341,14 +373,14 @@ onUnmounted(() => {
             stroke-linecap="round"
             class="transition-all duration-200 ease-out"
           />
-          <text x="252" y="148" font-size="14" font-weight="950" fill="#e2a846" text-anchor="start">
+          <text x="193" y="92" font-size="14" font-weight="950" fill="#e2a846" text-anchor="start">
             S₂
           </text>
-          <circle cx="220" cy="140" r="30" fill="transparent" />
         </g>
 
         <!-- C₂ -->
         <g>
+          <line x1="150" y1="130" x2="150" y2="180" stroke="#475569" stroke-width="2.5" />
           <line
             x1="120"
             y1="110"
@@ -369,7 +401,6 @@ onUnmounted(() => {
             stroke-linecap="round"
             class="transition-colors duration-300"
           />
-          <line x1="150" y1="130" x2="150" y2="180" stroke="#475569" stroke-width="2.5" />
           <text
             x="150"
             y="155"
@@ -456,6 +487,7 @@ onUnmounted(() => {
 
         <!-- C₁ -->
         <g>
+          <line x1="420" y1="130" x2="420" y2="180" stroke="#475569" stroke-width="2.5" />
           <line
             x1="390"
             y1="110"
@@ -476,7 +508,6 @@ onUnmounted(() => {
             stroke-linecap="round"
             class="transition-colors duration-300"
           />
-          <line x1="420" y1="130" x2="420" y2="180" stroke="#475569" stroke-width="2.5" />
           <text
             x="420"
             y="155"
@@ -568,6 +599,8 @@ onUnmounted(() => {
             y="128"
             font-size="18"
             font-weight="950"
+            font-family="Times New Roman, STIX Two Text, serif"
+            font-style="italic"
             fill="#34d399"
             text-anchor="middle"
           >
@@ -575,43 +608,6 @@ onUnmounted(() => {
           </text>
         </g>
 
-        <!-- 电子流动画 -->
-        <g v-if="simState === 'charging_A'">
-          <g
-            v-for="i in 3"
-            :key="'chg-' + i"
-            :transform="`translate(${60 + ((electronOffset + i * 40) % 180)}, 40)`"
-          >
-            <circle cx="0" cy="0" r="5" fill="#38bdf8" />
-            <text x="0" y="-9" font-size="13" font-weight="900" fill="#60a5fa" text-anchor="middle">
-              e⁻
-            </text>
-          </g>
-        </g>
-        <g v-if="simState === 'sharing'">
-          <g
-            v-for="i in 2"
-            :key="'share-' + i"
-            :transform="`translate(${240 + ((electronOffset + i * 35) % 80)}, 100)`"
-          >
-            <circle cx="0" cy="0" r="5" fill="#a78bfa" />
-            <text x="0" y="-9" font-size="13" font-weight="900" fill="#c084fc" text-anchor="middle">
-              e⁻
-            </text>
-          </g>
-        </g>
-        <g v-if="simState === 'discharging_B'">
-          <g
-            v-for="i in 2"
-            :key="'disb-' + i"
-            :transform="`translate(240, ${99 + ((electronOffset + i * 25) % 81)})`"
-          >
-            <circle cx="0" cy="0" r="5" fill="#f87171" />
-            <text x="14" y="3" font-size="13" font-weight="900" fill="#f87171" text-anchor="start">
-              e⁻
-            </text>
-          </g>
-        </g>
       </svg>
 
       <!-- 电压表读数 -->
@@ -627,7 +623,7 @@ onUnmounted(() => {
         <span class="status-key">S₁</span>
         <span
           :class="
-            s1Pos === '1' ? 'text-rose-400' : s1Pos === '2' ? 'text-purple-400' : 'text-amber-400'
+            s1Pos === '1' ? 'text-rose-400' : s1Pos === '2' ? 'text-purple-400' : 'text-slate-400'
           "
           class="status-val"
           >{{ s1StatusText }}</span
@@ -683,13 +679,6 @@ onUnmounted(() => {
 }
 
 .circuit-svg text {
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif !important;
   user-select: none !important;
   pointer-events: none !important;
 }
@@ -752,7 +741,7 @@ onUnmounted(() => {
 .status-key {
   font-size: 0.65rem;
   font-weight: 900;
-  color: #64748b;
+  color: #e2a846;
   text-transform: uppercase;
 }
 
@@ -785,9 +774,6 @@ onUnmounted(() => {
 }
 
 /* ── 交互 ── */
-.s2-hotspot:hover line {
-  stroke: #fbbf24 !important;
-}
 .switch-arm {
   cursor: pointer;
 }

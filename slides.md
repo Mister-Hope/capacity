@@ -463,7 +463,7 @@ layout: default
 
 <div class="text-xl font-semibold mb-3">
 
-一个电容器所带电荷量为 $2\times10^{-4}\,\text{C}$，两极板间电势差为 $10\,\text{V}$，它的电容是多少？
+一个电容器的某一极板带电量为 $-2\times10^{-4}\,\text{C}$，两极板间电势差为 $10\,\text{V}$，它的电容是多少？
 
 </div>
 
@@ -473,7 +473,7 @@ layout: default
 
 <div class="card mt-4">
 
-**解：** 由 $C = \dfrac{Q}{U}$ 得
+**解：** 由 $C = \dfrac{Q}{U}$，其中 $Q$ 为一个极板带电的绝对值，得
 
 <div class="text-center text-xl mt-2">
 
