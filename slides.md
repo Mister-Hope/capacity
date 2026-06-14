@@ -239,7 +239,7 @@ layout: default
 </div>
 
 <div class="card mt-2 px-3 py-1.5">
-  <div class="text-sm opacity-70">把导线、电阻接在正极和负极两端，只要<span class="text-accent-2">不构成闭合回路</span>，相互靠近的两极板间吸引力仍会“留住”电荷。</div>
+  <div class="text-sm opacity-70">把导线、电阻等其他元件接在正极和负极两端，只要<span class="text-accent-2">不构成闭合回路</span>，相互靠近的两极板间吸引力仍会“留住”电荷。</div>
 </div>
 
 <div class="card card-highlight mt-2 px-3 py-1.5 text-center text-base">
