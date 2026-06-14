@@ -324,6 +324,38 @@ layout: default
 
 ---
 layout: default
+---
+
+# 什么是"本领"？
+
+<div class="grid grid-cols-2 gap-4 mt-4">
+
+<div class="card">
+  <div class="text-lg font-semibold"><mdi-help-circle-outline class="text-accent text-xl inline-block align-middle mr-1" />质量是什么的"本领"？</div>
+  <div v-click class="text-sm opacity-70 mt-2">改变物体运动状态<span class="text-accent">难易</span>的本领</div>
+</div>
+
+<div class="card">
+  <div class="text-lg font-semibold"><mdi-help-circle-outline class="text-accent text-xl inline-block align-middle mr-1" />电阻是什么的"本领"？</div>
+  <div v-click class="text-sm opacity-70 mt-2">阻碍电流通过<span class="text-accent">难易</span>的本领</div>
+</div>
+
+</div>
+
+<v-click>
+
+<div class="text-2xl font-semibold mt-6 text-center"><mdi-help-circle-outline class="text-accent-2 text-2xl inline-block align-middle mr-2" />那么，电容器的本领是什么？</div>
+
+</v-click>
+
+<v-click>
+
+<div class="text-xl mt-3 text-center"><span class="text-accent font-semibold">储存电荷</span>的能力</div>
+
+</v-click>
+
+---
+layout: default
 transition: slide-left
 preload: false
 ---
@@ -345,7 +377,7 @@ preload: false
   :initial="{ opacity: 0, y: 30 }"
   :enter="{ opacity: 1, y: 0, transition: { delay: 200 } }"
   class="text-4xl font-bold leading-relaxed mt-4"
->不同电容器的储存本领<br/>是否一样？如何量化？</div>
+>如何衡量各电容器的本领？</div>
 
 <div
   v-motion
@@ -354,7 +386,7 @@ preload: false
   class="mt-6 text-lg opacity-60"
 >
 
-<mdi-account-group-outline class="text-accent-2 text-xl mr-1" /> 请讨论并尝试设计一个实验方案。
+<mdi-account-group-outline class="text-accent-2 text-xl mr-1" /> 请根据充放电过程的分析，讨论并尝试设计一个实验方案。
 
 </div>
 
@@ -418,7 +450,7 @@ layout: default
 
 <v-clicks>
 
-<div class="font-bold text-xl mt-2">一、定义</div>
+<div class="font-bold text-xl mt-2">1. 定义</div>
 
 <div class="text-lg mt-1">
 
@@ -426,13 +458,21 @@ layout: default
 
 </div>
 
-<div class="my-2 border-t border-slate-700/50"></div>
-
-<span class="font-bold text-xl">二、定义式：</span> $C = \dfrac{Q}{U}$
+<div>
 
 <div class="my-2 border-t border-slate-700/50"></div>
 
-<span class="font-bold text-xl">三、单位：</span> 法拉，简称 **法**，符号 $F$，&ensp;$1\,\text{F} = 1\,\text{C/V}$
+<span class="font-bold text-xl">2. 定义式：</span> $C = \dfrac{Q}{U}$
+
+</div>
+
+<div>
+
+<div class="my-2 border-t border-slate-700/50"></div>
+
+<span class="font-bold text-xl">3、单位：</span> 法拉，简称 **法**，符号 $F$，&ensp;$1\,\text{F} = 1\,\text{C/V}$
+
+</div>
 
 </v-clicks>
 
@@ -517,17 +557,17 @@ layout: default
 
 <v-clicks>
 
-<div class="font-bold text-xl mt-2">一、额定工作电压</div>
+<div class="font-bold text-xl mt-2">1. 额定工作电压</div>
 
 <div class="text-lg mt-1">
 
 电容器上标注的电压——电容器<span class="text-accent font-semibold">长期、可靠工作</span>的最大电压。
-
 </div>
 
+<div>
 <div class="my-3 border-t border-slate-700/50"></div>
-
-<div class="font-bold text-xl">二、击穿电压</div>
+<div class="font-bold text-xl">2. 击穿电压</div>
+</div>
 
 <div class="text-lg mt-1">
 
