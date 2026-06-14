@@ -268,7 +268,7 @@ layout: default
 
 <div class="text-lg">
 
-电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span> $Q$
+电容器的带电量 = <span class="text-accent-2 font-bold">一个极板带电的绝对值</span> Q
 
 </div>
 
@@ -404,7 +404,7 @@ layout: default
 
 <v-clicks>
 
-- 同一个电容器，$Q$ 与 $U$ 的比值是一个<span class="text-accent font-semibold">定值</span>
+- 同一个电容器，Q 与 U 的比值是一个<span class="text-accent font-semibold">定值</span>
 
 - 不同电容器，这个比值<span class="text-accent-2 font-semibold">不同</span>
 
@@ -423,17 +423,17 @@ layout: default
 <div class="card text-center">
   <div class="card-highlight rounded-lg p-2">
 
-  $V = S \cdot h$
+$V = S \cdot h$
 
-  </div>
+</div>
 </div>
 
 <div class="card text-center">
   <div class="card-highlight rounded-lg p-2">
 
-  $Q = ? \cdot U$
+$Q = ? \cdot U$
 
-  </div>
+</div>
 </div>
 
 </div>
@@ -452,7 +452,7 @@ layout: default
 
 <div class="text-lg mt-1">
 
-电容器所带电荷量 $Q$ 与两极板间电势差 $U$ 的比值，反映电容器储存电荷的本领。
+电容器所带电荷量 Q 与两极板间电势差 U 的比值，反映电容器储存电荷的本领。
 
 </div>
 
@@ -511,7 +511,7 @@ layout: default
 
 <div class="card mt-4">
 
-**解：** 由 $C = \dfrac{Q}{U}$，其中 $Q$ 为一个极板带电的绝对值，得
+**解：** 由 $C = \dfrac{Q}{U}$，其中 Q 为一个极板带电的绝对值，得
 
 <div class="text-center text-xl mt-2">
 
@@ -675,25 +675,57 @@ $\varepsilon_r$ — 介质相对介电常数
 
 <div class="text-center text-sm px-2 py-1.5 rounded-lg border border-slate-700/50 bg-slate-900/30">
 
-$S$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> $C$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
+$S$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> C <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
 
 </div>
 
 <div class="text-center text-sm px-2 py-1.5 rounded-lg border border-slate-700/50 bg-slate-900/30">
 
-$d$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> $C$ <mdi-arrow-down-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
+$d$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> C <mdi-arrow-down-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
 
 </div>
 
 <div class="text-center text-sm px-2 py-1.5 rounded-lg border border-slate-700/50 bg-slate-900/30">
 
-$\varepsilon_r$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> $C$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
+$\varepsilon_r$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> C <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
 
 </div>
 
 </div>
 
 </v-click>
+
+---
+layout: default
+---
+
+<div class="grid grid-cols-2 gap-3 mt-2 text-[10px]">
+
+<div>
+
+**保持 U 不变**
+
+| | $C$ | $Q$ | $\varphi$ | $E_p$ | $E$ |
+|---|---|---|---|---|---|
+| $S \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
+| $d \uparrow$ | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
+| $\varepsilon_r \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
+
+</div>
+
+<div>
+
+**保持 Q 不变**
+
+| | $C$ | $U$ | $\varphi$ | $E_p$ | $E$ |
+|---|---|---|---|---|---|
+| $S \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
+| $d \uparrow$ | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
+| $\varepsilon_r \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
+
+</div>
+
+</div>
 
 ---
 layout: center
