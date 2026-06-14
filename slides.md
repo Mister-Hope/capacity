@@ -647,12 +647,6 @@ layout: default
 
 平行板电容器的电容由<span class="text-accent">结构参数</span>决定：
 
-</div>
-
-<v-clicks>
-
-<div class="card mt-3">
-
 $$C = \frac{\varepsilon_r S}{4\pi k d}$$
 
 <div class="grid grid-cols-3 gap-3 mt-3 text-sm opacity-70">
@@ -675,15 +669,31 @@ $\varepsilon_r$ — 介质相对介电常数
 
 </div>
 
-<div class="card mt-3">
-  <div class="text-sm opacity-70">
+<v-click>
 
-$S \uparrow$ 电容 ↑ &nbsp;&nbsp;|&nbsp;&nbsp; $d \uparrow$ 电容 ↓ &nbsp;&nbsp;|&nbsp;&nbsp; $\varepsilon_r \uparrow$ 电容 ↑
+<div class="grid grid-cols-3 gap-3 mt-3">
+
+<div class="text-center text-sm px-2 py-1.5 rounded-lg border border-slate-700/50 bg-slate-900/30">
+
+$S$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> $C$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
 
 </div>
+
+<div class="text-center text-sm px-2 py-1.5 rounded-lg border border-slate-700/50 bg-slate-900/30">
+
+$d$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> $C$ <mdi-arrow-down-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
+
 </div>
 
-</v-clicks>
+<div class="text-center text-sm px-2 py-1.5 rounded-lg border border-slate-700/50 bg-slate-900/30">
+
+$\varepsilon_r$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" /> <span class="text-accent mx-1">→</span> $C$ <mdi-arrow-up-bold class="text-accent inline-block text-base" style="vertical-align: -0.15em" />
+
+</div>
+
+</div>
+
+</v-click>
 
 ---
 layout: center
