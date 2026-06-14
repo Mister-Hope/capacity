@@ -741,10 +741,22 @@ class: text-center
 
 $$C = \frac{\varepsilon_r S}{4\pi k d}$$
 
-<div class="text-sm opacity-60 mt-0.5">
+<div class="grid grid-cols-3 gap-3 mt-2 text-sm opacity-70">
+  <div>
 
-$S$ — 极板正对面积 &nbsp;|&nbsp; $d$ — 极板间距 &nbsp;|&nbsp; $\varepsilon_r$ — 介质相对介电常数
+$S$ — 极板正对面积
 
+  </div>
+  <div>
+
+$d$ — 极板间距
+
+  </div>
+  <div>
+
+$\varepsilon_r$ — 介质相对介电常数
+
+  </div>
 </div>
 
 </div>
