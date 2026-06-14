@@ -248,8 +248,29 @@ onUnmounted(() => {
           <line x1="45" y1="160" x2="286" y2="160" stroke="#475569" stroke-width="2" />
           <line x1="314" y1="160" x2="380" y2="160" stroke="#475569" stroke-width="2" />
 
-          <!-- VERTICAL SHUNT WIRE (DISCHARGE BRANCH) -->
-          <line x1="220" y1="90" x2="220" y2="160" stroke="#475569" stroke-width="2" />
+          <!-- VERTICAL SHUNT WIRE (DISCHARGE BRANCH) with resistor -->
+          <!-- Wire from terminal 3 to top of resistor -->
+          <line x1="220" y1="90" x2="220" y2="108" stroke="#475569" stroke-width="2" />
+
+          <!-- Resistor symbol (rectangular box, China standard) -->
+          <rect x="214" y="108" width="12" height="28" rx="2" fill="none" stroke="#475569" stroke-width="2" />
+
+          <!-- Label R -->
+          <text
+            x="236"
+            y="126"
+            font-size="11"
+            font-family="sans-serif"
+            font-weight="bold"
+            font-style="italic"
+            fill="#94a3b8"
+            text-anchor="start"
+          >
+            R
+          </text>
+
+          <!-- Wire from bottom of resistor to bottom bus -->
+          <line x1="220" y1="136" x2="220" y2="160" stroke="#475569" stroke-width="2" />
 
           <!-- AMMETER (A) - ON THE BOTTOM WIRE -->
           <g id="ammeter">
