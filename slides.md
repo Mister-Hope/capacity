@@ -235,17 +235,15 @@ layout: default
 <v-clicks>
 
 <div class="card mt-2 px-3 py-1.5">
-  <div class="font-semibold text-base mb-0.5">不会。因为——</div>
   <div class="text-sm opacity-70">负极板上的负电荷与正极板上的正电荷<span class="text-accent">相互吸引</span>，正极板上的电荷被"拉住"，几乎不会流入大地。</div>
 </div>
 
 <div class="card mt-2 px-3 py-1.5">
-  <div class="font-semibold text-base mb-0.5">进一步——</div>
-  <div class="text-sm opacity-70">即使把导线、电阻接在正极和负极两端，只要<span class="text-accent-2">不构成闭合回路</span>，两极板之间的相互吸引力仍然会让大部分电荷保留下来。</div>
+  <div class="text-sm opacity-70">把导线、电阻接在正极和负极两端，只要<span class="text-accent-2">不构成闭合回路</span>，相互靠近的两极板间吸引力仍会“留住”电荷。</div>
 </div>
 
 <div class="card card-highlight mt-2 px-3 py-1.5 text-center text-base">
-  <span class="text-accent font-semibold">相互靠近</span> + <span class="text-accent-2 font-semibold">彼此绝缘</span> → 电容器能够储存电荷
+  <span class="text-accent font-semibold">相互靠近</span> + <span class="text-accent-2 font-semibold">彼此绝缘</span> → 储存电荷的必要条件
 </div>
 
 </v-clicks>
