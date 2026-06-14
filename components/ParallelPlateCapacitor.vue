@@ -61,9 +61,9 @@ const overlapRight = computed(() => upperPlateRight.value);
 const upperWireX = computed(() => upperPlateCenterX.value);
 const lowerWireX = computed(() => lowerPlateCenterX.value);
 
-// Plate Gap: Maps d from [3.0, 8.0] mm to [45, 115] px
+// Plate Gap: Maps d from [2.0, 8.0] mm to [45, 115] px
 const plateGap = computed(() => {
-  const normD = (d.value - 3.0) / 5.0; // [0, 1]
+  const normD = (d.value - 2.0) / 6.0; // [0, 1]
   return 45 + normD * 70;
 });
 
@@ -92,26 +92,32 @@ const dielectricStyle = computed(() => {
   return null; // No dielectric
 });
 
-// Stable charge positions for upper (+, red) and lower (-, blue) plates
-const upperChargePositions = computed(() => {
-  const positions = [];
-  const startX = upperPlateLeft.value;
-  const count = 8;
-  for (let i = 0; i < count; i++) {
-    positions.push(startX + ((i + 0.5) * physicalPlateWidth) / count);
-  }
-  return positions;
-});
+// ── 极板颜色：灰→红/蓝渐变 ──
+function interpolateColor(c1: string, c2: string, t: number) {
+  const p = (h: string) => ({ r: parseInt(h.slice(0,2),16), g: parseInt(h.slice(2,4),16), b: parseInt(h.slice(4,6),16) });
+  const a = p(c1), b = p(c2);
+  return `rgb(${Math.round(a.r+t*(b.r-a.r))},${Math.round(a.g+t*(b.g-a.g))},${Math.round(a.b+t*(b.b-a.b))})`;
+}
+const plateT = computed(() => Math.max(0, Math.min(1, (U.value - 10) / 40)));
+const upperColor = computed(() => interpolateColor("475569", "ef4444", plateT.value));
+const lowerColor = computed(() => interpolateColor("475569", "3b82f6", plateT.value));
 
-const lowerChargePositions = computed(() => {
-  const positions = [];
-  const startX = lowerPlateLeft.value;
-  const count = 8;
-  for (let i = 0; i < count; i++) {
-    positions.push(startX + ((i + 0.5) * physicalPlateWidth) / count);
-  }
-  return positions;
+// 电荷符号：随电压递增 1→10 个，直接计算始终居中的位置
+const chargeCount = computed(() => {
+  const t = plateT.value;
+  return t <= 0.02 ? 0 : Math.min(10, Math.max(1, Math.ceil(t * 10)));
 });
+function centeredPositions(centerX: number, count: number): number[] {
+  if (count === 0) return [];
+  if (count === 1) return [centerX];
+  const margin = physicalPlateWidth * 0.06;
+  const span = physicalPlateWidth - 2 * margin;
+  const step = span / count;
+  const start = centerX - span / 2 + step / 2;
+  return Array.from({ length: count }, (_, i) => start + i * step);
+}
+const visibleUpperCharges = computed(() => centeredPositions(upperPlateCenterX.value, chargeCount.value));
+const visibleLowerCharges = computed(() => centeredPositions(lowerPlateCenterX.value, chargeCount.value));
 
 // Reset simulation parameters
 function resetParams() {
@@ -250,7 +256,7 @@ function resetParams() {
               :width="physicalPlateWidth"
               height="8"
               rx="4"
-              fill="#ef4444"
+              :fill="upperColor"
               class="shadow-lg"
             />
 
@@ -261,7 +267,7 @@ function resetParams() {
               :width="physicalPlateWidth"
               height="8"
               rx="4"
-              fill="#3b82f6"
+              :fill="lowerColor"
               class="shadow-lg"
             />
 
@@ -270,32 +276,30 @@ function resetParams() {
             <g>
               <!-- Upper positive charges (inside, just below upper plate) -->
               <text
-                v-for="(px, index) in upperChargePositions"
+                v-for="(px, index) in visibleUpperCharges"
                 :key="'pos-up-' + index"
                 :x="px"
                 :y="upperPlateY + 12"
                 class="svg-text-sign font-extrabold select-none"
                 fill="#f87171"
-                font-size="15"
+                style="font-size:13px"
                 text-anchor="middle"
                 dominant-baseline="central"
-                :fill-opacity="Math.max(0.15, U / 100.0)"
               >
                 +
               </text>
 
               <!-- Lower negative charges (inside, just above lower plate) -->
               <text
-                v-for="(px, index) in lowerChargePositions"
+                v-for="(px, index) in visibleLowerCharges"
                 :key="'pos-low-' + index"
                 :x="px"
                 :y="lowerPlateY - 12"
                 class="svg-text-sign font-extrabold select-none"
                 fill="#60a5fa"
-                font-size="15"
+                style="font-size:13px"
                 text-anchor="middle"
                 dominant-baseline="central"
-                :fill-opacity="Math.max(0.15, U / 100.0)"
               >
                 −
               </text>
@@ -420,7 +424,7 @@ function resetParams() {
             </div>
             <input
               type="range"
-              min="3.0"
+              min="2.0"
               max="8.0"
               step="0.5"
               v-model.number="d"

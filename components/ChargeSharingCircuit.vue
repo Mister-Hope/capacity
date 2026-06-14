@@ -45,6 +45,24 @@ const bLowerColor = computed(() =>
   interpolateColor("#475569", "#3b82f6", Math.min(1, qB.value / 8.0)),
 );
 
+// 电荷符号：随电压比例递增 1→5 个，始终居中
+function makeChargeXs(q: () => number, center: number) {
+  return computed(() => {
+    const t = Math.min(1, q() / 8.0);
+    const c = t <= 0.02 ? 0 : Math.min(5, Math.max(1, Math.ceil(t * 5)));
+    const sets = [
+      [center],
+      [center - 8, center + 8],
+      [center - 15, center, center + 15],
+      [center - 20, center - 8, center + 8, center + 20],
+      [center - 20, center - 10, center, center + 10, center + 20],
+    ];
+    return c === 0 ? [] : sets[c - 1];
+  });
+}
+const chargeXsC1 = makeChargeXs(() => qA.value, 420);
+const chargeXsC2 = makeChargeXs(() => qB.value, 150);
+
 // Switch 1 Target - Mathematically exact rotation of length L = 72
 const s1Target = computed(() => {
   if (s1Pos.value === "1") return { x: 252.3, y: 45.5 }; // Length = 72 at 160.1 degrees
@@ -411,18 +429,8 @@ onUnmounted(() => {
           >
             C₂
           </text>
-          <g v-if="qB > 0.1">
-            <text x="130" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
-            <text x="140" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
-            <text x="150" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
-            <text x="160" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
-            <text x="170" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
-            <text x="130" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
-            <text x="140" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
-            <text x="150" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
-            <text x="160" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
-            <text x="170" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
-          </g>
+          <text v-for="x in chargeXsC2" :key="'+'+x" :x="x" y="115" style="font-size:10px" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central">+</text>
+          <text v-for="x in chargeXsC2" :key="'-'+x" :x="x" y="125" style="font-size:10px" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central">−</text>
         </g>
 
         <!-- S1 → C₁ 导线 -->
@@ -462,18 +470,8 @@ onUnmounted(() => {
           >
             C₁
           </text>
-          <g v-if="qA > 0.1">
-            <text x="400" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
-            <text x="410" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
-            <text x="420" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
-            <text x="430" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
-            <text x="440" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
-            <text x="400" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
-            <text x="410" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
-            <text x="420" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
-            <text x="430" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
-            <text x="440" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
-          </g>
+          <text v-for="x in chargeXsC1" :key="'+'+x" :x="x" y="115" style="font-size:10px" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central">+</text>
+          <text v-for="x in chargeXsC1" :key="'-'+x" :x="x" y="125" style="font-size:10px" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central">−</text>
         </g>
 
         <!-- 电压表 V（与 C₁ 并联） -->

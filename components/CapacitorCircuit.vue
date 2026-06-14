@@ -59,6 +59,13 @@ const EL = {
   S_capLower: 30, // 电容器下导线间距 (2 e⁻ / 66px)
 }
 
+// 电荷符号：随电压递增 1→5 个，始终居中（极板宽 80px，中点 380）
+const chargeXs = computed(() => {
+  const c = plateCharge.value <= 0.02 ? 0 : Math.min(5, Math.max(1, Math.ceil(plateCharge.value * 5)));
+  const sets = [[380], [368, 392], [356, 380, 404], [350, 370, 390, 410], [348, 364, 380, 396, 412]];
+  return c === 0 ? [] : sets[c - 1];
+});
+
 // Compute Horizontal Plate Colors
 const upperPlateColor = computed(() => {
   return interpolateColor("#475569", "#ef4444", plateCharge.value); // Positive (Red)
@@ -402,8 +409,8 @@ onUnmounted(() => {
             <!-- Charge signs inside plates (+, upper; −, lower), symmetric around gap center y=90 -->
             <g>
               <!-- Upper plate positive charges (inside, just below plate) -->
-              <text v-for="x in [350, 370, 390, 410]" :key="'pos-'+x" :x="x" y="83" font-size="14" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="plateCharge * 0.9">+</text>
-              <text v-for="x in [350, 370, 390, 410]" :key="'neg-'+x" :x="x" y="97" font-size="14" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="plateCharge * 0.9">−</text>
+              <text v-for="x in chargeXs" :key="'+'+x" :x="x" y="83" style="font-size:11px" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central">+</text>
+              <text v-for="x in chargeXs" :key="'-'+x" :x="x" y="97" style="font-size:11px" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central">−</text>
             </g>
           </g>
 

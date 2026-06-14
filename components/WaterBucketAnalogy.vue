@@ -237,8 +237,8 @@ onUnmounted(() => {
         stroke-linecap="round"
       />
 
-      <text v-for="x in chargeXs" :key="'+'+x" :x="x" y="108" font-size="14" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central">+</text>
-      <text v-for="x in chargeXs" :key="'-'+x" :x="x" y="145" font-size="14" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central">−</text>
+      <text v-for="x in chargeXs" :key="'+'+x" :x="x" y="108" style="font-size:14px" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central">+</text>
+      <text v-for="x in chargeXs" :key="'-'+x" :x="x" y="145" style="font-size:14px" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central">−</text>
 
       <!-- U：从两极板中间向上下对称展开 -->
       <line
