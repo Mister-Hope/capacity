@@ -695,37 +695,7 @@ $\varepsilon_r$ <mdi-arrow-up-bold class="text-accent inline-block text-base" st
 
 </v-click>
 
----
-layout: default
----
 
-<div class="grid grid-cols-2 gap-3 mt-2 text-[10px]">
-
-<div>
-
-**保持 U 不变**
-
-| | $C$ | $Q$ | $\varphi$ | $E_p$ | $E$ |
-|---|---|---|---|---|---|
-| $S \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
-| $d \uparrow$ | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
-| $\varepsilon_r \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
-
-</div>
-
-<div>
-
-**保持 Q 不变**
-
-| | $C$ | $U$ | $\varphi$ | $E_p$ | $E$ |
-|---|---|---|---|---|---|
-| $S \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
-| $d \uparrow$ | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
-| $\varepsilon_r \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
-
-</div>
-
-</div>
 
 ---
 layout: center
@@ -774,6 +744,39 @@ $$C = \frac{\varepsilon_r S}{4\pi k d}$$
 <div class="text-sm opacity-60 mt-0.5">
 
 $S$ — 极板正对面积 &nbsp;|&nbsp; $d$ — 极板间距 &nbsp;|&nbsp; $\varepsilon_r$ — 介质相对介电常数
+
+</div>
+
+</div>
+---
+layout: default
+---
+
+# 课后作业
+
+<div class="grid grid-cols-2 gap-3 mt-2 text-[10px]">
+
+<div>
+
+**平行板电容器连接电源时（U 不变）**：
+
+| | $C$ | $Q$ | $\varphi$ | $E_p$ | $E$ |
+|---|---|---|---|---|---|
+| $S \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
+| $d \uparrow$ | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
+| $\varepsilon_r \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
+
+</div>
+
+<div>
+
+**已经充电的平行板电容器（Q 不变）**：
+
+| | $C$ | $U$ | $\varphi$ | $E_p$ | $E$ |
+|---|---|---|---|---|---|
+| $S \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
+| $d \uparrow$ | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="opacity-40">—</span> |
+| $\varepsilon_r \uparrow$ | <span v-click class="text-red-400 font-bold">↑</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> | <span v-click class="text-blue-400 font-bold">↓</span> |
 
 </div>
 
