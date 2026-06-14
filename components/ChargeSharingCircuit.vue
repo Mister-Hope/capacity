@@ -412,72 +412,16 @@ onUnmounted(() => {
             C₂
           </text>
           <g v-if="qB > 0.1">
-            <text
-              x="130"
-              y="100"
-              font-size="16"
-              font-weight="950"
-              fill="#ef4444"
-              text-anchor="middle"
-              :fill-opacity="qB / 8.0"
-            >
-              +
-            </text>
-            <text
-              x="150"
-              y="100"
-              font-size="16"
-              font-weight="950"
-              fill="#ef4444"
-              text-anchor="middle"
-              :fill-opacity="qB / 8.0"
-            >
-              +
-            </text>
-            <text
-              x="170"
-              y="100"
-              font-size="16"
-              font-weight="950"
-              fill="#ef4444"
-              text-anchor="middle"
-              :fill-opacity="qB / 8.0"
-            >
-              +
-            </text>
-            <text
-              x="130"
-              y="145"
-              font-size="16"
-              font-weight="950"
-              fill="#3b82f6"
-              text-anchor="middle"
-              :fill-opacity="qB / 8.0"
-            >
-              −
-            </text>
-            <text
-              x="150"
-              y="145"
-              font-size="16"
-              font-weight="950"
-              fill="#3b82f6"
-              text-anchor="middle"
-              :fill-opacity="qB / 8.0"
-            >
-              −
-            </text>
-            <text
-              x="170"
-              y="145"
-              font-size="16"
-              font-weight="950"
-              fill="#3b82f6"
-              text-anchor="middle"
-              :fill-opacity="qB / 8.0"
-            >
-              −
-            </text>
+            <text x="130" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
+            <text x="140" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
+            <text x="150" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
+            <text x="160" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
+            <text x="170" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">+</text>
+            <text x="130" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
+            <text x="140" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
+            <text x="150" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
+            <text x="160" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
+            <text x="170" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qB / 8.0">−</text>
           </g>
         </g>
 
@@ -519,72 +463,16 @@ onUnmounted(() => {
             C₁
           </text>
           <g v-if="qA > 0.1">
-            <text
-              x="400"
-              y="100"
-              font-size="16"
-              font-weight="950"
-              fill="#ef4444"
-              text-anchor="middle"
-              :fill-opacity="qA / 8.0"
-            >
-              +
-            </text>
-            <text
-              x="420"
-              y="100"
-              font-size="16"
-              font-weight="950"
-              fill="#ef4444"
-              text-anchor="middle"
-              :fill-opacity="qA / 8.0"
-            >
-              +
-            </text>
-            <text
-              x="440"
-              y="100"
-              font-size="16"
-              font-weight="950"
-              fill="#ef4444"
-              text-anchor="middle"
-              :fill-opacity="qA / 8.0"
-            >
-              +
-            </text>
-            <text
-              x="400"
-              y="145"
-              font-size="16"
-              font-weight="950"
-              fill="#3b82f6"
-              text-anchor="middle"
-              :fill-opacity="qA / 8.0"
-            >
-              −
-            </text>
-            <text
-              x="420"
-              y="145"
-              font-size="16"
-              font-weight="950"
-              fill="#3b82f6"
-              text-anchor="middle"
-              :fill-opacity="qA / 8.0"
-            >
-              −
-            </text>
-            <text
-              x="440"
-              y="145"
-              font-size="16"
-              font-weight="950"
-              fill="#3b82f6"
-              text-anchor="middle"
-              :fill-opacity="qA / 8.0"
-            >
-              −
-            </text>
+            <text x="400" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
+            <text x="410" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
+            <text x="420" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
+            <text x="430" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
+            <text x="440" y="115" font-size="10" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">+</text>
+            <text x="400" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
+            <text x="410" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
+            <text x="420" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
+            <text x="430" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
+            <text x="440" y="125" font-size="10" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="qA / 8.0">−</text>
           </g>
         </g>
 

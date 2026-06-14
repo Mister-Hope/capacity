@@ -32,6 +32,33 @@ function interpolateColor(color1: string, color2: string, factor: number) {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+// ── Electron animation shared constants ──
+const E = {
+  circleR: 2.5,
+  circleFill: "#3b82f6",
+  font: "Georgia, 'Times New Roman', serif",
+  fontStyle: "italic",
+  fontSize: 9,
+  superSize: 6,
+  textFill: "#60a5fa",
+  textAbove: -5, // text offset above wire
+  textBelow: 13, // text offset below wire
+  textBeside: 3, // text vertical align beside wire (vertical segments)
+}
+const EL = {
+  upperH: 168, // upper horizontal wire length (battery↔switch)
+  upperCap: 100, // capacitor upper wire length
+  lowerH: 234, // lower horizontal wire length (battery↔ammeter)
+  lowerShunt: 66, // lower wire ammeter↔shunt length
+  lowerCap: 66, // capacitor lower wire length
+  vert: 66, // vertical wire segments length
+  shunt: 70, // shunt vertical wire length
+  // electron spacing — 统一密度 ~33px/e⁻（与电容器侧一致）
+  S: 34, // 通用间距
+  S_capUpper: 35, // 电容器上导线间距 (3 e⁻ / 100px)
+  S_capLower: 30, // 电容器下导线间距 (2 e⁻ / 66px)
+}
+
 // Compute Horizontal Plate Colors
 const upperPlateColor = computed(() => {
   return interpolateColor("#475569", "#ef4444", plateCharge.value); // Positive (Red)
@@ -113,7 +140,6 @@ function handleSelectTerminal(pos: "charge" | "discharge" | "open") {
         state.value = "idle";
       }
     }, 40);
-
   } else if (pos === "discharge") {
     // Start discharging transient
     if (plateCharge.value <= 0.01) {
@@ -157,7 +183,6 @@ function handleSelectTerminal(pos: "charge" | "discharge" | "open") {
         state.value = "idle";
       }
     }, 40);
-
   } else {
     // Open (disconnected) - preserves plateCharge!
     state.value = "idle";
@@ -199,15 +224,15 @@ onUnmounted(() => {
         class="w-full relative bg-slate-950/40 rounded-xl p-2 overflow-hidden"
       >
         <svg viewBox="0 0 720 220" class="circuit-svg">
-          <!-- LEFT VERTICAL WIRE SECTION WITH EMBEDDED VERTICAL BATTERY (AS PER REF PICTURE) -->
-          <line x1="45" y1="20" x2="45" y2="75" stroke="#475569" stroke-width="2" />
-          <line x1="45" y1="89" x2="45" y2="160" stroke="#475569" stroke-width="2" />
+          <!-- LEFT VERTICAL WIRE SECTION WITH EMBEDDED VERTICAL BATTERY -->
+          <line x1="45" y1="20" x2="45" y2="86" stroke="#475569" stroke-width="2" />
+          <line x1="45" y1="94" x2="45" y2="160" stroke="#475569" stroke-width="2" />
 
-          <!-- VERTICAL BATTERY SYMBOL -->
-          <!-- Long positive plate (thin blue line) -->
-          <line x1="33" y1="75" x2="57" y2="75" stroke="#3b82f6" stroke-width="2.5" />
-          <!-- Short negative plate (thick slate line) -->
-          <line x1="39" y1="83" x2="51" y2="83" stroke="#475569" stroke-width="4.5" />
+          <!-- VERTICAL BATTERY SYMBOL (centered around y=90, circuit midpoint) -->
+          <!-- Long positive plate (thin red line) -->
+          <line x1="27" y1="86" x2="63" y2="86" stroke="#ef4444" stroke-width="2.5" />
+          <!-- Short negative plate (thick blue line) -->
+          <line x1="34" y1="94" x2="56" y2="94" stroke="#3b82f6" stroke-width="4.5" />
 
           <!-- UPPER WIRE BUS: y=20 -->
           <line x1="45" y1="20" x2="220" y2="20" stroke="#475569" stroke-width="2" />
@@ -374,97 +399,97 @@ onUnmounted(() => {
               电容器
             </text>
 
-            <!-- Charging indicator signs / static representation -->
-
-            <!-- Color text legends as requested to indicate polarity colors -->
+            <!-- Charge signs inside plates (+, upper; −, lower), symmetric around gap center y=90 -->
+            <g>
+              <!-- Upper plate positive charges (inside, just below plate) -->
+              <text v-for="x in [350, 370, 390, 410]" :key="'pos-'+x" :x="x" y="83" font-size="14" font-weight="950" fill="#f87171" text-anchor="middle" dominant-baseline="central" :fill-opacity="plateCharge * 0.9">+</text>
+              <text v-for="x in [350, 370, 390, 410]" :key="'neg-'+x" :x="x" y="97" font-size="14" font-weight="950" fill="#60a5fa" text-anchor="middle" dominant-baseline="central" :fill-opacity="plateCharge * 0.9">−</text>
+            </g>
           </g>
 
-          <!-- ANIMATED ELECTRON FLOW (e) ALONG BOTH WIRES OF THE CAPACITOR -->
-          <!-- Upper line horizontal segment (x: 280 to 380 at y=55) -->
-          <!-- Charging: electrons move AWAY from upper plate (Right to Left: 380 -> 280) -->
+          <!-- ANIMATED ELECTRON FLOW (e⁻) — 充电/放电完整回路 -->
+
+          <!-- ═══ 充电回路（电源供电） ═══ -->
+
+          <!-- 左上方竖线 (x=45, y=20→86)：2 e⁻ 向下进入电池+ -->
           <g v-if="state === 'charging'">
-            <g
-              v-for="i in 3"
-              :key="'ue-c-' + i"
-              :transform="`translate(${380 - ((electronOffset + i * 35) % 100)}, 55)`"
-            >
-              <circle cx="0" cy="0" r="3" fill="#3b82f6" class="shadow-sm" />
-              <text
-                x="0"
-                y="-5"
-                font-size="10"
-                font-family="Georgia, 'Times New Roman', serif"
-                font-style="italic"
-                fill="#60a5fa"
-                text-anchor="middle"
-              >
-                e
-              </text>
-            </g>
-          </g>
-          <!-- Discharging: electrons move TOWARDS upper plate (Left to Right: 280 -> 380) -->
-          <g v-if="state === 'discharging'">
-            <g
-              v-for="i in 3"
-              :key="'ue-d-' + i"
-              :transform="`translate(${280 + ((electronOffset + i * 35) % 100)}, 55)`"
-            >
-              <circle cx="0" cy="0" r="3" fill="#ef4444" />
-              <text
-                x="0"
-                y="-5"
-                font-size="10"
-                font-family="Georgia, 'Times New Roman', serif"
-                font-style="italic"
-                fill="#f87171"
-                text-anchor="middle"
-              >
-                e
-              </text>
+            <g v-for="i in 2" :key="'lu-c-'+i" :transform="`translate(45, ${20 + ((electronOffset + i * EL.S) % EL.vert)})`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="11" :y="E.textBeside" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="start">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
             </g>
           </g>
 
-          <!-- Bottom line horizontal segment (x: 314 to 380 at y=160) -->
-          <!-- Charging: electrons move TOWARDS lower plate (Left to Right: 314 -> 380) -->
+          <!-- 上方水平导线 (y=20, x=218→50)：5 e⁻ 右→左流回电池+ -->
           <g v-if="state === 'charging'">
-            <g
-              v-for="i in 2"
-              :key="'le-c-' + i"
-              :transform="`translate(${314 + ((electronOffset + i * 30) % 66)}, 160)`"
-            >
-              <circle cx="0" cy="0" r="3" fill="#3b82f6" />
-              <text
-                x="0"
-                y="-5"
-                font-size="10"
-                font-family="Georgia, 'Times New Roman', serif"
-                font-style="italic"
-                fill="#60a5fa"
-                text-anchor="middle"
-              >
-                e
-              </text>
+            <g v-for="i in 5" :key="'uh-c-'+i" :transform="`translate(${218 - ((electronOffset + i * EL.S) % EL.upperH)}, 20)`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="0" :y="E.textAbove" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="middle">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
             </g>
           </g>
-          <!-- Discharging: electrons move AWAY from lower plate (Right to Left: 380 -> 314) -->
+
+          <!-- 左下方竖线 (x=45, y=94→160)：2 e⁻ 向下流出电池− -->
+          <g v-if="state === 'charging'">
+            <g v-for="i in 2" :key="'ll-c-'+i" :transform="`translate(45, ${94 + ((electronOffset + i * EL.S) % EL.vert)})`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="11" :y="E.textBeside" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="start">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
+            </g>
+          </g>
+
+          <!-- 下方水平导线 (y=160, x=50→284)：7 e⁻ 左→右远离电池− -->
+          <g v-if="state === 'charging'">
+            <g v-for="i in 7" :key="'lh-c-'+i" :transform="`translate(${50 + ((electronOffset + i * EL.S) % EL.lowerH)}, 160)`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="0" :y="E.textAbove" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="middle">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
+            </g>
+          </g>
+
+          <!-- 电容器下导线 (y=160, x=314→380)：2 e⁻ 左→右进入下极板 -->
+          <g v-if="state === 'charging'">
+            <g v-for="i in 2" :key="'le-c-'+i" :transform="`translate(${314 + ((electronOffset + i * EL.S_capLower) % EL.lowerCap)}, 160)`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="0" :y="E.textAbove" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="middle">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
+            </g>
+          </g>
+
+          <!-- 电容器上导线 (y=55, x=380→280)：3 e⁻ 右→左离开上极板 -->
+          <g v-if="state === 'charging'">
+            <g v-for="i in 3" :key="'ue-c-'+i" :transform="`translate(${380 - ((electronOffset + i * EL.S_capUpper) % EL.upperCap)}, 55)`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="0" :y="E.textAbove" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="middle">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
+            </g>
+          </g>
+
+          <!-- ═══ 放电回路（电容器→旁路，电源断开） ═══ -->
+
+          <!-- 电容器下导线 (y=160, x=380→314)：2 e⁻ 右→左离开下极板 -->
           <g v-if="state === 'discharging'">
-            <g
-              v-for="i in 2"
-              :key="'le-d-' + i"
-              :transform="`translate(${380 - ((electronOffset + i * 30) % 66)}, 160)`"
-            >
-              <circle cx="0" cy="0" r="3" fill="#ef4444" />
-              <text
-                x="0"
-                y="-5"
-                font-size="10"
-                font-family="Georgia, 'Times New Roman', serif"
-                font-style="italic"
-                fill="#f87171"
-                text-anchor="middle"
-              >
-                e
-              </text>
+            <g v-for="i in 2" :key="'le-d-'+i" :transform="`translate(${380 - ((electronOffset + i * EL.S_capLower) % EL.lowerCap)}, 160)`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="0" :y="E.textAbove" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="middle">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
+            </g>
+          </g>
+
+          <!-- 下方水平导线 (y=160, x=286→220)：2 e⁻ 右→左流向旁路线 -->
+          <g v-if="state === 'discharging'">
+            <g v-for="i in 2" :key="'ls-d-'+i" :transform="`translate(${286 - ((electronOffset + i * EL.S) % EL.lowerShunt)}, 160)`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="0" :y="E.textAbove" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="middle">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
+            </g>
+          </g>
+
+          <!-- 旁路竖线 (x=220, y=160→90)：2 e⁻ 向上 -->
+          <g v-if="state === 'discharging'">
+            <g v-for="i in 2" :key="'sh-d-'+i" :transform="`translate(220, ${160 - ((electronOffset + i * EL.S) % EL.shunt)})`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="-9" :y="E.textBeside" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="end">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
+            </g>
+          </g>
+
+          <!-- 电容器上导线 (y=55, x=280→380)：3 e⁻ 左→右进入上极板 -->
+          <g v-if="state === 'discharging'">
+            <g v-for="i in 3" :key="'ue-d-'+i" :transform="`translate(${280 + ((electronOffset + i * EL.S_capUpper) % EL.upperCap)}, 55)`">
+              <circle cx="0" cy="0" :r="E.circleR" :fill="E.circleFill"/>
+              <text x="0" :y="E.textAbove" :font-size="E.fontSize" :font-family="E.font" :font-style="E.fontStyle" :fill="E.textFill" text-anchor="middle">e<tspan baseline-shift="super" :font-size="E.superSize">−</tspan></text>
             </g>
           </g>
 
@@ -516,7 +541,7 @@ onUnmounted(() => {
               I
             </text>
             <text
-              x="705"
+              x="710"
               y="109"
               font-size="11"
               font-family="Georgia, 'Times New Roman', serif"
@@ -536,7 +561,9 @@ onUnmounted(() => {
               text-anchor="middle"
               font-weight="bold"
             >
-              <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic">I</tspan> — <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic">t</tspan> 暂态电流
+              <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic">I</tspan>
+              —
+              <tspan font-family="Georgia, 'Times New Roman', serif" font-style="italic">t</tspan>
             </text>
 
             <!-- Dynamic trace path -->

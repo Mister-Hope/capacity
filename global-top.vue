@@ -5,7 +5,7 @@
         {{ isCover ? "第十章 静电场" : "电容器的电容" }}
       </span>
     </Transition>
-    <img src="/logo.png" alt="东北育才学校" class="global-top-logo" />
+    <img src="/images/logo.png" alt="东北育才学校" class="global-top-logo" />
   </div>
 </template>
 

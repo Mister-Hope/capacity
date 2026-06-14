@@ -268,31 +268,33 @@ function resetParams() {
             <!-- CHARGE SYMBOLS - +++ at upper plate, --- at lower plate -->
             <!-- Spaced cleanly on each plate respectively, transparency scales dynamically with voltage U -->
             <g>
-              <!-- Upper positive charges -->
+              <!-- Upper positive charges (inside, just below upper plate) -->
               <text
                 v-for="(px, index) in upperChargePositions"
                 :key="'pos-up-' + index"
                 :x="px"
-                :y="upperPlateY - 10"
+                :y="upperPlateY + 12"
                 class="svg-text-sign font-extrabold select-none"
                 fill="#f87171"
                 font-size="15"
                 text-anchor="middle"
+                dominant-baseline="central"
                 :fill-opacity="Math.max(0.15, U / 100.0)"
               >
                 +
               </text>
 
-              <!-- Lower negative charges -->
+              <!-- Lower negative charges (inside, just above lower plate) -->
               <text
                 v-for="(px, index) in lowerChargePositions"
                 :key="'pos-low-' + index"
                 :x="px"
-                :y="lowerPlateY + 20"
+                :y="lowerPlateY - 12"
                 class="svg-text-sign font-extrabold select-none"
                 fill="#60a5fa"
                 font-size="15"
                 text-anchor="middle"
+                dominant-baseline="central"
                 :fill-opacity="Math.max(0.15, U / 100.0)"
               >
                 −
